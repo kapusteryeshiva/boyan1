@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מרכז להוצאות ספרי חסידות לבית רוזין</title>
+<meta name="description" content='דברות קודש מכ"ק מרן אדמו"ר מבאיאן זי"ע, י"ט כסלו תשי"ד, במקור באידיש ובתרגום ללשון הקודש ולאנגלית, עם ההקלטה המקורית.'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: a quiet brown masthead, a glass language switch resting on its lower edge,
+   one paper sheet for the text, and a glass audio dock at the bottom. Grey, brown, gold. */
+:root{
+  --bg:#e6e4e0; --paper:#f7f6f3; --ink:#2a231e; --ink-2:#6e655d; --line:rgba(42,35,30,.14);
+  --gold:#86692b; --gold-soft:#b89c5e; --wash:rgba(184,156,94,.18);
+  --primary:#3b2f27; --on-primary:#f5f1e9;
+  --glass:rgba(244,243,240,.88); --glass-edge:rgba(255,255,255,.7);
+  --glass-hi:rgba(255,255,255,.8); --glass-lo:rgba(42,35,30,.08);
+  --shadow:rgba(42,35,30,.18); --track:rgba(42,35,30,.2);
+  --mast-bg:#2d2520; --mast-fg:#efeae1; --mast-gold:#b89c5e;
+  --focus:#6b4f12;
+
+  --f-he:"Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
+  --f-ui:"Heebo","Arimo","Arial",sans-serif;
+  --f-en-d:"Instrument Serif","Frank Ruhl Libre",Georgia,serif;
+  --f-en:"Source Serif 4",Georgia,"Times New Roman",serif;
+
+  --spring:cubic-bezier(.3,1.55,.5,1);
+  --ease:cubic-bezier(.2,0,0,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#191614; --paper:#211d1a; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
+    --gold:#cdb074; --gold-soft:#a88c52; --wash:rgba(205,176,116,.14);
+    --primary:#cdb074; --on-primary:#221a0e;
+    --glass:rgba(40,35,31,.86); --glass-edge:rgba(255,255,255,.14);
+    --glass-hi:rgba(255,255,255,.16); --glass-lo:rgba(0,0,0,.3);
+    --shadow:rgba(0,0,0,.5); --track:rgba(255,255,255,.2);
+    --mast-bg:#12100e; --mast-fg:#efeae1; --mast-gold:#a88c52;
+    --focus:#e3cf9f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#191614; --paper:#211d1a; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
+  --gold:#cdb074; --gold-soft:#a88c52; --wash:rgba(205,176,116,.14);
+  --primary:#cdb074; --on-primary:#221a0e;
+  --glass:rgba(40,35,31,.86); --glass-edge:rgba(255,255,255,.14);
+  --glass-hi:rgba(255,255,255,.16); --glass-lo:rgba(0,0,0,.3);
+  --shadow:rgba(0,0,0,.5); --track:rgba(255,255,255,.2);
+  --mast-bg:#12100e; --mast-fg:#efeae1; --mast-gold:#a88c52;
+  --focus:#e3cf9f;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--f-ui); font-size:16px; line-height:1.5;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+/* ---------- masthead ---------- */
+:root{--tuck:clamp(16px, 3vw, 32px)}
+.mast{position:relative; z-index:5; overflow:hidden; color:var(--mast-fg);
+  background:
+    linear-gradient(180deg, rgba(34,26,20,.86) 0%, rgba(34,26,20,.62) 38%, rgba(34,26,20,.5) 62%, rgba(26,20,15,.82) 100%),
+    radial-gradient(120% 90% at 50% 55%, transparent 40%, rgba(20,15,11,.55) 100%),
+    url("header.jpg") center 42% / cover no-repeat,
+    var(--mast-bg);
+}
+.mast::after{content:""; position:absolute; z-index:10; left:0; right:0; bottom:0; height:1px; background:var(--mast-gold); box-shadow:0 -4px 10px rgba(0,0,0,.45)}
+.mast-in{
+  max-width:64rem; margin:0 auto;
+  padding-block:12px 0;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center;
+}
+.bsd{align-self:flex-start; margin-bottom:-14px; font-family:var(--f-he); font-size:.9rem; color:var(--mast-gold)}
+.site{
+  margin:0; font-family:var(--f-he); font-weight:400;
+  font-size:clamp(1.3rem, 3.4vw, 2rem); line-height:1.25; letter-spacing:.02em;
+  text-wrap:balance; text-shadow:0 2px 14px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.5);
+}
+.site .nb{white-space:nowrap}
+
+/* ---------- three framed photos (1, 2, 3 next to index.html) ---------- */
+/* frame = matte gilt moulding > cream mat > gold fillet > photo. The masthead is dark in both themes. */
+:root{
+  --gilt-1:#6f5426; --gilt-2:#a4874c; --gilt-3:#86692f; --gilt-4:#b89c5e; --gilt-5:#5f4720;
+  --mat:#efe9dd; --mat-shade:rgba(80,60,30,.22); --fillet:#a88a4e;
+  --frame-in:#d6ccbb; --frame-num:#a08d6a;
+}
+.photos{display:flex; justify-content:center; align-items:center; margin:clamp(18px, 4vw, 40px) 0 calc(-1 * var(--tuck)); max-width:100%}
+.frame{
+  position:relative; flex:none; margin:0 -3px;
+  width:clamp(98px, 22vw, 210px); aspect-ratio:4/5; max-width:31%;
+  padding:clamp(4px, .7vw, 7px);
+  background:linear-gradient(135deg, var(--gilt-1) 0%, var(--gilt-2) 22%, var(--gilt-3) 45%, var(--gilt-4) 68%, var(--gilt-5) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(40,26,8,.55),            /* outer lip of the moulding */
+    inset 0 0 0 2px rgba(230,205,150,.18),
+    0 20px 30px -14px rgba(0,0,0,.75), 0 3px 6px rgba(0,0,0,.4);
+  transform:rotate(var(--r)) translateY(var(--y, 0px));
+  transition:transform .6s var(--spring), box-shadow .4s var(--ease);
+}
+.frame:nth-child(1){--r:3.5deg; --y:0px; z-index:1}
+.frame:nth-child(2){--r:-2deg; --y:-10px; z-index:2}
+.frame:nth-child(3){--r:-3.5deg; --y:0px; z-index:1}
+.frame:hover{transform:rotate(0deg) translateY(-4px) scale(1.05); z-index:3}
+.frame .mat{
+  width:100%; height:100%; background:var(--mat);
+  padding:clamp(7px, 1.3vw, 13px);
+  box-shadow:inset 0 0 0 1px rgba(40,26,8,.5), inset 1px 2px 5px var(--mat-shade);   /* mat sits under the moulding */
+}
+.frame .ph{
+  position:relative; width:100%; height:100%; overflow:hidden; background:var(--frame-in);
+  outline:1px solid var(--fillet); outline-offset:2px;                                 /* thin gold fillet */
+  display:grid; place-items:center;
+}
+.frame .ph::before{content:""; position:absolute; inset:0; z-index:1; pointer-events:none; box-shadow:inset 0 1px 4px rgba(0,0,0,.28)}
+.frame .ph::after{content:attr(data-n); font-family:var(--f-he); font-size:clamp(1.5rem, 3.6vw, 2.4rem); color:var(--frame-num)}
+.frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+.frame.has-img .ph::after{content:none}
+
+/* ---------- glass ---------- */
+.glass{
+  position:relative;
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--line);
+  box-shadow:0 10px 28px -16px var(--shadow);
+}
+
+/* ---------- language switch ---------- */
+.switch-wrap{
+  position:sticky; top:calc(env(safe-area-inset-top, 0px) + 10px); z-index:30;
+  margin-top:-24px; display:flex; justify-content:center;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  pointer-events:none;
+}
+.switch{display:inline-flex; padding:4px; border-radius:999px; pointer-events:auto; max-width:100%}
+.switch .thumb{
+  position:absolute; z-index:1; top:4px; bottom:4px; left:0; width:0;
+  border-radius:999px; background:var(--primary);
+}
+.switch.ready .thumb{transition:transform .55s var(--spring), width .55s var(--spring)}
+.switch button{
+  position:relative; z-index:2; border:0; background:none;
+  padding:9px 20px; border-radius:999px; white-space:nowrap;
+  font-family:var(--f-ui); font-weight:400; font-size:.92rem; line-height:1.25; color:var(--ink);
+  transition:color .25s var(--ease), transform .35s var(--spring);
+}
+.switch button:active{transform:scale(.92)}
+.switch button[aria-selected="true"]{color:var(--on-primary)}
+.switch small{font-size:.8em; opacity:.7; margin-inline-start:.4em}
+
+/* ---------- page + sheet ---------- */
+.page{
+  max-width:48rem; margin:0 auto;
+  padding-block:30px 170px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.sheet{
+  background:var(--paper); border:1px solid var(--line);
+  border-radius:10px;
+  padding:clamp(32px, 7vw, 72px) clamp(20px, 6vw, 64px) clamp(28px, 5vw, 52px);
+  box-shadow:0 1px 2px var(--glass-lo), 0 28px 50px -40px var(--shadow);
+  display:flex; flex-direction:column; gap:clamp(24px, 4vw, 36px);
+  animation:rise .35s var(--ease);
+}
+@keyframes rise{from{opacity:.4}}
+
+.head{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
+.eyebrow{margin:0; font-family:var(--f-he); font-size:.98rem; color:var(--gold)}
+[lang="en"] .eyebrow{font-family:var(--f-ui); letter-spacing:.16em; text-transform:uppercase; font-size:.7rem}
+.date{
+  margin:0; font-family:var(--f-he); font-weight:500; line-height:1.1;
+  font-size:clamp(2.1rem, 7vw, 3.3rem); color:var(--ink); text-wrap:balance;
+}
+[lang="en"] .date{font-family:var(--f-en-d); font-weight:400; font-size:clamp(2.3rem, 7.6vw, 3.6rem)}
+.occasion{margin:0; font-family:var(--f-he); font-size:1.1rem; color:var(--ink-2); max-width:30rem; text-wrap:balance}
+[lang="en"] .occasion{font-family:var(--f-en); font-style:italic; font-size:1.04rem}
+.meta{margin:2px 0 0; font-family:var(--f-ui); font-size:.8rem; color:var(--ink-2); text-wrap:balance}
+[lang="en"] .meta{letter-spacing:.02em}
+.rule{width:56px; height:1px; border:0; margin:0; align-self:center; background:var(--gold-soft)}
+
+.tnote{
+  margin:0 auto; max-width:32rem; width:100%; text-align:center; text-wrap:balance;
+  font-family:var(--f-he); font-size:.95rem; line-height:1.6; color:var(--ink-2);
+}
+[lang="en"] .tnote{font-family:var(--f-en); font-style:italic; font-size:.92rem}
+[lang="en"] .tnote i{font-style:normal}
+
+.prose{max-width:35rem; width:100%; margin:0 auto; display:flex; flex-direction:column; gap:1.2em;
+  font-family:var(--f-he); font-size:clamp(1.16rem, 2.6vw, 1.28rem); line-height:1.85}
+.prose p{margin:0; text-align:justify}
+[lang="en"] .prose{font-family:var(--f-en); font-size:clamp(1.05rem, 2.3vw, 1.14rem); line-height:1.72}
+[lang="en"] .prose p{text-align:start}
+.lead{font-weight:700; font-size:1.1em}
+[lang="en"] .lead{font-weight:600; font-size:1em; font-variant-caps:small-caps; letter-spacing:.04em}
+.prose b{font-weight:500}
+.c{font-size:.8em; color:var(--ink-2); white-space:nowrap}
+.prose i[lang]{font-style:italic}
+sup{line-height:0; font-size:.6em}
+a.fn{
+  font-family:var(--f-ui); font-weight:500; color:var(--gold); text-decoration:none;
+  padding:0 2px; border-radius:4px; font-variant-numeric:tabular-nums;
+  scroll-margin-block:120px 190px;
+}
+a.fn:hover{background:var(--wash)}
+.closing{text-align:center!important; text-wrap:balance}
+.cup{align-self:center; margin:0; font-family:var(--f-he); font-size:1rem; color:var(--ink-2)}
+[lang="en"] .cup{font-family:var(--f-en); font-style:italic; font-size:.95rem}
+
+.notes-wrap{max-width:35rem; width:100%; margin:0 auto; border-top:1px solid var(--line); padding-top:22px; display:flex; flex-direction:column; gap:10px}
+.notes-wrap h3{margin:0; font-family:var(--f-he); font-weight:500; font-size:.98rem; color:var(--gold)}
+[lang="en"] .notes-wrap h3{font-family:var(--f-ui); font-weight:500; letter-spacing:.16em; text-transform:uppercase; font-size:.7rem}
+.notes{margin:0; padding:0; list-style:none; counter-reset:n; display:flex; flex-direction:column; gap:6px;
+  font-family:var(--f-he); font-size:.96rem; line-height:1.65; color:var(--ink-2)}
+[lang="en"] .notes{font-family:var(--f-en); font-size:.9rem; line-height:1.6}
+.notes li{counter-increment:n; display:grid; grid-template-columns:1.8em minmax(0,1fr); gap:4px; padding:4px 6px; margin-inline:-6px; border-radius:6px; scroll-margin-block:120px 190px; transition:background .5s var(--ease)}
+.notes li::before{content:counter(n); font-family:var(--f-ui); font-weight:500; font-size:.76rem; color:var(--gold); padding-top:.32em; font-variant-numeric:tabular-nums}
+.notes li.flash{background:var(--wash)}
+.notes a.back{font-family:var(--f-ui); text-decoration:none; color:var(--gold); padding:0 5px; border-radius:4px; white-space:nowrap}
+.notes a.back:hover{background:var(--wash)}
+
+.colophon{
+  max-width:35rem; width:100%; margin:0 auto; text-align:center; text-wrap:balance;
+  border-top:1px solid var(--line); padding-top:22px;
+  font-family:var(--f-he); font-weight:500; font-size:.9rem; line-height:1.8; letter-spacing:.12em; color:var(--ink-2);
+}
+[lang="en"] .colophon{font-family:var(--f-en); font-weight:400; font-style:italic; letter-spacing:0; font-size:.9rem}
+
+/* ---------- founder plaque: gilt frame overlapping the sheet's lower edge ---------- */
+:root{--plaque-lap:clamp(24px, 4vw, 36px); --plaque-ink:#3b2f27; --plaque-ink-2:#6b5a45}
+.sheet{padding-bottom:calc(clamp(28px, 5vw, 52px) + var(--plaque-lap))}
+.plaque{
+  position:relative; z-index:2; width:min(calc(100% - 36px), 32rem);
+  margin:calc(-1 * var(--plaque-lap)) auto 0;
+  padding:clamp(5px, .8vw, 7px);
+  background:linear-gradient(135deg, var(--gilt-1) 0%, var(--gilt-2) 22%, var(--gilt-3) 45%, var(--gilt-4) 68%, var(--gilt-5) 100%);
+  box-shadow:inset 0 0 0 1px rgba(40,26,8,.55), inset 0 0 0 2px rgba(230,205,150,.18),
+    0 22px 34px -18px rgba(0,0,0,.6), 0 3px 6px rgba(0,0,0,.25);
+  transform:rotate(-.6deg);
+  transition:transform .6s var(--spring), box-shadow .45s var(--ease);
+}
+.plaque:hover{
+  transform:translateY(-6px) rotate(0deg) scale(1.03);
+  box-shadow:inset 0 0 0 1px rgba(40,26,8,.55), inset 0 0 0 2px rgba(230,205,150,.18),
+    0 34px 44px -20px rgba(0,0,0,.6), 0 6px 12px rgba(0,0,0,.22);
+}
+.plaque-mat{
+  position:relative; color:var(--plaque-ink);
+  background:radial-gradient(120% 140% at 70% 20%, #f8f4eb 0%, var(--mat) 45%, #e0d5c1 100%);   /* soft light from above */
+  padding:clamp(24px, 4.4vw, 32px) clamp(24px, 4.6vw, 34px);
+  box-shadow:inset 0 0 0 1px rgba(40,26,8,.5), inset 2px 3px 9px var(--mat-shade), inset -1px -2px 6px rgba(255,255,255,.5);
+  display:flex; align-items:center; gap:clamp(16px, 3.2vw, 24px); text-align:start;
+}
+/* double gold fillet */
+.plaque-mat::before{content:""; position:absolute; inset:8px; border:1px solid var(--fillet); pointer-events:none}
+.plaque-mat::after{content:""; position:absolute; inset:11px; border:1px solid var(--fillet); opacity:.45; pointer-events:none}
+/* small gold diamonds on the fillet corners */
+.plaque .corner{position:absolute; width:7px; height:7px; background:var(--fillet); transform:rotate(45deg); box-shadow:0 0 0 2px var(--mat)}
+.plaque .c1{top:5px; left:5px} .plaque .c2{top:5px; right:5px} .plaque .c3{bottom:5px; left:5px} .plaque .c4{bottom:5px; right:5px}
+.plaque .logo{
+  flex:none; display:block; width:auto; height:auto;
+  max-height:clamp(62px, 12vw, 90px); max-width:30%;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.6)) drop-shadow(0 2px 3px rgba(60,40,10,.25));
+  transition:transform .6s var(--spring);
+}
+.plaque:hover .logo{transform:rotate(-4deg) scale(1.06)}
+.pl-text{min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:6px;
+  padding-inline-start:clamp(16px, 3.2vw, 24px); border-inline-start:1px solid var(--fillet)}
+.plaque .logo[hidden] + .pl-text{padding-inline-start:0; border:0}
+.pl-name{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(1rem, 2.7vw, 1.16rem); line-height:1.35; letter-spacing:.01em;
+  text-shadow:0 1px 0 rgba(255,255,255,.7)}
+.pl-name .pl-house{display:block; font-weight:700; font-size:1.45em; line-height:1.15; color:#6e5221; letter-spacing:.03em}
+.pl-rule{display:flex; align-items:center; gap:6px; width:72px; margin:4px 0 2px}
+.pl-rule::before,.pl-rule::after{content:""; flex:1; height:1px; background:var(--fillet)}
+.pl-rule i{width:5px; height:5px; background:var(--fillet); transform:rotate(45deg)}
+.pl-name .ln,.pl-founded .ln{display:block; white-space:nowrap}
+@media (max-width:520px){
+  .plaque .logo{max-height:52px; max-width:24%}
+  .plaque-mat{padding:22px 20px; gap:14px}
+  .pl-text{padding-inline-start:14px}
+  .pl-name{font-size:.92rem} .pl-founded{font-size:.8rem}
+}
+@media (max-width:400px){ .pl-name .ln,.pl-founded .ln{white-space:normal} }
+.pl-label{margin:0; font-family:var(--f-he); font-size:.8rem; color:#8a6d34; letter-spacing:.08em}
+.pl-founded{margin:0; font-family:var(--f-he); font-size:clamp(.9rem, 2.3vw, 1rem); line-height:1.55; color:var(--plaque-ink-2); text-shadow:0 1px 0 rgba(255,255,255,.6)}
+
+/* ---------- audio dock ---------- */
+.dock-wrap{
+  position:fixed; z-index:40; left:0; right:0; bottom:0;
+  padding-top:0;
+  padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  display:flex; justify-content:center; pointer-events:none;
+}
+.dock{pointer-events:auto; width:min(100%, 42rem); border-radius:30px; padding:10px 12px}
+.dock-row{display:flex; align-items:center; gap:12px; min-width:0}
+.dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+.dock-meta{display:flex; align-items:baseline; justify-content:space-between; gap:10px; min-width:0}
+.dock-title{font-weight:500; font-size:.9rem; min-width:0}
+.dock-title small{font-weight:400; color:var(--ink-2); font-size:.88em; margin-inline-start:.6em}
+.dock-time{font-size:.78rem; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap; direction:ltr}
+.dock-sub{font-size:.82rem; color:var(--ink-2)}
+
+.play{
+  flex:none; width:52px; height:52px; border:0; display:grid; place-items:center;
+  background:var(--primary); color:var(--on-primary);
+  border-radius:50%;
+  transition:border-radius .5s var(--spring), transform .35s var(--spring);
+}
+.play:hover{transform:scale(1.06)}
+.play:active{transform:scale(.9)}
+.play[aria-pressed="true"]{border-radius:17px}
+.play svg{width:22px; height:22px; fill:currentColor}
+.play .i-pause, .play[aria-pressed="true"] .i-play{display:none}
+.play[aria-pressed="true"] .i-pause{display:block}
+
+.seek{display:flex; align-items:center; gap:6px; min-width:0}
+.skip,.speed{
+  flex:none; border:1px solid var(--line); background:transparent; color:var(--ink-2);
+  font-weight:500; font-variant-numeric:tabular-nums; direction:ltr; unicode-bidi:isolate;
+  transition:background .2s var(--ease), color .2s var(--ease), transform .35s var(--spring);
+}
+.skip:active,.speed:active{transform:scale(.88)}
+.skip:hover,.speed:hover{background:var(--wash); color:var(--ink)}
+.skip{width:38px; height:30px; border-radius:999px; font-size:.72rem}
+.speed{min-width:48px; height:38px; border-radius:999px; padding:0 10px; font-size:.82rem}
+.wave{position:relative; flex:1; min-width:0; height:30px; border-radius:10px}
+.wave svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.wave .w-active{fill:none; stroke:var(--gold-soft); stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
+.wave .w-track{fill:none; stroke:var(--track); stroke-width:3; stroke-linecap:round}
+.wave .w-thumb{fill:var(--primary)}
+.wave .w-stop{fill:var(--ink-2)}
+.wave input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
+.wave:has(input:focus-visible){outline:2px solid var(--focus); outline-offset:2px}
+
+.tile{
+  flex:none; width:52px; height:52px; border-radius:50%; display:grid; place-items:center;
+  border:1px solid var(--line); color:var(--ink-2);
+}
+.tile svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round}
+.pick{
+  flex:none; border:0; border-radius:999px; padding:11px 20px;
+  background:var(--primary); color:var(--on-primary); font-weight:500; font-size:.88rem; white-space:nowrap;
+  transition:transform .35s var(--spring);
+}
+.pick:hover{transform:scale(1.04)}
+.pick:active{transform:scale(.94)}
+.dock-msg{margin:8px 4px 0; font-size:.8rem; color:var(--gold)}
+
+@media (max-width:520px){
+  .switch button{padding:8px 13px; font-size:.86rem}
+  .mast-in{padding-block:10px 0}
+  .prose p{text-align:start}
+  .dock{border-radius:26px}
+  .dock-row{gap:10px}
+  .play,.tile{width:46px; height:46px}
+  .speed{min-width:44px; padding:0 6px}
+  .pick{padding:10px 15px; font-size:.84rem}
+  /* phone: controls on the first line, the full-width seek bar on the second */
+  #dockReady{flex-wrap:wrap; row-gap:6px}
+  #dockReady .dock-main{display:contents}
+  #dockReady .dock-meta{order:2; flex:1; flex-direction:column; align-items:flex-start; justify-content:center; gap:0}
+  #dockReady .speed{order:3}
+  #dockReady .seek{order:4; flex-basis:100%}
+  .dock-title small{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="mast" dir="rtl" lang="he">
+  <div class="mast-in">
+    <div class="bsd">בס"ד</div>
+    <h1 class="site">מרכז להוצאות ספרי חסידות <span class="nb">לבית רוזין</span></h1>
+    <div class="photos">
+      <figure class="frame" data-n="1"><div class="mat"><div class="ph" data-n="1"><img alt="תמונה 1" hidden></div></div></figure>
+      <figure class="frame" data-n="2"><div class="mat"><div class="ph" data-n="2"><img alt="תמונה 2" hidden></div></div></figure>
+      <figure class="frame" data-n="3"><div class="mat"><div class="ph" data-n="3"><img alt="תמונה 3" hidden></div></div></figure>
+    </div>
+  </div>
+</header>
+
+<nav class="switch-wrap" dir="rtl" lang="he" aria-label="בחירת לשון">
+  <div class="switch glass" id="switch" role="tablist">
+    <span class="thumb" aria-hidden="true"></span>
+    <button type="button" role="tab" id="tab-yi" data-view="yi" aria-controls="view-yi" aria-selected="true">מקור<small>אידיש</small></button>
+    <button type="button" role="tab" id="tab-he" data-view="he" aria-controls="view-he" aria-selected="false" tabindex="-1">לשון הקודש</button>
+    <button type="button" role="tab" id="tab-en" data-view="en" aria-controls="view-en" aria-selected="false" tabindex="-1" lang="en">English</button>
+  </div>
+</nav>
+
+<main class="page">
+
+<!-- ================= ORIGINAL (YIDDISH) ================= -->
+<article class="sheet" id="view-yi" role="tabpanel" aria-labelledby="tab-yi" dir="rtl" lang="yi">
+  <header class="head">
+    <p class="eyebrow" lang="he">דברות קודש · מכ"ק מרן אדמו"ר מבאיאן זי"ע</p>
+    <h2 class="date" lang="he">י"ט כסלו תשי"ד</h2>
+    <p class="occasion" lang="he">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
+    <p class="meta" lang="he">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
+  </header>
+  <hr class="rule">
+
+  <div class="prose">
+    <p><span class="lead">פו"א:</span> דער אייבערשטער זאל העלפן, זיין הייליגער זכות זאל מגין זיין, זאל זיין המתקת הדינים אויף כלל ישראל, מהפך זיין מדת הדין לרחמים. נתעורר ווערן ז"א דאך, זכות אבות. די אלע זאכען וואס זענען שיחתן של אבות זענען דאך מפתח לגאולתן של בנים<sup><a class="fn" href="#yi-n1" id="yi-r1">1</a></sup>. דער ערשטער איז דאך אברהם אבינו האט גערופען דעם אייבערשטען אדון, א'דני, בחינת דין מיט דער אלף דער חיבור פון בחינת דין צו דער אלף א'דני</p>
+
+    <p>אין די סדרה זאג איך אלה תולדות יעקב, יוסף בן שבע עשרה שנה <span class="c">(בראשית לז, ב)</span>, וישב יעקב בארץ מגורי אביו <span class="c">(שם לז, א)</span>, ז"א אין זוה"ק שטייט דאך <span class="c">(וישב קפ.)</span> מגור מסביב <span class="c">(ירמיהו כה)</span><sup><a class="fn" href="#yi-n2" id="yi-r2">2</a></sup>, יעצטיגע צייטען זאג איך, דער הייליגער מגיד מיט'ן דרך הבע"ש אז יודען ז"א זאלען זיך האלטען די אמונה, מגור מסביב בחי' גבורה, ואמונתך סביבותיך <span class="c">(תהלים פט ט)</span>, דורך דער אמונה דאס זאל זיין דער אור מקיף, וה' סביב לעמו <span class="c">(תהלים קכה, ב)</span>, מגור מסביב, קודם איז בחי' גבורה<sup><a class="fn" href="#yi-n3" id="yi-r3">3</a></sup> אין דאס איז דער ענין טאקע דאס איז דער צמצום דערנאך איז דא דער המתקה, פון חסד</p>
+
+    <p>שיחתן של אבות ז"א, דער ענין ז"א אז אין דעם טאג ז"א פון דער הילולא א ענין פון... איז דאך דא ז"א דער זכות פון הייליגען מגיד, צדיקי עולם קומט אראפ ז"א אויף דעם עולם, דער אמת איז דאך די גאנצע דרך החסידות איז געווען א באר חפרוה שרים <span class="c">(במדבר כא, יח)</span>, דער באר מים חיים<sup><a class="fn" href="#yi-n4" id="yi-r4">4</a></sup>, יום ז"א בוקר ז"א איז בחי' חסד, יצחק איז בחי' גבורה, יעקב איז דאך ז"א, מבריח מקצה אל הקצה ז"א בחי' תפארת ז"א, יוסף הצדיק, אז אין דער טאג פון דער הילולא א באר מים חיים<sup><a class="fn" href="#yi-n5" id="yi-r5">5</a></sup> ואבוא היום אל העין <span class="c">(בראשית, כד מב)</span>, נעמט דאך רש"י דארט אליעזר עבד אברהם<sup><a class="fn" href="#yi-n6" id="yi-r6">6</a></sup> ז"א פון דער שליח ז"א פון אברהם ז"א דאס איז דער ענין-דער זיוויג, דער תכלית איז דאך געווען דער זיוויג, דער שליחות און דער תכלית איז דער זיוויג, זאגט דארט רש"י היום יצאתי והיום באתי, ואבוא היום אל העין דער באר מים חיים ז"א, באר חפרוהו שרים, ז"א היום יצאתי ז"א דער ציל איז דאך אין דעם עולם דאס איז דער ענין והיום באתי, קומט אויף ווייטער דער זכות די מצוות ומעש"ט די פירות פון די תורה און מעש"ט פונ'ם הייליגען מגיד ז"ל, זיין הייליגער זכות זאל אריין שיינען אין אידען אויף דער גאנצע וועלט, היום יצאתי והיום באתי, בחי' חסד קל כל היום <span class="c">(תהלים נב, ג)</span>.</p>
+
+    <p>שטייט דאך איצטערט וישב יעקב בארץ מגורי אביו דערנאך שטייט <span class="c">(בראשית לז, ז,)</span> וישראל אהב את יוסף בחי' יוסף הצדיק, ישראל איז דאך, דער אמת איז דאך ישראל ז"א עפ"י קבלה ז"א איז <span class="c">(תיקו"ז ג)</span> ישראל איז דאך שי"ר משמאלה און ק"ל מימינה, ישראל איז שי"ר משמאלה קל מימינה חסד קל כל היום היום יצאתי והיום באתי.</p>
+
+    <p>והנה קמה אלומתי וגם נצבה <span class="c">(בראשית לז ז)</span>, דער אמת איז דאך דאס איז בענינא פון נפש הבהמיות ענינים פון דער גוף דער ענין ז"א פון גופניות דאס האט דאך ז"א איז דאך א בעל שינוי ותמורה, אבער דאס ז"א וואס איז דער נשמה ז"א דאס איז נישט א בעל שינוי, קמה אלומתי וגם נצבה, עומד בצדקו, בחי' יוסף הצדיק, עומד בצדקו בעמידה, כאטשי א צדיק איז דאך א מהלך מדרגא לדרגא א הולך, לעולם איז דא דער עמידה קמה אלומתי וגם נצבה.</p>
+
+    <p>וישב יעקב בארץ מגורי אביו, א ישיבה ז"א אבער ס'איז פון די בחי' גבורה, האט עס אויך א קיום. ז"א מ'איז כסדר א... א מענטש ז"א איז דאך כסדר א סולם, מ'גייט דאך מדרגא לדרגא, דער עולם העליון פון עולם התחתון דער אהל העליון מיט אהל התחתון, ויעקב איש תם יושב אהלים <span class="c">(בראשית כה, כז)</span>. ביידע אהלים, ה' עילאה וה' תתאה.</p>
+
+    <p>ז"א היינטיגע צייטען ז"א פארדעם ז"א וואס מ'איז נעבעך אזוי אָה ז"א מ'איז ממש אין א בור עמוק, דארף מען זיך האלטען ז"א זיך האלטען ז"א חבל מ'זאל זיך מקשר זיין מיט א חבל, יעקב חבל נחלתו <span class="c">(דברים לב, ט)</span>, ישראל לסגולתו <span class="c">(תהלים קלה, ד)</span>, ישראל איז יעקב בחר לו, ישראל לסגולתו, דאס איז דעם ענין ז"א פון יעקב מישראל קודם שטייט וישב יעקב בארץ מגורי אביו, און אביו וישראל אהב את יוסף, קודם איז יעקב בחר לו, ס'איז דער בחירה ז"א דערנאך איז ישראל לסגולתו, דאס איז א בירור, ישראל לסגולתו (דאס) איז נאכ'ן בירור, קודם ז"א איז בחי' גבורה און נאכדעם ז"א איז דער בירור, וישב יעקב בארץ מגורי אביב בארץ כנען, איז דער בירור, דערנאך איז וישראל אהב את יוסף דאס איז שוין וישראל לסגולתו, ס'איז שוין נאכ'ן בירור.</p>
+
+    <p>דער אייבערשטער זאל טאקע העלפן ז"א דער מגיד'ס זכות אמרו צדיק כי טוב <span class="c">(ישעיה ג, י)</span>, און יוסף, ויוסף בן שבע עשרה שנה, אמרו צדיק כי טוב, המגיד מראשית אחרית דבר <span class="c">(ישעיה מו, י)</span>, המשכה, מגיד-המשכה <span class="c">(זוח"ב קלו:)</span><sup><a class="fn" href="#yi-n7" id="yi-r7">7</a></sup>, טוב אחרית דבר מראשיתו <span class="c">(קהלת ז, ח)</span>, אחרית דבר.</p>
+
+    <p>דער אייבערשטער זאל טאקע העלפן ס'זאל שוין זיין נאר אך טוב לישראל <span class="c">(תהלים עג, א)</span>, די מצות און מעש"ט ז"א דאס איז די פירות פונ'ם צדיק, דאס זאג איך איז דאך, דאס ז"א מגין ז"א, און דאס איז דער הייליגער זכות דאס איז דאך עומד לעולם, דער אור ז"א איז דאך דארט, זיין כסדר, דאס איז בחי' יוסף הצדיק שטייט דאך <span class="c">(בראשית רבה פפ"ד פ"י)</span><sup><a class="fn" href="#yi-n8" id="yi-r8">8</a></sup>, אתם כונסין ז"א זענען כונס די פירות ואני כונס פירות, די פירות ז"א פונ'ם שלעכטען ווערן דאך רקובים ושלי עומדים לעולם, דער ושלי זענען עומד, די פירות ז"א וועלן זיין עומד כסדר ז"א זענען עומדים, ז"א, זענען שטיין, ס'האט א קיום לעולם <span class="c">(עיין במ"ר)</span>, די פירות ז"א וואס דער גרויסער מגיד האט כונס געווען ז"א מיט די חבריא מיט'ן דרך החסידות פונ'ם הייליגען בע"ש ז"א דאס איז עומד, און די שלעכטע ז"א די פירות ז"א ווערן, די וואס ווערן ז"א זאלן ווערן רקוב, ווערן ז"א כלו, די שלעכטע ז"א קענען נישט האבען קיין קיום.</p>
+
+    <p class="closing">דער אייבערשטער זאל טאקע העלפן ס'זאל זיין ז"א<br>עס זאל דערפרייט ווערען יודישע הערצער,<br>ז"א אור צדיקים ישמח <span class="c">(משלי יג, ט)</span>.</p>
+  </div>
+
+  <p class="cup" lang="he">(כוס של ברכה)</p>
+
+  <section class="notes-wrap" lang="he" aria-label="הערות">
+    <h3>הערות ומראי מקומות</h3>
+    <ol class="notes">
+      <li id="yi-n1"><span>מד"ר ויצא פ"ע <a class="back" href="#yi-r1" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n2"><span>ראה גם באמ"ק י"ט כסלו תשי"ב, תשי"ג בירושלים עיה"ק ת"ו, תשט"ו, תשכ"ז. <a class="back" href="#yi-r2" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n3"><span>עי' שער הפסוקים פ' וישב בפסוק ויוסף הורד מצרימה. <a class="back" href="#yi-r3" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n4"><span>ד"ה באר רומז למזל נוצר חסד, ועי' עטרת ישועה סוף פ' חוקת לח' תמוז <a class="back" href="#yi-r4" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n5"><span>עי' קהלת יעקב ערך באר <a class="back" href="#yi-r5" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n6"><span>ז"ל רש"י (בראשית כד, מב) ואבא היום - היום יצאתי והיום באתי מכאן שקפצה לו הארץ. אמר רבי אחא יפה שיחתן של עבדי אבות לפני המקום מתורתן של בנים שהרי פרשה של אליעזר כפולה בתורה והרבה גופי תורה לא נתנו אלא ברמיזה <a class="back" href="#yi-r6" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n7"><span>ראה גם באמ"ק י"ט כסלו תשי"ג בירושלים עיה"ק ת"ו, תשכ"א, תשכ"ב, תשכ"ג, תשכ"ז <a class="back" href="#yi-r7" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="yi-n8"><span>וז"ל במדרש רבה: ויחלם יוסף חלום ויאמר אליהם שמעו נא, אמר כך יהיו הנביאים מוכיחין אתכם, (מיכה ו, א): שמעו נא את אשר ה' אמר. והנה אנחנו מאלמים אלמים, אתם כונסין פרות, ואני כונס פרות, שלכם רקיבים ושלי עומדין. והנה קמה אלמתי וגם נצבה, רבי לוי ורבי אחא, רבי לוי אמר עתידין אתם לעשות אלילים אלמים לפני עגליו של ירבעם ולאמר (שמות לב, ד): אלה אלהיך ישראל. אמר רב אחא עתידים אתם להעלים עלי דברים לפני אבא לומר חיה רעה אכלתהו, ומאן קאים ליה משתיקותא דאמא. קמה, והנה קמה אלמתי וגם נצבה והנה תסבינה אלמתיכם, כנגד חמש פעמים שהן עתידין להשתחוות לו. ויאמרו לו אחיו המלך תמלך עלינו, רבי לוי ורבי סימון, חד אמר מפני שענו אותו בעין רעה לפיכך מעמיד רשעים, וחד אמר מפני שענו אותו בלשון כפול, לפיכך הוא מעמיד מלכים. <a class="back" href="#yi-r8" aria-label="חזרה לטקסט">↑</a></span></li>
+    </ol>
+  </section>
+
+  <p class="colophon" lang="he">הועתק אות באות מתוך הקלטה שנקלט ע"י הרה"ח רבי שואל אלכסנדר ביסטריצקי ע"ה</p>
+</article>
+
+<!-- ================= LOSHON KODESH ================= -->
+<article class="sheet" id="view-he" role="tabpanel" aria-labelledby="tab-he" dir="rtl" lang="he" hidden>
+  <header class="head">
+    <p class="eyebrow">דברות קודש · מכ"ק מרן אדמו"ר מבאיאן זי"ע</p>
+    <h2 class="date">י"ט כסלו תשי"ד</h2>
+    <p class="occasion">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
+    <p class="meta">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
+  </header>
+  <hr class="rule">
+
+  <p class="tnote">תרגום מן המקור באידיש. מילת הקישור ז"א (זאג איך) החוזרת במקור הושמטה כאן לשטף הקריאה; לשונות הפסוקים ומאמרי חז"ל באות מודגשת.</p>
+
+  <div class="prose">
+    <p><span class="lead">פתח ואמר:</span> השי"ת יעזור, זכותו הקדושה תגן, ותהא המתקת הדינים על כלל ישראל, להפוך מדת הדין לרחמים. הלא מתעוררת זכות אבות. כל הדברים שהם <b>שיחתן של אבות</b> הלא הם מפתח לגאולתן של בנים.<sup><a class="fn" href="#he-n1" id="he-r1">1</a></sup> הראשון הלא הוא אברהם אבינו, שקרא להשי"ת <b>אדון</b>, א'דני – בחינת דין עם האל"ף; חיבור בחינת דין אל האל"ף, א'דני.</p>
+
+    <p>בסדרה, אומר אני, <b>אלה תולדות יעקב, יוסף בן שבע עשרה שנה</b> <span class="c">(בראשית לז, ב)</span>, <b>וישב יעקב בארץ מגורי אביו</b> <span class="c">(שם לז, א)</span> – הלא איתא בזוה"ק <span class="c">(וישב קפ.)</span> <b>מגור מסביב</b> <span class="c">(ירמיהו כה)</span>.<sup><a class="fn" href="#he-n2" id="he-r2">2</a></sup> בזמנים הללו, אומר אני – המגיד הקדוש עם דרך הבעש"ט – שיחזיקו ישראל באמונה. <b>מגור מסביב</b> הוא בחינת גבורה; <b>ואמונתך סביבותיך</b> <span class="c">(תהלים פט, ט)</span> – על ידי האמונה יהיה זה האור המקיף, <b>וה' סביב לעמו</b> <span class="c">(תהלים קכה, ב)</span>. <b>מגור מסביב</b> – תחילה היא בחינת גבורה,<sup><a class="fn" href="#he-n3" id="he-r3">3</a></sup> וזהו באמת הענין, זהו הצמצום; ואחר כך באה ההמתקה, מן החסד.</p>
+
+    <p><b>שיחתן של אבות</b> – הענין הוא שביום הזה, יום ההילולא, ענין של… הלא ישנה זכותו של המגיד הקדוש; צדיקי עולם – יורד הדבר אל העולם הזה. האמת היא שכל דרך החסידות היתה <b>באר חפרוה שרים</b> <span class="c">(במדבר כא, יח)</span>, באר מים חיים.<sup><a class="fn" href="#he-n4" id="he-r4">4</a></sup> יום, בוקר – הוא בחינת חסד; יצחק הוא בחינת גבורה; יעקב הלא הוא מבריח מקצה אל הקצה, בחינת תפארת; יוסף הצדיק. וביום ההילולא – באר מים חיים:<sup><a class="fn" href="#he-n5" id="he-r5">5</a></sup> <b>ואבוא היום אל העין</b> <span class="c">(בראשית כד, מב)</span>. הלא רש"י שם נוקט את אליעזר עבד אברהם,<sup><a class="fn" href="#he-n6" id="he-r6">6</a></sup> שלוחו של אברהם – וזהו הענין: הזיווג. התכלית הלא היתה הזיווג; השליחות ותכליתה – הזיווג. אומר שם רש"י: <b>היום יצאתי והיום באתי</b>. <b>ואבוא היום אל העין</b> – באר מים חיים, <b>באר חפרוה שרים</b>. <b>היום יצאתי</b> – התכלית הלא היא בעולם הזה, וזהו ענין <b>והיום באתי</b>. ומתעוררת והולכת הזכות – המצוות ומעשים טובים, פירות התורה והמעשים טובים של המגיד הקדוש ז"ל. זכותו הקדושה תאיר בישראל בכל העולם כולו. <b>היום יצאתי והיום באתי</b> – בחינת <b>חסד קל כל היום</b> <span class="c">(תהלים נב, ג)</span>.</p>
+
+    <p>הלא כתוב עתה <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך כתוב <span class="c">(בראשית לז, ז)</span> <b>וישראל אהב את יוסף</b> – בחינת יוסף הצדיק. ישראל – האמת היא שישראל על פי קבלה הוא <span class="c">(תיקו"ז ג)</span> שי"ר משמאלא וק"ל מימינא. ישראל הוא שי"ר משמאלא, ק"ל מימינא – <b>חסד קל כל היום</b>, <b>היום יצאתי והיום באתי</b>.</p>
+
+    <p><b>והנה קמה אלומתי וגם נצבה</b> <span class="c">(בראשית לז, ז)</span> – האמת היא שעניני נפש הבהמית, עניני הגוף, ענין הגופניות – הלא הוא בעל שינוי ותמורה; אבל מה שהוא הנשמה – אינו בעל שינוי. <b>קמה אלומתי וגם נצבה</b> – עומד בצדקו, בחינת יוסף הצדיק; עומד בצדקו, בעמידה. אף שצדיק הלא הוא מהלך מדרגא לדרגא, הולך – לעולם ישנה העמידה: <b>קמה אלומתי וגם נצבה</b>.</p>
+
+    <p><b>וישב יעקב בארץ מגורי אביו</b> – ישיבה, אלא שהיא מבחינת גבורה, ויש לה גם כן קיום. תמיד הוא… האדם הלא הוא תמיד סולם, הולכים מדרגא לדרגא; העולם העליון מן העולם התחתון, האהל העליון עם האהל התחתון – <b>ויעקב איש תם יושב אהלים</b> <span class="c">(בראשית כה, כז)</span>: שני האהלים, ה' עילאה וה' תתאה.</p>
+
+    <p>בזמנים הללו, מפני שנמצאים, לדאבון לב, כל כך… נמצאים ממש בבור עמוק – צריך להחזיק, להחזיק בחבל, להתקשר בחבל: <b>יעקב חבל נחלתו</b> <span class="c">(דברים לב, ט)</span>, <b>ישראל לסגולתו</b> <span class="c">(תהלים קלה, ד)</span>. ישראל – <b>יעקב בחר לו</b>, <b>ישראל לסגולתו</b>. זהו ענין יעקב וישראל: תחילה כתוב <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך <b>וישראל אהב את יוסף</b>. תחילה <b>יעקב בחר לו</b> – זוהי הבחירה; ואחר כך <b>ישראל לסגולתו</b> – זהו בירור; <b>ישראל לסגולתו</b> הוא לאחר הבירור. תחילה היא בחינת גבורה, ואחר כך הוא הבירור. <b>וישב יעקב בארץ מגורי אביו בארץ כנען</b> – הוא הבירור; ואחר כך <b>וישראל אהב את יוסף</b> – זהו כבר <b>ישראל לסגולתו</b>, כבר לאחר הבירור.</p>
+
+    <p>השי"ת יעזור באמת, זכותו של המגיד – <b>אמרו צדיק כי טוב</b> <span class="c">(ישעיה ג, י)</span>. ויוסף – <b>יוסף בן שבע עשרה שנה</b>; <b>אמרו צדיק כי טוב</b>. <b>המגיד מראשית אחרית דבר</b> <span class="c">(ישעיה מו, י)</span> – המשכה; מגיד הוא לשון המשכה <span class="c">(זוח"ב קלו:)</span>.<sup><a class="fn" href="#he-n7" id="he-r7">7</a></sup> <b>טוב אחרית דבר מראשיתו</b> <span class="c">(קהלת ז, ח)</span> – אחרית דבר.</p>
+
+    <p>השי"ת יעזור באמת שיהיה כבר רק <b>אך טוב לישראל</b> <span class="c">(תהלים עג, א)</span>. המצוות והמעשים טובים – הם פירותיו של הצדיק; וזה, אומר אני, הוא המגין, וזוהי הזכות הקדושה, שהיא עומדת לעולם; האור הלא שם הוא, תמיד. זוהי בחינת יוסף הצדיק, כדאיתא <span class="c">(בראשית רבה פפ"ד פ"י)</span>:<sup><a class="fn" href="#he-n8" id="he-r8">8</a></sup> <b>אתם כונסין פירות ואני כונס פירות</b> – פירותיהם של הרעים נעשים רקובים, <b>ושלי עומדים</b> לעולם. <b>ושלי</b> – עומדים; הפירות יעמדו תמיד, עומדים הם, קיימים, יש להם קיום לעולם <span class="c">(עיין במ"ר)</span>. הפירות שכנס המגיד הגדול עם החבריא, עם דרך החסידות של הבעש"ט הקדוש – הם עומדים; והרעים – פירותיהם ירקבו ויכלו; לרעים לא יוכל להיות שום קיום.</p>
+
+    <p class="closing">השי"ת יעזור באמת<br>שישמחו לבבות ישראל,<br><b>אור צדיקים ישמח</b> <span class="c">(משלי יג, ט)</span>.</p>
+  </div>
+
+  <p class="cup">(כוס של ברכה)</p>
+
+  <section class="notes-wrap" aria-label="הערות">
+    <h3>הערות ומראי מקומות</h3>
+    <ol class="notes">
+      <li id="he-n1"><span>מד"ר ויצא פ"ע <a class="back" href="#he-r1" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n2"><span>ראה גם באמ"ק י"ט כסלו תשי"ב, תשי"ג בירושלים עיה"ק ת"ו, תשט"ו, תשכ"ז. <a class="back" href="#he-r2" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n3"><span>עי' שער הפסוקים פ' וישב בפסוק ויוסף הורד מצרימה. <a class="back" href="#he-r3" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n4"><span>ד"ה באר רומז למזל נוצר חסד, ועי' עטרת ישועה סוף פ' חוקת לח' תמוז <a class="back" href="#he-r4" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n5"><span>עי' קהלת יעקב ערך באר <a class="back" href="#he-r5" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n6"><span>ז"ל רש"י (בראשית כד, מב) ואבא היום - היום יצאתי והיום באתי מכאן שקפצה לו הארץ. אמר רבי אחא יפה שיחתן של עבדי אבות לפני המקום מתורתן של בנים שהרי פרשה של אליעזר כפולה בתורה והרבה גופי תורה לא נתנו אלא ברמיזה <a class="back" href="#he-r6" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n7"><span>ראה גם באמ"ק י"ט כסלו תשי"ג בירושלים עיה"ק ת"ו, תשכ"א, תשכ"ב, תשכ"ג, תשכ"ז <a class="back" href="#he-r7" aria-label="חזרה לטקסט">↑</a></span></li>
+      <li id="he-n8"><span>וז"ל במדרש רבה: ויחלם יוסף חלום ויאמר אליהם שמעו נא, אמר כך יהיו הנביאים מוכיחין אתכם, (מיכה ו, א): שמעו נא את אשר ה' אמר. והנה אנחנו מאלמים אלמים, אתם כונסין פרות, ואני כונס פרות, שלכם רקיבים ושלי עומדין. והנה קמה אלמתי וגם נצבה, רבי לוי ורבי אחא, רבי לוי אמר עתידין אתם לעשות אלילים אלמים לפני עגליו של ירבעם ולאמר (שמות לב, ד): אלה אלהיך ישראל. אמר רב אחא עתידים אתם להעלים עלי דברים לפני אבא לומר חיה רעה אכלתהו, ומאן קאים ליה משתיקותא דאמא. קמה, והנה קמה אלמתי וגם נצבה והנה תסבינה אלמתיכם, כנגד חמש פעמים שהן עתידין להשתחוות לו. ויאמרו לו אחיו המלך תמלך עלינו, רבי לוי ורבי סימון, חד אמר מפני שענו אותו בעין רעה לפיכך מעמיד רשעים, וחד אמר מפני שענו אותו בלשון כפול, לפיכך הוא מעמיד מלכים. <a class="back" href="#he-r8" aria-label="חזרה לטקסט">↑</a></span></li>
+    </ol>
+  </section>
+
+  <p class="colophon">המקור הועתק אות באות מתוך הקלטה שנקלט ע"י הרה"ח רבי שואל אלכסנדר ביסטריצקי ע"ה</p>
+</article>
+
+<!-- ================= ENGLISH ================= -->
+<article class="sheet" id="view-en" role="tabpanel" aria-labelledby="tab-en" dir="ltr" lang="en" hidden>
+  <header class="head">
+    <p class="eyebrow">Holy words of the Boyaner Rebbe</p>
+    <h2 class="date">19 Kislev 5714</h2>
+    <p class="occasion">At the tish, after the singing of “Hazkiru Lefanav”</p>
+    <p class="meta">Parshas Vayeshev · Hilula of the Maggid of Mezritch</p>
+  </header>
+  <hr class="rule">
+
+  <p class="tnote">Translated from the Yiddish transcript. The Rebbe’s recurring aside <span lang="yi" dir="rtl">ז"א</span> (<i>zog ich</i>, “I say”) is left out for readability; words in [brackets] are added for clarity.</p>
+
+  <div class="prose">
+    <p><span class="lead">He opened and said:</span> May the Almighty help; may his holy merit protect us; may there be a sweetening of the judgments upon all of Israel, turning the attribute of judgment to mercy. The merit of the fathers is, after all, awakened. All those things that are “the conversation of the fathers” are the key to the redemption of the children.<sup><a class="fn" href="#en-n1" id="en-r1">1</a></sup> The first was our father Avraham, who called the Almighty “Master,” <i>A-donai</i>: the aspect of <i>din</i>, judgment, together with the <i>alef</i>; the joining of the aspect of <i>din</i> to the <i>alef</i>, <i>A-donai</i>.</p>
+
+    <p>In the sedra, I say: “These are the generations of Yaakov: Yosef, seventeen years old” <span class="c">(Bereishis 37:2)</span>; “And Yaakov dwelt in the land of his father’s sojournings” <span class="c">(ibid. 37:1)</span>. In the holy Zohar it is written <span class="c">(Vayeshev 180a)</span>: <i>magor misaviv</i>, “terror on every side” <span class="c">(Yirmiyah 25)</span>.<sup><a class="fn" href="#en-n2" id="en-r2">2</a></sup> In these present times, I say, the holy Maggid, with the path of the Baal Shem Tov: Jews must hold fast to faith. <i>Magor misaviv</i> is the aspect of <i>gevurah</i>, severity; “and Your faithfulness surrounds You” <span class="c">(Tehillim 89:9)</span>. Through faith this becomes the surrounding light: “and the L-rd surrounds His people” <span class="c">(Tehillim 125:2)</span>. <i>Magor misaviv</i>: first comes the aspect of <i>gevurah</i>,<sup><a class="fn" href="#en-n3" id="en-r3">3</a></sup> and that indeed is the matter, that is the <i>tzimtzum</i>, the contraction. Afterward comes the sweetening, from <i>chesed</i>, kindness.</p>
+
+    <p>“The conversation of the fathers”: the matter is that on this day, the day of the hilula, a matter of… there is, after all, the merit of the holy Maggid; the tzaddikim of the world, it comes down upon this world. The truth is that the entire path of Chassidus was “a well dug by princes” <span class="c">(Bamidbar 21:18)</span>, the well of living waters.<sup><a class="fn" href="#en-n4" id="en-r4">4</a></sup> Day, morning, is the aspect of <i>chesed</i>; Yitzchak is the aspect of <i>gevurah</i>; Yaakov is the bolt that runs from end to end, the aspect of <i>tiferes</i>; Yosef the tzaddik. And on the day of the hilula there is a well of living waters:<sup><a class="fn" href="#en-n5" id="en-r5">5</a></sup> “And I came today to the spring” <span class="c">(Bereishis 24:42)</span>. Rashi there takes up Eliezer, the servant of Avraham,<sup><a class="fn" href="#en-n6" id="en-r6">6</a></sup> the emissary of Avraham, and this is the matter: the match. The purpose, after all, was the match; the mission and its purpose is the match. Rashi says there: “Today I set out and today I arrived.” “And I came today to the spring”: the well of living waters, “a well dug by princes.” “Today I set out”: the goal, after all, lies in this world, and that is the meaning of “and today I arrived.” And the merit rises onward: the mitzvos and good deeds, the fruits of the Torah and good deeds of the holy Maggid, of blessed memory. May his holy merit shine into Jews throughout the whole world. “Today I set out and today I arrived”: the aspect of “the kindness of G-d endures all the day” <span class="c">(Tehillim 52:3)</span>.</p>
+
+    <p>Now it says, “And Yaakov dwelt in the land of his father’s sojournings,” and afterward it says <span class="c">(Bereishis 37:7)</span>, “And Yisrael loved Yosef”: the aspect of Yosef the tzaddik. Yisrael: the truth is that Yisrael, according to Kabbalah <span class="c">(Tikkunei Zohar 3)</span>, is <i>shir</i>, song, from the left and <i>E-l</i> from the right. Yisrael is <i>shir</i> from the left, <i>E-l</i> from the right: “the kindness of <i>E-l</i> endures all the day”; “today I set out and today I arrived.”</p>
+
+    <p>“And behold, my sheaf arose and also stood upright” <span class="c">(Bereishis 37:7)</span>. The truth is that whatever belongs to the animal soul, the matters of the body, the matter of physicality, is subject to change and exchange. But that which is the soul is not subject to change. “My sheaf arose and also stood upright”: standing firm in his righteousness, the aspect of Yosef the tzaddik, standing in his righteousness, in a state of standing. Although a tzaddik is one who walks from level to level, a walker, there is always the standing: “my sheaf arose and also stood upright.”</p>
+
+    <p>“And Yaakov dwelt in the land of his father’s sojournings”: a dwelling, yet it comes from the aspect of <i>gevurah</i>, and it too endures. One is constantly a… a person is, after all, constantly a ladder; one goes from level to level, the upper world from the lower world, the upper tent with the lower tent: “And Yaakov was a wholesome man, dwelling in tents” <span class="c">(Bereishis 25:27)</span>. Both tents, the upper <i>hei</i> and the lower <i>hei</i>.</p>
+
+    <p>In these times, because we are, alas, so… we are truly in a deep pit, one must hold on, hold on to a rope; one must bind oneself to a rope: “Yaakov is the rope of His inheritance” <span class="c">(Devarim 32:9)</span>; “Yisrael for His treasure” <span class="c">(Tehillim 135:4)</span>. Yisrael: “Yaakov He chose for Himself, Yisrael for His treasure.” This is the matter of Yaakov and Yisrael. First it says, “And Yaakov dwelt in the land of his father’s sojournings,” and then, “And Yisrael loved Yosef.” First is “Yaakov He chose for Himself,” which is the choosing; afterward is “Yisrael for His treasure,” which is a <i>birur</i>, a refining. “Yisrael for His treasure” comes after the refining. First is the aspect of <i>gevurah</i>, and afterward comes the refining. “And Yaakov dwelt in the land of his father’s sojournings, in the land of Canaan” is the refining; and then “And Yisrael loved Yosef,” which is already “Yisrael for His treasure,” already after the refining.</p>
+
+    <p>May the Almighty indeed help, the Maggid’s merit: “Say of the tzaddik that it is good” <span class="c">(Yeshayah 3:10)</span>. And Yosef: “Yosef, seventeen years old.” “Say of the tzaddik that it is good.” “He who tells [<i>maggid</i>] the end from the beginning” <span class="c">(Yeshayah 46:10)</span>: a drawing down; <i>maggid</i> means drawing down <span class="c">(Zohar II, 136b)</span>.<sup><a class="fn" href="#en-n7" id="en-r7">7</a></sup> “Better is the end of a matter than its beginning” <span class="c">(Koheles 7:8)</span>: the end of the matter.</p>
+
+    <p>May the Almighty indeed help that there be now only “truly good for Israel” <span class="c">(Tehillim 73:1)</span>. The mitzvos and good deeds are the fruits of the tzaddik. This, I say, is what protects, and this is the holy merit, which stands forever; the light is there, constantly. This is the aspect of Yosef the tzaddik, as it says <span class="c">(Bereishis Rabbah 84:10)</span>:<sup><a class="fn" href="#en-n8" id="en-r8">8</a></sup> “You gather fruits and I gather fruits.” The fruits of the wicked rot, “and mine stand,” forever. “Mine” stand; the fruits will stand always, they stand, they endure forever <span class="c">(see the Midrash Rabbah)</span>. The fruits that the great Maggid gathered, with the fellowship, with the path of Chassidus of the holy Baal Shem Tov, these stand. And the bad ones, their fruits rot and come to an end; the bad cannot have any endurance.</p>
+
+    <p class="closing">May the Almighty indeed help<br>that Jewish hearts be gladdened:<br>“The light of the righteous rejoices” <span class="c">(Mishlei 13:9)</span>.</p>
+  </div>
+
+  <p class="cup">(Kos shel berachah, the cup of blessing)</p>
+
+  <section class="notes-wrap" aria-label="Notes">
+    <h3>Notes and sources</h3>
+    <ol class="notes">
+      <li id="en-n1"><span>Midrash Rabbah, Vayetze, ch. 70. <a class="back" href="#en-r1" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n2"><span>See also <span lang="he" dir="rtl">אמ"ק</span>, 19 Kislev 5712; 5713, in Jerusalem the holy city; 5715; 5727. <a class="back" href="#en-r2" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n3"><span>See Sha’ar HaPesukim, Parshas Vayeshev, on the verse “And Yosef was brought down to Egypt.” <a class="back" href="#en-r3" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n4"><span>S.v. <i>Be’er</i>: it alludes to the <i>mazal</i> of <i>Notzer Chesed</i>. See also Ateres Yeshuah, end of Parshas Chukas, for 8 Tammuz. <a class="back" href="#en-r4" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n5"><span>See Kehilas Yaakov, entry <i>Be’er</i>. <a class="back" href="#en-r5" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n6"><span>Rashi (Bereishis 24:42): “‘And I came today’: today I set out and today I arrived; from here we learn that the earth contracted for him. Rabbi Acha said: The conversation of the servants of the fathers is more pleasing before the Omnipresent than the Torah of the children, for the section of Eliezer is repeated in the Torah, while many essential laws of the Torah were given only by allusion.” <a class="back" href="#en-r6" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n7"><span>See also <span lang="he" dir="rtl">אמ"ק</span>, 19 Kislev 5713, in Jerusalem the holy city; 5721; 5722; 5723; 5727. <a class="back" href="#en-r7" aria-label="Back to the text">↑</a></span></li>
+      <li id="en-n8"><span>The Midrash Rabbah reads: “‘And Yosef dreamed a dream… and he said to them: Hear, please.’ He said: So will the prophets rebuke you, ‘Hear, please, what the L-rd says’ (Michah 6:1). ‘And behold, we were binding sheaves’: you gather fruits and I gather fruits; yours rot and mine stand. ‘And behold, my sheaf arose and also stood upright’: Rabbi Levi and Rabbi Acha. Rabbi Levi said: You are destined to make mute idols before the calves of Yeravam and to say, ‘These are your gods, Israel’ (Shemos 32:4). Rabbi Acha said: You are destined to conceal matters about me before Father, saying ‘a wild beast has devoured him,’ and what will stand by him? Mother’s silence. ‘Arose’: ‘And behold, my sheaf arose and also stood upright, and behold, your sheaves gathered around,’ corresponding to the five times they were destined to bow to him. ‘And his brothers said to him: Shall you indeed reign over us?’ Rabbi Levi and Rabbi Simon: one said, because they answered him with an evil eye, he therefore raises up wicked ones; and one said, because they answered him in doubled language, he therefore raises up kings.” <a class="back" href="#en-r8" aria-label="Back to the text">↑</a></span></li>
+    </ol>
+  </section>
+
+  <p class="colophon">The original was transcribed letter for letter from a recording made by the chassid R’ Shaul Alexander Bistritzky, of blessed memory.</p>
+</article>
+
+<aside class="plaque" dir="rtl" lang="he" aria-label="על המרכז">
+  <div class="plaque-mat">
+    <span class="corner c1" aria-hidden="true"></span><span class="corner c2" aria-hidden="true"></span><span class="corner c3" aria-hidden="true"></span><span class="corner c4" aria-hidden="true"></span>
+    <img class="logo" id="logo" alt='סמל מרכז להוצאות ספרי חסידות לבית רוזין' hidden>
+    <div class="pl-text">
+      <p class="pl-name"><span class="ln">מרכז להוצאות ספרי חסידות</span><span class="pl-house">לבית רוזין</span></p>
+      <span class="pl-rule" aria-hidden="true"><i></i></span>
+      <p class="pl-label">נוסד ע"י</p>
+      <p class="pl-founded"><span class="ln">הרה"ח רבי שואל אלכסנדר</span> <span class="ln">בן הרה"ח רבי מרדכי ז"ל ביסטריצקי</span></p>
+    </div>
+  </div>
+</aside>
+</main>
+
+<!-- ================= AUDIO DOCK ================= -->
+<div class="dock-wrap">
+  <section class="dock glass" id="dock" dir="rtl" lang="he" data-state="empty" aria-label="ההקלטה המקורית">
+    <audio id="rec" preload="metadata"></audio>
+    <input type="file" id="recFile" accept="audio/*" hidden>
+
+    <div class="dock-row" id="dockEmpty">
+      <div class="tile" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>
+      </div>
+      <div class="dock-main">
+        <div class="dock-title" data-he="ההקלטה המקורית" data-en="Original recording">ההקלטה המקורית</div>
+        <div class="dock-sub" data-he="טרם צורף קובץ שמע" data-en="No audio file attached yet">טרם צורף קובץ שמע</div>
+      </div>
+      <button type="button" class="pick" id="pickBtn" data-he="בחירת קובץ" data-en="Choose file">בחירת קובץ</button>
+    </div>
+
+    <div class="dock-row" id="dockReady" hidden>
+      <button type="button" class="play" id="playBtn" aria-pressed="false" aria-label="נגן" data-he-label="נגן" data-en-label="Play">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.1v13.8a1 1 0 0 0 1.5.9l11.3-6.9a1 1 0 0 0 0-1.8L9.5 4.2A1 1 0 0 0 8 5.1z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4.5" width="4.5" height="15" rx="1.6"/><rect x="14" y="4.5" width="4.5" height="15" rx="1.6"/></svg>
+      </button>
+      <div class="dock-main">
+        <div class="dock-meta">
+          <div class="dock-title"><span data-he="ההקלטה המקורית" data-en="Original recording">ההקלטה המקורית</span><small data-he='י"ט כסלו תשי"ד' data-en="19 Kislev 5714">י"ט כסלו תשי"ד</small></div>
+          <div class="dock-time" id="time">0:00 / 0:00</div>
+        </div>
+        <div class="seek" dir="ltr">
+          <button type="button" class="skip" id="back" aria-label="10 שניות אחורה" data-he-label="10 שניות אחורה" data-en-label="Back 10 seconds">−10</button>
+          <div class="wave" id="wave">
+            <svg aria-hidden="true"><path class="w-track" id="wTrack"/><path class="w-active" id="wActive"/><circle class="w-stop" id="wStop" r="2"/><rect class="w-thumb" id="wThumb" width="3" height="20" rx="1.5"/></svg>
+            <input type="range" id="seekRange" min="0" max="1000" step="1" value="0" aria-label="מיקום בהקלטה" data-he-label="מיקום בהקלטה" data-en-label="Position in the recording">
+          </div>
+          <button type="button" class="skip" id="fwd" aria-label="10 שניות קדימה" data-he-label="10 שניות קדימה" data-en-label="Forward 10 seconds">+10</button>
+        </div>
+      </div>
+      <button type="button" class="speed" id="speed" aria-label="מהירות ניגון" data-he-label="מהירות ניגון" data-en-label="Playback speed">1×</button>
+    </div>
+
+    <p class="dock-msg" id="dockMsg" role="status" hidden></p>
+  </section>
+</div>
+
+<script>
+(function(){
+  /* The recording: an .mp4 uploaded next to index.html under this name. */
+  var RECORDING_SRC = "recording.mp4";
+  /* The photos: 1, 2 and 3 uploaded next to index.html (jpg, jpeg, png or webp). */
+  var PHOTO_EXTS = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG"];
+  var usingDefault = false;
+
+  var NAMES = {yi:'yiddish', he:'hebrew', en:'english'};
+  var BY_NAME = {yiddish:'yi', hebrew:'he', english:'en'};
+  var sw = document.getElementById('switch');
+  var thumb = sw.querySelector('.thumb');
+  var tabs = Array.prototype.slice.call(sw.querySelectorAll('[role="tab"]'));
+  var cur = 'yi';
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function panel(v){ return document.getElementById('view-' + v); }
+  function tab(v){ return document.getElementById('tab-' + v); }
+
+  function moveThumb(){
+    var b = tab(cur);
+    thumb.style.width = b.offsetWidth + 'px';
+    thumb.style.transform = 'translateX(' + b.offsetLeft + 'px)';
+  }
+
+  function setUiLang(l){
+    var dock = document.getElementById('dock');
+    dock.dir = l === 'en' ? 'ltr' : 'rtl';
+    dock.lang = l;
+    dock.querySelectorAll('[data-he]').forEach(function(el){ el.textContent = el.getAttribute('data-' + l); });
+    dock.querySelectorAll('[data-he-label]').forEach(function(el){ el.setAttribute('aria-label', el.getAttribute('data-' + l + '-label')); });
+    dock.setAttribute('aria-label', l === 'en' ? 'Original recording' : 'ההקלטה המקורית');
+    syncPlayLabel();
+  }
+
+  /* keep the reader on the same paragraph when the language changes */
+  function anchor(){
+    if (window.scrollY < 60) return null;
+    var ps = panel(cur).querySelectorAll('.prose > p');
+    for (var i = 0; i < ps.length; i++){
+      var r = ps[i].getBoundingClientRect();
+      if (r.bottom > 90) return {i:i, top:r.top};
+    }
+    return null;
+  }
+
+  function show(v, opts){
+    opts = opts || {};
+    if (!NAMES[v]) return;
+    var a = v !== cur ? anchor() : null;
+    cur = v;
+    ['yi','he','en'].forEach(function(k){
+      panel(k).hidden = k !== v;
+      var t = tab(k);
+      t.setAttribute('aria-selected', k === v ? 'true' : 'false');
+      t.tabIndex = k === v ? 0 : -1;
+    });
+    moveThumb();
+    setUiLang(v === 'en' ? 'en' : 'he');
+    if (a){
+      var p = panel(v).querySelectorAll('.prose > p')[a.i];
+      if (p) window.scrollBy(0, p.getBoundingClientRect().top - a.top);
+    }
+    if (!opts.silent){
+      try { localStorage.setItem('rizhin-view', v); } catch(e){}
+      try { history.replaceState(null, '', '#' + NAMES[v]); } catch(e){}
+    }
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ show(t.getAttribute('data-view')); });
+  });
+  sw.addEventListener('keydown', function(e){
+    var order = ['yi','he','en'], i = order.indexOf(cur), n = null;
+    if (e.key === 'ArrowLeft') n = order[Math.min(2, i + 1)];      /* RTL strip: left is next */
+    else if (e.key === 'ArrowRight') n = order[Math.max(0, i - 1)];
+    else if (e.key === 'Home') n = 'yi';
+    else if (e.key === 'End') n = 'en';
+    if (n){ e.preventDefault(); show(n); tab(n).focus(); }
+  });
+
+  /* footnotes: jump to the note and back without touching the address */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a.fn, a.back');
+    if (!a) return;
+    var target = document.getElementById(a.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({block:'center', behavior: reduce ? 'auto' : 'smooth'});
+    var li = target.closest('li') || target;
+    if (li.tagName === 'LI'){
+      li.classList.add('flash');
+      setTimeout(function(){ li.classList.remove('flash'); }, 1600);
+    } else {
+      try { target.focus({preventScroll:true}); } catch(err){}
+    }
+  });
+
+  /* ---------- audio ---------- */
+  var audio = document.getElementById('rec');
+  var dock = document.getElementById('dock');
+  var elEmpty = document.getElementById('dockEmpty');
+  var elReady = document.getElementById('dockReady');
+  var fileIn = document.getElementById('recFile');
+  var playBtn = document.getElementById('playBtn');
+  var timeEl = document.getElementById('time');
+  var range = document.getElementById('seekRange');
+  var waveBox = document.getElementById('wave');
+  var wActive = document.getElementById('wActive');
+  var wTrack = document.getElementById('wTrack');
+  var wThumb = document.getElementById('wThumb');
+  var wStop = document.getElementById('wStop');
+  var speedBtn = document.getElementById('speed');
+  var msg = document.getElementById('dockMsg');
+  var objUrl = null, amp = 0, phase = 0, last = 0, raf = 0;
+  var SPEEDS = [1, 1.25, 1.5, 0.75], si = 0;
+
+  function uiLang(){ return cur === 'en' ? 'en' : 'he'; }
+  function say(he, en){
+    if (!he){ msg.hidden = true; msg.textContent = ''; return; }
+    msg.textContent = uiLang() === 'en' ? en : he; msg.hidden = false;
+  }
+  function fmt(s){
+    if (!isFinite(s) || s < 0) s = 0;
+    s = Math.floor(s);
+    var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60;
+    return (h ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (x < 10 ? '0' : '') + x;
+  }
+  function dur(){ return isFinite(audio.duration) && audio.duration > 0 ? audio.duration : 0; }
+  function syncPlayLabel(){
+    if (!playBtn) return;
+    var playing = !audio.paused;
+    playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    playBtn.setAttribute('aria-label', uiLang() === 'en' ? (playing ? 'Pause' : 'Play') : (playing ? 'השהה' : 'נגן'));
+  }
+
+  function drawWave(){
+    var w = waveBox.clientWidth, h = waveBox.clientHeight || 32, mid = h / 2, pad = 4;
+    if (!w) return;
+    var d = dur(), p = d ? Math.min(1, audio.currentTime / d) : 0;
+    var x = pad + p * (w - 2 * pad), gap = 7, wl = 30;
+    var end = x - gap, path = '';
+    if (end > pad){
+      path = 'M' + pad + ' ' + mid;
+      for (var i = pad + 2; i <= end; i += 2){
+        var taper = Math.min(1, (i - pad) / 10, (end - i) / 10);
+        path += ' L' + i + ' ' + (mid + Math.sin(i / wl * 6.2832 + phase) * amp * taper).toFixed(2);
+      }
+      path += ' L' + end.toFixed(1) + ' ' + mid;
+    }
+    wActive.setAttribute('d', path);
+    var ts = x + gap, te = w - pad;
+    wTrack.setAttribute('d', ts < te ? 'M' + ts.toFixed(1) + ' ' + mid + ' L' + te + ' ' + mid : '');
+    wThumb.setAttribute('x', (x - 1.5).toFixed(1));
+    wThumb.setAttribute('y', (mid - 10).toFixed(1));
+    wStop.setAttribute('cx', te); wStop.setAttribute('cy', mid);
+    wStop.style.display = ts < te - 6 ? '' : 'none';
+    timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(d);
+    if (document.activeElement !== range) range.value = Math.round(p * 1000);
+    range.setAttribute('aria-valuetext', fmt(audio.currentTime) + ' / ' + fmt(d));
+  }
+  function tick(t){
+    var dt = last ? Math.min(50, t - last) : 16; last = t;
+    var target = audio.paused ? 0 : 3;
+    amp += (target - amp) * Math.min(1, dt / 160);
+    if (!audio.paused) phase -= dt * 0.006;
+    drawWave();
+    if (!audio.paused || Math.abs(amp - target) > 0.04) raf = requestAnimationFrame(tick);
+    else { amp = target; raf = 0; drawWave(); }
+  }
+  function kick(){
+    if (reduce){ amp = audio.paused ? 0 : 3; drawWave(); return; }
+    if (!raf){ last = 0; raf = requestAnimationFrame(tick); }
+  }
+
+  function setState(s){
+    dock.setAttribute('data-state', s);
+    elEmpty.hidden = s !== 'empty';
+    elReady.hidden = s !== 'ready';
+    if (s === 'ready') requestAnimationFrame(drawWave);
+  }
+  function load(src){
+    audio.src = src; audio.load();
+    audio.playbackRate = SPEEDS[si];
+    say(); setState('ready'); syncPlayLabel();
+  }
+
+  document.getElementById('pickBtn').addEventListener('click', function(){ fileIn.click(); });
+  fileIn.addEventListener('change', function(){
+    var f = fileIn.files && fileIn.files[0];
+    if (!f) return;
+    if (objUrl) URL.revokeObjectURL(objUrl);
+    objUrl = URL.createObjectURL(f);
+    usingDefault = false;
+    load(objUrl);
+  });
+  playBtn.addEventListener('click', function(){
+    if (audio.paused){ var pr = audio.play(); if (pr && pr.catch) pr.catch(function(){}); }
+    else audio.pause();
+  });
+  document.getElementById('back').addEventListener('click', function(){ audio.currentTime = Math.max(0, audio.currentTime - 10); drawWave(); });
+  document.getElementById('fwd').addEventListener('click', function(){ var d = dur(); audio.currentTime = d ? Math.min(d, audio.currentTime + 10) : audio.currentTime + 10; drawWave(); });
+  range.addEventListener('input', function(){ var d = dur(); if (d){ audio.currentTime = range.value / 1000 * d; drawWave(); } });
+  speedBtn.addEventListener('click', function(){
+    si = (si + 1) % SPEEDS.length; audio.playbackRate = SPEEDS[si];
+    speedBtn.textContent = SPEEDS[si] + '×';
+  });
+  ['play','pause','ended'].forEach(function(ev){ audio.addEventListener(ev, function(){ syncPlayLabel(); kick(); }); });
+  ['timeupdate','loadedmetadata','durationchange','seeked'].forEach(function(ev){ audio.addEventListener(ev, drawWave); });
+  audio.addEventListener('error', function(){
+    if (!audio.getAttribute('src')) return;
+    setState('empty');
+    if (usingDefault){ usingDefault = false; return; }   /* recording.mp4 not uploaded yet: leave the picker */
+    say('לא ניתן לנגן את הקובץ הזה. נסו קובץ שמע אחר.', 'This file can’t be played. Try a different audio file.');
+  });
+  if (window.ResizeObserver) new ResizeObserver(function(){ drawWave(); moveThumb(); }).observe(document.body);
+  else window.addEventListener('resize', function(){ drawWave(); moveThumb(); });
+
+  /* ---------- start ---------- */
+  var start = BY_NAME[(location.hash || '').slice(1)];
+  if (!start){ try { start = localStorage.getItem('rizhin-view'); } catch(e){} }
+  show(NAMES[start] ? start : 'yi', {silent:true});
+  requestAnimationFrame(function(){ sw.classList.add('ready'); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveThumb);
+  window.addEventListener('hashchange', function(){
+    var v = BY_NAME[(location.hash || '').slice(1)];
+    if (v && v !== cur) show(v, {silent:true});
+  });
+  if (RECORDING_SRC){ usingDefault = true; load(RECORDING_SRC); }
+
+  /* ---------- logo: logo.svg / logo.png / logo.jpg … next to index.html ---------- */
+  (function(){
+    var img = document.getElementById('logo'), exts = ["svg","png","webp","jpg","jpeg","PNG","JPG","SVG"], i = 0;
+    (function next(){
+      if (i >= exts.length) return;               /* no logo uploaded: the plaque shows text only */
+      var src = 'logo.' + exts[i++], probe = new Image();
+      probe.onload = function(){ img.src = src; img.hidden = false; };
+      probe.onerror = next;
+      probe.src = src;
+    })();
+  })();
+
+  /* ---------- photos ---------- */
+  document.querySelectorAll('.frame').forEach(function(fr){
+    var n = fr.getAttribute('data-n'), img = fr.querySelector('img'), i = 0;
+    (function next(){
+      if (i >= PHOTO_EXTS.length) return;        /* none found: keep the numbered placeholder */
+      var src = n + '.' + PHOTO_EXTS[i++], probe = new Image();
+      probe.onload = function(){ img.src = src; img.hidden = false; fr.classList.add('has-img'); };
+      probe.onerror = next;
+      probe.src = src;
+    })();
+  });
+})();
+</script>
+</body>
+</html>
