@@ -7,10 +7,19 @@
 <meta name="description" content='דברות קודש מכ"ק מרן אדמו"ר מבאיאן זי"ע, י"ט כסלו תשי"ד, במקור באידיש ובתרגום ללשון הקודש ולאנגלית, עם ההקלטה המקורית.'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
+/* Your own fonts. Upload them to a folder named "fonts" next to index.html:
+     fonts/text.woff2  (or .woff / .ttf / .otf)   – the Hebrew and Yiddish text
+     fonts/title.woff2 (or .woff / .ttf / .otf)   – the site name, the date and the plaque name
+   Any file that isn't there is skipped and the built-in font is used. */
+@font-face{font-family:"Site Text"; font-weight:400; font-display:swap;
+  src:url("fonts/text.woff2") format("woff2"), url("fonts/text.woff") format("woff"), url("fonts/text.ttf") format("truetype"), url("fonts/text.otf") format("opentype")}
+@font-face{font-family:"Site Title"; font-weight:400; font-display:swap;
+  src:url("fonts/title.woff2") format("woff2"), url("fonts/title.woff") format("woff"), url("fonts/title.ttf") format("truetype"), url("fonts/title.otf") format("opentype")}
+
 /* Layout: a quiet brown masthead, a glass language switch resting on its lower edge,
    one paper sheet for the text, and a glass audio dock at the bottom. Grey, brown, gold. */
 :root{
-  --bg:#e6e4e0; --paper:#f7f6f3; --ink:#2a231e; --ink-2:#6e655d; --line:rgba(42,35,30,.14);
+  --bg:#e6e4e0; --paper:#f7f5f0; --paper-hi:#fbfaf6; --paper-lo:#f1ede5; --ink:#2a231e; --ink-2:#6e655d; --line:rgba(42,35,30,.14);
   --gold:#86692b; --gold-soft:#b89c5e; --wash:rgba(184,156,94,.18);
   --primary:#3b2f27; --on-primary:#f5f1e9;
   --glass:rgba(244,243,240,.88); --glass-edge:rgba(255,255,255,.7);
@@ -19,7 +28,8 @@
   --mast-bg:#2d2520; --mast-fg:#efeae1; --mast-gold:#b89c5e;
   --focus:#6b4f12;
 
-  --f-he:"Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
+  --f-he:"Site Text","Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
+  --f-title:"Site Title","Site Text","Frank Ruhl Libre","David Libre","Times New Roman",serif;
   --f-ui:"Heebo","Arimo","Arial",sans-serif;
   --f-en-d:"Instrument Serif","Frank Ruhl Libre",Georgia,serif;
   --f-en:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -29,7 +39,7 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#191614; --paper:#211d1a; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
+    --bg:#191614; --paper:#211d1a; --paper-hi:#28231f; --paper-lo:#1d1916; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
     --gold:#cdb074; --gold-soft:#a88c52; --wash:rgba(205,176,116,.14);
     --primary:#cdb074; --on-primary:#221a0e;
     --glass:rgba(40,35,31,.86); --glass-edge:rgba(255,255,255,.14);
@@ -41,7 +51,7 @@
   }
 }
 :root[data-theme="dark"]{
-  --bg:#191614; --paper:#211d1a; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
+  --bg:#191614; --paper:#211d1a; --paper-hi:#28231f; --paper-lo:#1d1916; --ink:#e9e4dc; --ink-2:#a2988d; --line:rgba(255,255,255,.12);
   --gold:#cdb074; --gold-soft:#a88c52; --wash:rgba(205,176,116,.14);
   --primary:#cdb074; --on-primary:#221a0e;
   --glass:rgba(40,35,31,.86); --glass-edge:rgba(255,255,255,.14);
@@ -83,7 +93,7 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 }
 .bsd{align-self:flex-start; margin-bottom:-14px; font-family:var(--f-he); font-size:.9rem; color:var(--mast-gold)}
 .site{
-  margin:0; font-family:var(--f-he); font-weight:400;
+  margin:0; font-family:var(--f-title); font-weight:400;
   font-size:clamp(1.3rem, 3.4vw, 2rem); line-height:1.25; letter-spacing:.02em;
   text-wrap:balance; text-shadow:0 2px 14px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.5);
 }
@@ -170,28 +180,43 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
   padding-right:max(16px, env(safe-area-inset-right, 0px));
 }
 .sheet{
-  background:var(--paper); border:1px solid var(--line);
-  border-radius:10px;
-  padding:clamp(32px, 7vw, 72px) clamp(20px, 6vw, 64px) clamp(28px, 5vw, 52px);
-  box-shadow:0 1px 2px var(--glass-lo), 0 28px 50px -40px var(--shadow);
+  position:relative;
+  background:radial-gradient(130% 70% at 50% 0%, var(--paper-hi) 0%, var(--paper) 55%, var(--paper-lo) 100%);
+  border:1px solid var(--line); border-radius:3px;
+  padding:clamp(44px, 7vw, 68px) clamp(30px, 6.5vw, 60px) clamp(36px, 5vw, 52px);
+  box-shadow:0 1px 2px var(--glass-lo), 0 30px 50px -36px var(--shadow);
   display:flex; flex-direction:column; gap:clamp(24px, 4vw, 36px);
   animation:rise .35s var(--ease);
 }
 @keyframes rise{from{opacity:.4}}
+/* book-page border: double gold rule with diamonds at the corners */
+.sheet::before,.sheet::after{content:""; position:absolute; pointer-events:none; border:1px solid var(--gold-soft)}
+.sheet::before{inset:12px; opacity:.4}
+.sheet::after{inset:15px; opacity:.18}
+.corner{position:absolute; width:5px; height:5px; background:var(--gold-soft); transform:rotate(45deg); pointer-events:none}
+.sheet > .corner{opacity:.6}
+.sheet > .corner{box-shadow:0 0 0 3px var(--paper)}
+.sheet > .c1{top:10px; left:10px} .sheet > .c2{top:10px; right:10px} .sheet > .c3{bottom:10px; left:10px} .sheet > .c4{bottom:10px; right:10px}
+/* ornament: hairline – diamond – hairline */
+.orn{display:flex; align-items:center; justify-content:center; gap:12px; width:min(200px, 60%); align-self:center}
+.orn::before,.orn::after{content:""; flex:1; height:1px}
+.orn::before{background:linear-gradient(90deg, transparent, var(--gold-soft))}
+.orn::after{background:linear-gradient(270deg, transparent, var(--gold-soft))}
+.orn i{width:6px; height:6px; background:var(--gold-soft); transform:rotate(45deg); box-shadow:-9px 9px 0 -1.5px var(--gold-soft), 9px -9px 0 -1.5px var(--gold-soft)}
 
 .head{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
-.eyebrow{margin:0; font-family:var(--f-he); font-size:.98rem; color:var(--gold)}
+.eyebrow{margin:0; font-family:var(--f-he); font-size:.98rem; color:var(--gold); display:flex; align-items:center; gap:10px}
+.eyebrow::before,.eyebrow::after{content:""; width:4px; height:4px; background:var(--gold-soft); transform:rotate(45deg); flex:none; opacity:.7}
 [lang="en"] .eyebrow{font-family:var(--f-ui); letter-spacing:.16em; text-transform:uppercase; font-size:.7rem}
 .date{
-  margin:0; font-family:var(--f-he); font-weight:500; line-height:1.1;
-  font-size:clamp(2.1rem, 7vw, 3.3rem); color:var(--ink); text-wrap:balance;
+  margin:0; font-family:var(--f-title); font-weight:500; line-height:1.1;
+  font-size:clamp(2rem, 6.4vw, 3rem); color:var(--ink); text-wrap:balance;
 }
 [lang="en"] .date{font-family:var(--f-en-d); font-weight:400; font-size:clamp(2.3rem, 7.6vw, 3.6rem)}
 .occasion{margin:0; font-family:var(--f-he); font-size:1.1rem; color:var(--ink-2); max-width:30rem; text-wrap:balance}
 [lang="en"] .occasion{font-family:var(--f-en); font-style:italic; font-size:1.04rem}
 .meta{margin:2px 0 0; font-family:var(--f-ui); font-size:.8rem; color:var(--ink-2); text-wrap:balance}
 [lang="en"] .meta{letter-spacing:.02em}
-.rule{width:56px; height:1px; border:0; margin:0; align-self:center; background:var(--gold-soft)}
 
 .tnote{
   margin:0 auto; max-width:32rem; width:100%; text-align:center; text-wrap:balance;
@@ -222,7 +247,9 @@ a.fn:hover{background:var(--wash)}
 [lang="en"] .cup{font-family:var(--f-en); font-style:italic; font-size:.95rem}
 
 .notes-wrap{max-width:35rem; width:100%; margin:0 auto; border-top:1px solid var(--line); padding-top:22px; display:flex; flex-direction:column; gap:10px}
-.notes-wrap h3{margin:0; font-family:var(--f-he); font-weight:500; font-size:.98rem; color:var(--gold)}
+.notes-wrap h3{margin:0; font-family:var(--f-he); font-weight:500; font-size:.98rem; color:var(--gold); display:flex; align-items:center; gap:12px}
+.notes-wrap h3::after{content:""; flex:1; height:1px; background:linear-gradient(to left, var(--gold-soft), transparent)}
+[dir="ltr"] .notes-wrap h3::after{background:linear-gradient(to right, var(--gold-soft), transparent)}
 [lang="en"] .notes-wrap h3{font-family:var(--f-ui); font-weight:500; letter-spacing:.16em; text-transform:uppercase; font-size:.7rem}
 .notes{margin:0; padding:0; list-style:none; counter-reset:n; display:flex; flex-direction:column; gap:6px;
   font-family:var(--f-he); font-size:.96rem; line-height:1.65; color:var(--ink-2)}
@@ -244,7 +271,7 @@ a.fn:hover{background:var(--wash)}
 :root{--plaque-lap:clamp(24px, 4vw, 36px); --plaque-ink:#3b2f27; --plaque-ink-2:#6b5a45}
 .sheet{padding-bottom:calc(clamp(28px, 5vw, 52px) + var(--plaque-lap))}
 .plaque{
-  position:relative; z-index:2; width:min(calc(100% - 36px), 32rem);
+  position:relative; z-index:2; width:min(calc(100% - 36px), 27rem);
   margin:calc(-1 * var(--plaque-lap)) auto 0;
   padding:clamp(5px, .8vw, 7px);
   background:linear-gradient(135deg, var(--gilt-1) 0%, var(--gilt-2) 22%, var(--gilt-3) 45%, var(--gilt-4) 68%, var(--gilt-5) 100%);
@@ -260,42 +287,56 @@ a.fn:hover{background:var(--wash)}
 }
 .plaque-mat{
   position:relative; color:var(--plaque-ink);
-  background:radial-gradient(120% 140% at 70% 20%, #f8f4eb 0%, var(--mat) 45%, #e0d5c1 100%);   /* soft light from above */
-  padding:clamp(24px, 4.4vw, 32px) clamp(24px, 4.6vw, 34px);
+  background:
+    repeating-linear-gradient(0deg, rgba(90,70,40,.014) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90,70,40,.011) 0 1px, transparent 1px 3px),       /* faint linen weave */
+    radial-gradient(120% 140% at 70% 20%, #f8f4eb 0%, var(--mat) 45%, #e0d5c1 100%);
+  padding:clamp(24px, 4.2vw, 30px) clamp(24px, 4.4vw, 30px) clamp(22px, 4vw, 28px);
   box-shadow:inset 0 0 0 1px rgba(40,26,8,.5), inset 2px 3px 9px var(--mat-shade), inset -1px -2px 6px rgba(255,255,255,.5);
-  display:flex; align-items:center; gap:clamp(16px, 3.2vw, 24px); text-align:start;
+  display:flex; align-items:center; gap:clamp(14px, 2.8vw, 20px); text-align:start;
 }
+/* inner bead on the gilt moulding */
+.plaque::after{content:""; position:absolute; inset:2px; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(255,236,190,.22)}
 /* double gold fillet */
 .plaque-mat::before{content:""; position:absolute; inset:8px; border:1px solid var(--fillet); pointer-events:none}
-.plaque-mat::after{content:""; position:absolute; inset:11px; border:1px solid var(--fillet); opacity:.45; pointer-events:none}
-/* small gold diamonds on the fillet corners */
-.plaque .corner{position:absolute; width:7px; height:7px; background:var(--fillet); transform:rotate(45deg); box-shadow:0 0 0 2px var(--mat)}
-.plaque .c1{top:5px; left:5px} .plaque .c2{top:5px; right:5px} .plaque .c3{bottom:5px; left:5px} .plaque .c4{bottom:5px; right:5px}
+.plaque-mat::after{content:""; position:absolute; inset:11px; border:1px solid var(--fillet); opacity:.4; pointer-events:none}
+/* corner brackets with a small diamond */
+.plaque .corner{position:absolute; width:14px; height:14px; background:none; transform:none; box-shadow:none; border:0 solid var(--fillet)}
+.plaque .corner::after{content:""; position:absolute; width:4px; height:4px; background:var(--fillet); transform:rotate(45deg)}
+.plaque .c1{top:14px; left:14px; border-top-width:1px; border-left-width:1px}  .plaque .c1::after{top:3px; left:3px}
+.plaque .c2{top:14px; right:14px; border-top-width:1px; border-right-width:1px} .plaque .c2::after{top:3px; right:3px}
+.plaque .c3{bottom:14px; left:14px; border-bottom-width:1px; border-left-width:1px} .plaque .c3::after{bottom:3px; left:3px}
+.plaque .c4{bottom:14px; right:14px; border-bottom-width:1px; border-right-width:1px} .plaque .c4::after{bottom:3px; right:3px}
+/* small crest on the top and bottom fillet */
+.pl-crest{position:absolute; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:4px; padding:0 6px; background:#f4efe5; pointer-events:none}
+.pl-crest.top{top:5px} .pl-crest.bot{bottom:5px; background:#e8dfcf}
+.pl-crest i{width:5px; height:5px; background:var(--fillet); transform:rotate(45deg)}
+.pl-crest b{width:3px; height:3px; border-radius:50%; background:var(--fillet)}
 .plaque .logo{
   flex:none; display:block; width:auto; height:auto;
-  max-height:clamp(62px, 12vw, 90px); max-width:30%;
+  max-height:clamp(60px, 11vw, 88px); max-width:28%;
   filter:drop-shadow(0 1px 0 rgba(255,255,255,.6)) drop-shadow(0 2px 3px rgba(60,40,10,.25));
   transition:transform .6s var(--spring);
 }
 .plaque:hover .logo{transform:rotate(-4deg) scale(1.06)}
-.pl-text{min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:6px;
-  padding-inline-start:clamp(16px, 3.2vw, 24px); border-inline-start:1px solid var(--fillet)}
+.pl-text{min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:5px;
+  padding-inline-start:clamp(14px, 2.8vw, 20px); border-inline-start:1px solid var(--fillet)}
 .plaque .logo[hidden] + .pl-text{padding-inline-start:0; border:0}
-.pl-name{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(1rem, 2.7vw, 1.16rem); line-height:1.35; letter-spacing:.01em;
+.pl-name{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(.88rem, 2.3vw, .98rem); line-height:1.35; letter-spacing:.01em;
   text-shadow:0 1px 0 rgba(255,255,255,.7)}
-.pl-name .pl-house{display:block; font-weight:700; font-size:1.45em; line-height:1.15; color:#6e5221; letter-spacing:.03em}
-.pl-rule{display:flex; align-items:center; gap:6px; width:72px; margin:4px 0 2px}
+.pl-name .pl-house{display:block; font-family:var(--f-title); font-weight:700; font-size:1.5em; line-height:1.15; color:#6e5221; letter-spacing:.03em}
+.pl-rule{display:flex; align-items:center; gap:5px; width:60px; margin:3px 0 1px}
 .pl-rule::before,.pl-rule::after{content:""; flex:1; height:1px; background:var(--fillet)}
-.pl-rule i{width:5px; height:5px; background:var(--fillet); transform:rotate(45deg)}
+.pl-rule i{width:4px; height:4px; background:var(--fillet); transform:rotate(45deg)}
 .pl-name .ln,.pl-founded .ln{display:block; white-space:nowrap}
 @media (max-width:520px){
-  .plaque .logo{max-height:52px; max-width:24%}
-  .plaque-mat{padding:22px 20px; gap:14px}
-  .pl-text{padding-inline-start:14px}
-  .pl-name{font-size:.92rem} .pl-founded{font-size:.8rem}
+  .plaque .logo{max-height:58px; max-width:24%}
+  .plaque-mat{padding:24px 22px 22px; gap:12px}
+  .pl-text{padding-inline-start:12px}
+  .pl-name{font-size:.86rem} .pl-founded{margin:0; font-family:var(--f-he); font-size:clamp(.82rem, 2.1vw, .9rem); line-height:1.55; color:var(--plaque-ink-2); text-shadow:0 1px 0 rgba(255,255,255,.6)}
 }
 @media (max-width:400px){ .pl-name .ln,.pl-founded .ln{white-space:normal} }
-.pl-label{margin:0; font-family:var(--f-he); font-size:.8rem; color:#8a6d34; letter-spacing:.08em}
+.pl-label{margin:0; font-family:var(--f-he); font-size:.74rem; color:#8a6d34; letter-spacing:.1em}
 .pl-founded{margin:0; font-family:var(--f-he); font-size:clamp(.9rem, 2.3vw, 1rem); line-height:1.55; color:var(--plaque-ink-2); text-shadow:0 1px 0 rgba(255,255,255,.6)}
 
 /* ---------- audio dock ---------- */
@@ -363,6 +404,8 @@ a.fn:hover{background:var(--wash)}
 .dock-msg{margin:8px 4px 0; font-size:.8rem; color:var(--gold)}
 
 @media (max-width:520px){
+  .sheet::before{inset:9px} .sheet::after{inset:12px}
+  .sheet > .c1{top:6px; left:6px} .sheet > .c2{top:6px; right:6px} .sheet > .c3{bottom:6px; left:6px} .sheet > .c4{bottom:6px; right:6px}
   .switch button{padding:8px 13px; font-size:.86rem}
   .mast-in{padding-block:10px 0}
   .prose p{text-align:start}
@@ -417,7 +460,7 @@ a.fn:hover{background:var(--wash)}
     <p class="occasion" lang="he">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
     <p class="meta" lang="he">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
   </header>
-  <hr class="rule">
+  <div class="orn" aria-hidden="true"><i></i></div>
 
   <div class="prose">
     <p><span class="lead">פו"א:</span> דער אייבערשטער זאל העלפן, זיין הייליגער זכות זאל מגין זיין, זאל זיין המתקת הדינים אויף כלל ישראל, מהפך זיין מדת הדין לרחמים. נתעורר ווערן ז"א דאך, זכות אבות. די אלע זאכען וואס זענען שיחתן של אבות זענען דאך מפתח לגאולתן של בנים<sup><a class="fn" href="#yi-n1" id="yi-r1">1</a></sup>. דער ערשטער איז דאך אברהם אבינו האט גערופען דעם אייבערשטען אדון, א'דני, בחינת דין מיט דער אלף דער חיבור פון בחינת דין צו דער אלף א'דני</p>
@@ -468,7 +511,7 @@ a.fn:hover{background:var(--wash)}
     <p class="occasion">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
     <p class="meta">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
   </header>
-  <hr class="rule">
+  <div class="orn" aria-hidden="true"><i></i></div>
 
   <p class="tnote">תרגום מן המקור באידיש. מילת הקישור ז"א (זאג איך) החוזרת במקור הושמטה כאן לשטף הקריאה; לשונות הפסוקים ומאמרי חז"ל באות מודגשת.</p>
 
@@ -521,7 +564,7 @@ a.fn:hover{background:var(--wash)}
     <p class="occasion">At the tish, after the singing of “Hazkiru Lefanav”</p>
     <p class="meta">Parshas Vayeshev · Hilula of the Maggid of Mezritch</p>
   </header>
-  <hr class="rule">
+  <div class="orn" aria-hidden="true"><i></i></div>
 
   <p class="tnote">Translated from the Yiddish transcript. The Rebbe’s recurring aside <span lang="yi" dir="rtl">ז"א</span> (<i>zog ich</i>, “I say”) is left out for readability; words in [brackets] are added for clarity.</p>
 
@@ -569,6 +612,7 @@ a.fn:hover{background:var(--wash)}
 <aside class="plaque" dir="rtl" lang="he" aria-label="על המרכז">
   <div class="plaque-mat">
     <span class="corner c1" aria-hidden="true"></span><span class="corner c2" aria-hidden="true"></span><span class="corner c3" aria-hidden="true"></span><span class="corner c4" aria-hidden="true"></span>
+    <span class="pl-crest top" aria-hidden="true"><b></b><i></i><b></b></span><span class="pl-crest bot" aria-hidden="true"><b></b><i></i><b></b></span>
     <img class="logo" id="logo" alt='סמל מרכז להוצאות ספרי חסידות לבית רוזין' hidden>
     <div class="pl-text">
       <p class="pl-name"><span class="ln">מרכז להוצאות ספרי חסידות</span><span class="pl-house">לבית רוזין</span></p>
@@ -625,8 +669,10 @@ a.fn:hover{background:var(--wash)}
 
 <script>
 (function(){
-  /* The recording: an .mp4 uploaded next to index.html under this name. */
-  var RECORDING_SRC = "recording.mp4";
+  /* The recording: recording.mp3 (or .mp4 / .m4a / .wav) uploaded next to index.html. */
+  /* tried in this order; the first one that exists is played */
+  var RECORDING_SRCS = ["recording.mp3", "recording.mp4", "recording.m4a", "recording.MP3", "recording.MP4", "recording.wav"];
+  var recIdx = 0;
   /* The photos: 1, 2 and 3 uploaded next to index.html (jpg, jpeg, png or webp). */
   var PHOTO_EXTS = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG"];
   var usingDefault = false;
@@ -835,7 +881,10 @@ a.fn:hover{background:var(--wash)}
   audio.addEventListener('error', function(){
     if (!audio.getAttribute('src')) return;
     setState('empty');
-    if (usingDefault){ usingDefault = false; return; }   /* recording.mp4 not uploaded yet: leave the picker */
+    if (usingDefault){
+      if (recIdx < RECORDING_SRCS.length){ load(RECORDING_SRCS[recIdx++]); return; }   /* try the next name */
+      usingDefault = false; return;                     /* no recording uploaded yet: leave the picker */
+    }
     say('לא ניתן לנגן את הקובץ הזה. נסו קובץ שמע אחר.', 'This file can’t be played. Try a different audio file.');
   });
   if (window.ResizeObserver) new ResizeObserver(function(){ drawWave(); moveThumb(); }).observe(document.body);
@@ -851,7 +900,11 @@ a.fn:hover{background:var(--wash)}
     var v = BY_NAME[(location.hash || '').slice(1)];
     if (v && v !== cur) show(v, {silent:true});
   });
-  if (RECORDING_SRC){ usingDefault = true; load(RECORDING_SRC); }
+  if (RECORDING_SRCS.length){ usingDefault = true; load(RECORDING_SRCS[recIdx++]); }
+
+  document.querySelectorAll('.sheet').forEach(function(sh){
+    for (var k = 1; k <= 4; k++){ var c = document.createElement('span'); c.className = 'corner c' + k; c.setAttribute('aria-hidden','true'); sh.appendChild(c); }
+  });
 
   /* ---------- logo: logo.svg / logo.png / logo.jpg … next to index.html ---------- */
   (function(){
