@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מרכז להוצאות ספרי חסידות לבית רוזין</title>
-<meta name="description" content='דברות קודש מכ"ק מרן אדמו"ר מבאיאן זי"ע, י"ט כסלו תשי"ד, במקור באידיש ובתרגום ללשון הקודש ולאנגלית, עם ההקלטה המקורית.'>
+<meta name="description" content='אמרי קודש ממרן אדמו"ר הקוה"ט מבאיאן זי"ע, י"ט כסלו תשי"ד, במקור באידיש ובתרגום ללשון הקודש ולאנגלית, עם ההקלטה המקורית.'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
 /* Your own fonts. Upload them to a folder named "fonts" next to index.html:
@@ -207,7 +207,10 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 .head{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
 .eyebrow{margin:0; font-family:var(--f-he); font-size:.98rem; color:var(--gold); display:flex; align-items:center; gap:10px}
 .eyebrow::before,.eyebrow::after{content:""; width:4px; height:4px; background:var(--gold-soft); transform:rotate(45deg); flex:none; opacity:.7}
+.prose .zi{color:var(--ink-2)}
+[lang="en"] .prose i.zi{font-style:italic}
 [lang="en"] .eyebrow{font-family:var(--f-ui); letter-spacing:.16em; text-transform:uppercase; font-size:.7rem}
+.eyebrow[lang="he"]{font-family:var(--f-he); letter-spacing:0; text-transform:none; font-size:.98rem}
 .date{
   margin:0; font-family:var(--f-title); font-weight:500; line-height:1.1;
   font-size:clamp(2rem, 6.4vw, 3rem); color:var(--ink); text-wrap:balance;
@@ -422,12 +425,109 @@ a.fn:hover{background:var(--wash)}
   #dockReady .seek{order:4; flex-basis:100%}
   .dock-title small{display:none}
 }
+/* ---------- welcome sheet: iOS-style "what's new" sheet over a blurred page ---------- */
+:root{
+  --w-sheet:rgba(250,249,247,.82); --w-edge:rgba(255,255,255,.7); --w-ink:#1c1b1a; --w-ink-2:rgba(60,60,67,.66);
+  --w-tint:#94702f; --w-tint-ink:#ffffff; --w-tile:#ffffff; --w-dim:rgba(20,16,12,.36); --w-sep:rgba(60,60,67,.14);
+  --f-sys:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Heebo", Arial, sans-serif;
+  --f-sys-d:-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "Heebo", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --w-sheet:rgba(36,34,32,.8); --w-edge:rgba(255,255,255,.12); --w-ink:#f5f3f0; --w-ink-2:rgba(235,235,245,.62);
+    --w-tint:#d4b06a; --w-tint-ink:#1d1606; --w-tile:#f4efe6; --w-dim:rgba(0,0,0,.5); --w-sep:rgba(235,235,245,.14);
+  }
+}
+:root[data-theme="dark"]{
+  --w-sheet:rgba(36,34,32,.8); --w-edge:rgba(255,255,255,.12); --w-ink:#f5f3f0; --w-ink-2:rgba(235,235,245,.62);
+  --w-tint:#d4b06a; --w-tint-ink:#1d1606; --w-tile:#f4efe6; --w-dim:rgba(0,0,0,.5); --w-sep:rgba(235,235,245,.14);
+}
+.welcome{
+  position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; overflow-y:auto;
+  padding:calc(env(safe-area-inset-top, 0px) + 20px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 20px) max(16px, env(safe-area-inset-left, 0px));
+  background:var(--w-dim);
+  -webkit-backdrop-filter:blur(18px) saturate(120%); backdrop-filter:blur(18px) saturate(120%);
+  transition:opacity .4s var(--ease), backdrop-filter .4s var(--ease), -webkit-backdrop-filter .4s var(--ease);
+}
+.welcome.out{opacity:0; -webkit-backdrop-filter:blur(0); backdrop-filter:blur(0); pointer-events:none}
+html.locked, html.locked body{overflow:hidden}
+.w-card{
+  position:relative; width:min(100%, 27rem); margin:auto;
+  font-family:var(--f-sys); color:var(--w-ink); text-align:center;
+  background:var(--w-sheet);
+  -webkit-backdrop-filter:blur(40px) saturate(180%); backdrop-filter:blur(40px) saturate(180%);
+  border:.5px solid var(--w-edge); border-radius:34px;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.45), 0 2px 8px rgba(0,0,0,.12);
+  padding:36px clamp(22px, 6vw, 34px) 22px;
+  display:flex; flex-direction:column; align-items:center;
+  animation:w-up .75s cubic-bezier(.22,1.25,.36,1) both;
+  transition:transform .4s var(--ease);
+}
+.welcome.out .w-card{transform:translateY(24px) scale(.97)}
+.w-card:focus{outline:none}
+@keyframes w-up{from{opacity:0; transform:translateY(60px) scale(.96)}}
+.w-icon{
+  width:84px; height:84px; border-radius:22px; background:var(--w-tile);
+  display:grid; place-items:center; margin-bottom:18px;
+  box-shadow:0 10px 24px -10px rgba(0,0,0,.35), 0 0 0 .5px rgba(0,0,0,.08);
+  animation:w-pop .7s .1s cubic-bezier(.3,1.6,.5,1) both;
+}
+@keyframes w-pop{from{transform:scale(.6); opacity:0}}
+.w-icon img{width:64%; height:auto}
+.w-icon svg{width:44px; height:44px; color:#94702f}
+.w-cap{margin:0 0 6px; font-size:.8rem; font-weight:600; color:var(--w-tint); letter-spacing:.01em}
+.w-title{margin:0; font-family:var(--f-sys-d); font-weight:700; font-size:clamp(1.65rem, 6vw, 2rem); line-height:1.15; letter-spacing:-.02em; text-wrap:balance}
+.w-card[lang="he"] .w-title{letter-spacing:0}
+.w-sub{margin:10px 0 0; font-size:1rem; line-height:1.4; color:var(--w-ink-2); text-wrap:balance}
+.w-list{list-style:none; margin:26px 0 24px; padding:0; display:flex; flex-direction:column; gap:20px; text-align:start; width:100%}
+.w-list li{display:grid; grid-template-columns:40px minmax(0,1fr); gap:14px; align-items:start; animation:w-row .6s cubic-bezier(.22,1,.36,1) both}
+.w-list li:nth-child(1){animation-delay:.18s} .w-list li:nth-child(2){animation-delay:.26s}
+.w-list li:nth-child(3){animation-delay:.34s} .w-list li:nth-child(4){animation-delay:.42s}
+@keyframes w-row{from{opacity:0; transform:translateY(10px)}}
+.w-list svg{width:32px; height:32px; color:var(--w-tint); margin-top:2px; justify-self:center}
+.w-list b{display:block; font-size:.98rem; font-weight:600; line-height:1.3}
+.w-list span{display:block; font-size:.92rem; line-height:1.4; color:var(--w-ink-2); margin-top:2px}
+.w-enter{
+  width:100%; height:52px; border:0; border-radius:999px;
+  background:var(--w-tint); color:var(--w-tint-ink);
+  font-family:var(--f-sys); font-size:1.06rem; font-weight:600;
+  transition:transform .35s cubic-bezier(.3,1.6,.5,1), filter .2s var(--ease);
+}
+.w-enter:hover{filter:brightness(1.06)}
+.w-enter:active{transform:scale(.96); filter:brightness(.94)}
+.w-enter:focus-visible{outline:3px solid var(--w-tint); outline-offset:3px}
+.w-lang{margin-top:10px; border:0; background:none; color:var(--w-tint); font-family:var(--f-sys); font-size:.94rem; font-weight:500; padding:8px 14px; border-radius:999px}
+.w-lang:hover{background:var(--w-sep)}
+@media (max-width:520px){
+  .welcome{align-items:flex-end; padding-bottom:max(10px, env(safe-area-inset-bottom, 0px)); padding-left:max(8px, env(safe-area-inset-left, 0px)); padding-right:max(8px, env(safe-area-inset-right, 0px))}
+  .w-card{border-radius:32px; margin:auto 0 0; padding-top:30px}
+  .w-icon{width:72px; height:72px; border-radius:18px; margin-bottom:14px}
+  .w-list{margin:20px 0 20px; gap:16px}
+}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important; transition:none!important}
 }
 </style>
 </head>
 <body>
+
+<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-title" hidden>
+  <div class="w-card" id="w-card" dir="rtl" lang="he" tabindex="-1">
+    <div class="w-icon" aria-hidden="true"><img id="w-logo" alt="" hidden><svg id="w-icon-fallback" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 13v6M9 9v14M14 4v24M19 10v12M24 7v18M28 13v6"/></svg></div>
+    <p class="w-cap" data-he='י"ט כסלו תשי"ד · הילולא דהמגיד ממעזריטש' data-en="19 Kislev 5714 · Hilula of the Maggid">י"ט כסלו תשי"ד · הילולא דהמגיד ממעזריטש</p>
+    <h2 class="w-title" id="w-title" data-he="הקלטה יחידה מן השולחן הטהור" data-en="The only recording of the Rebbe’s tish">הקלטה יחידה מן השולחן הטהור</h2>
+    <p class="w-sub" data-he='דברי תורה שאמר מרן אדמו"ר הקוה"ט מבאיאן זי"ע בעת עריכת השולחן.' data-en="Words of Torah the Boyaner Rebbe said at his tish.">דברי תורה שאמר מרן אדמו"ר הקוה"ט מבאיאן זי"ע בעת עריכת השולחן.</p>
+    <ul class="w-list">
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 13v6M9 9v14M14 4v24M19 10v12M24 7v18M28 13v6"/></svg><div data-he="&lt;b&gt;ההקלטה היחידה&lt;/b&gt;&lt;span&gt;זוהי ההקלטה היחידה מטיש של הרבי מבאיאן.&lt;/span&gt;" data-en="&lt;b&gt;The only recording&lt;/b&gt;&lt;span&gt;This is the only recording of a tish of the Boyaner Rebbe.&lt;/span&gt;"><b>ההקלטה היחידה</b><span>זוהי ההקלטה היחידה מטיש של הרבי מבאיאן.</span></div></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="11" y="3" width="10" height="16" rx="5" fill="currentColor" stroke="none"/><path d="M6.5 15a9.5 9.5 0 0 0 19 0M16 24.5V29M11.5 29h9"/></svg><div data-he="&lt;b&gt;נקלט בסתר&lt;/b&gt;&lt;span&gt;הרה&quot;ח רבי שואל אלכסנדר (ר' סענדר) ביסטריצקי ע&quot;ה הטמין מכשיר הקלטה, ובזכותו נשתמרו הדברים בקולו של הרבי.&lt;/span&gt;" data-en="&lt;b&gt;Recorded in secret&lt;/b&gt;&lt;span&gt;R’ Shaul Alexander (Reb Sender) Bistritzky hid a recorder, and thanks to him the words were kept in the Rebbe’s own voice.&lt;/span&gt;"><b>נקלט בסתר</b><span>הרה"ח רבי שואל אלכסנדר (ר' סענדר) ביסטריצקי ע"ה הטמין מכשיר הקלטה, ובזכותו נשתמרו הדברים בקולו של הרבי.</span></div></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h11l6 6v18a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M19 3v6h6M10.5 15h11M10.5 19.5h11M10.5 24h7"/></svg><div data-he="&lt;b&gt;אות באות&lt;/b&gt;&lt;span&gt;הדברים הועתקו מתוך ההקלטה, ולצידם תרגום ללשון הקודש ולאנגלית.&lt;/span&gt;" data-en="&lt;b&gt;Letter for letter&lt;/b&gt;&lt;span&gt;The words were transcribed from the recording, with translations into Loshon Kodesh and English.&lt;/span&gt;"><b>אות באות</b><span>הדברים הועתקו מתוך ההקלטה, ולצידם תרגום ללשון הקודש ולאנגלית.</span></div></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-4a11 11 0 0 1 22 0v4"/><rect x="4" y="18" width="6" height="10" rx="2.5" fill="currentColor" stroke="none"/><rect x="22" y="18" width="6" height="10" rx="2.5" fill="currentColor" stroke="none"/></svg><div data-he="&lt;b&gt;לשמוע את הקול&lt;/b&gt;&lt;span&gt;את ההקלטה עצמה אפשר לשמוע בתחתית הדף.&lt;/span&gt;" data-en="&lt;b&gt;Hear the voice&lt;/b&gt;&lt;span&gt;You can listen to the recording itself at the bottom of the page.&lt;/span&gt;"><b>לשמוע את הקול</b><span>את ההקלטה עצמה אפשר לשמוע בתחתית הדף.</span></div></li>
+    </ul>
+    <button type="button" class="w-enter" id="w-enter" data-he="כניסה" data-en="Enter">כניסה</button>
+    <button type="button" class="w-lang" id="w-lang" lang="en" data-he="English" data-en="עברית">English</button>
+  </div>
+</div>
 
 <header class="mast" dir="rtl" lang="he">
   <div class="mast-in">
@@ -455,9 +555,9 @@ a.fn:hover{background:var(--wash)}
 <!-- ================= ORIGINAL (YIDDISH) ================= -->
 <article class="sheet" id="view-yi" role="tabpanel" aria-labelledby="tab-yi" dir="rtl" lang="yi">
   <header class="head">
-    <p class="eyebrow" lang="he">דברות קודש · מכ"ק מרן אדמו"ר מבאיאן זי"ע</p>
+    <p class="eyebrow" lang="he">אמרי קודש · ממרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
     <h2 class="date" lang="he">י"ט כסלו תשי"ד</h2>
-    <p class="occasion" lang="he">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
+    <p class="occasion" lang="he">בעת עריכת השולחן אחר ששרו "הזכירו לפניו"</p>
     <p class="meta" lang="he">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
   </header>
   <div class="orn" aria-hidden="true"><i></i></div>
@@ -506,35 +606,35 @@ a.fn:hover{background:var(--wash)}
 <!-- ================= LOSHON KODESH ================= -->
 <article class="sheet" id="view-he" role="tabpanel" aria-labelledby="tab-he" dir="rtl" lang="he" hidden>
   <header class="head">
-    <p class="eyebrow">דברות קודש · מכ"ק מרן אדמו"ר מבאיאן זי"ע</p>
+    <p class="eyebrow">אמרי קודש · ממרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
     <h2 class="date">י"ט כסלו תשי"ד</h2>
-    <p class="occasion">בעת עריכת השולחן, אחר ששרו "הזכירו לפניו"</p>
+    <p class="occasion">בעת עריכת השולחן אחר ששרו "הזכירו לפניו"</p>
     <p class="meta">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</p>
   </header>
   <div class="orn" aria-hidden="true"><i></i></div>
 
-  <p class="tnote">תרגום מן המקור באידיש. מילת הקישור ז"א (זאג איך) החוזרת במקור הושמטה כאן לשטף הקריאה; לשונות הפסוקים ומאמרי חז"ל באות מודגשת.</p>
+  <p class="tnote">תרגום מן המקור באידיש. מילת הקישור ז"א (זאג איך) החוזרת במקור הושארה כבמקור; לשונות הפסוקים ומאמרי חז"ל באות מודגשת.</p>
 
   <div class="prose">
-    <p><span class="lead">פתח ואמר:</span> השי"ת יעזור, זכותו הקדושה תגן, ותהא המתקת הדינים על כלל ישראל, להפוך מדת הדין לרחמים. הלא מתעוררת זכות אבות. כל הדברים שהם <b>שיחתן של אבות</b> הלא הם מפתח לגאולתן של בנים.<sup><a class="fn" href="#he-n1" id="he-r1">1</a></sup> הראשון הלא הוא אברהם אבינו, שקרא להשי"ת <b>אדון</b>, א'דני – בחינת דין עם האל"ף; חיבור בחינת דין אל האל"ף, א'דני.</p>
+    <p><span class="lead">פתח ואמר:</span> השי"ת יעזור, זכותו הקדושה תגן, ותהא המתקת הדינים על כלל ישראל, להפוך מדת הדין לרחמים. הלא מתעוררת, <span class="zi">ז"א</span>, זכות אבות. כל הדברים שהם <b>שיחתן של אבות</b> הלא הם מפתח לגאולתן של בנים.<sup><a class="fn" href="#he-n1" id="he-r1">1</a></sup> הראשון הלא הוא אברהם אבינו, שקרא להשי"ת <b>אדון</b>, א'דני – בחינת דין עם האל"ף; חיבור בחינת דין אל האל"ף, א'דני.</p>
 
-    <p>בסדרה, אומר אני, <b>אלה תולדות יעקב, יוסף בן שבע עשרה שנה</b> <span class="c">(בראשית לז, ב)</span>, <b>וישב יעקב בארץ מגורי אביו</b> <span class="c">(שם לז, א)</span> – הלא איתא בזוה"ק <span class="c">(וישב קפ.)</span> <b>מגור מסביב</b> <span class="c">(ירמיהו כה)</span>.<sup><a class="fn" href="#he-n2" id="he-r2">2</a></sup> בזמנים הללו, אומר אני – המגיד הקדוש עם דרך הבעש"ט – שיחזיקו ישראל באמונה. <b>מגור מסביב</b> הוא בחינת גבורה; <b>ואמונתך סביבותיך</b> <span class="c">(תהלים פט, ט)</span> – על ידי האמונה יהיה זה האור המקיף, <b>וה' סביב לעמו</b> <span class="c">(תהלים קכה, ב)</span>. <b>מגור מסביב</b> – תחילה היא בחינת גבורה,<sup><a class="fn" href="#he-n3" id="he-r3">3</a></sup> וזהו באמת הענין, זהו הצמצום; ואחר כך באה ההמתקה, מן החסד.</p>
+    <p>בסדרה, <span class="zi">ז"א</span>, <b>אלה תולדות יעקב, יוסף בן שבע עשרה שנה</b> <span class="c">(בראשית לז, ב)</span>, <b>וישב יעקב בארץ מגורי אביו</b> <span class="c">(שם לז, א)</span> – <span class="zi">ז"א</span>, הלא איתא בזוה"ק <span class="c">(וישב קפ.)</span> <b>מגור מסביב</b> <span class="c">(ירמיהו כה)</span>.<sup><a class="fn" href="#he-n2" id="he-r2">2</a></sup> בזמנים הללו, <span class="zi">ז"א</span> – המגיד הקדוש עם דרך הבעש"ט – שישראל, <span class="zi">ז"א</span>, יחזיקו באמונה. <b>מגור מסביב</b> הוא בחינת גבורה; <b>ואמונתך סביבותיך</b> <span class="c">(תהלים פט, ט)</span> – על ידי האמונה יהיה זה האור המקיף, <b>וה' סביב לעמו</b> <span class="c">(תהלים קכה, ב)</span>. <b>מגור מסביב</b> – תחילה היא בחינת גבורה,<sup><a class="fn" href="#he-n3" id="he-r3">3</a></sup> וזהו באמת הענין, זהו הצמצום; ואחר כך באה ההמתקה, מן החסד.</p>
 
-    <p><b>שיחתן של אבות</b> – הענין הוא שביום הזה, יום ההילולא, ענין של… הלא ישנה זכותו של המגיד הקדוש; צדיקי עולם – יורד הדבר אל העולם הזה. האמת היא שכל דרך החסידות היתה <b>באר חפרוה שרים</b> <span class="c">(במדבר כא, יח)</span>, באר מים חיים.<sup><a class="fn" href="#he-n4" id="he-r4">4</a></sup> יום, בוקר – הוא בחינת חסד; יצחק הוא בחינת גבורה; יעקב הלא הוא מבריח מקצה אל הקצה, בחינת תפארת; יוסף הצדיק. וביום ההילולא – באר מים חיים:<sup><a class="fn" href="#he-n5" id="he-r5">5</a></sup> <b>ואבוא היום אל העין</b> <span class="c">(בראשית כד, מב)</span>. הלא רש"י שם נוקט את אליעזר עבד אברהם,<sup><a class="fn" href="#he-n6" id="he-r6">6</a></sup> שלוחו של אברהם – וזהו הענין: הזיווג. התכלית הלא היתה הזיווג; השליחות ותכליתה – הזיווג. אומר שם רש"י: <b>היום יצאתי והיום באתי</b>. <b>ואבוא היום אל העין</b> – באר מים חיים, <b>באר חפרוה שרים</b>. <b>היום יצאתי</b> – התכלית הלא היא בעולם הזה, וזהו ענין <b>והיום באתי</b>. ומתעוררת והולכת הזכות – המצוות ומעשים טובים, פירות התורה והמעשים טובים של המגיד הקדוש ז"ל. זכותו הקדושה תאיר בישראל בכל העולם כולו. <b>היום יצאתי והיום באתי</b> – בחינת <b>חסד קל כל היום</b> <span class="c">(תהלים נב, ג)</span>.</p>
+    <p><b>שיחתן של אבות</b>, <span class="zi">ז"א</span> – הענין, <span class="zi">ז"א</span>, הוא שביום הזה, <span class="zi">ז"א</span>, יום ההילולא, ענין של… הלא ישנה, <span class="zi">ז"א</span>, זכותו של המגיד הקדוש; צדיקי עולם – יורד הדבר, <span class="zi">ז"א</span>, אל העולם הזה. האמת היא שכל דרך החסידות היתה <b>באר חפרוה שרים</b> <span class="c">(במדבר כא, יח)</span>, באר מים חיים.<sup><a class="fn" href="#he-n4" id="he-r4">4</a></sup> יום, <span class="zi">ז"א</span>, בוקר, <span class="zi">ז"א</span> – הוא בחינת חסד; יצחק הוא בחינת גבורה; יעקב הלא הוא, <span class="zi">ז"א</span>, מבריח מקצה אל הקצה, <span class="zi">ז"א</span>, בחינת תפארת, <span class="zi">ז"א</span>; יוסף הצדיק. וביום ההילולא – באר מים חיים:<sup><a class="fn" href="#he-n5" id="he-r5">5</a></sup> <b>ואבוא היום אל העין</b> <span class="c">(בראשית כד, מב)</span>. הלא רש"י שם נוקט את אליעזר עבד אברהם,<sup><a class="fn" href="#he-n6" id="he-r6">6</a></sup> <span class="zi">ז"א</span>, שלוחו, <span class="zi">ז"א</span>, של אברהם – <span class="zi">ז"א</span>, וזהו הענין: הזיווג. התכלית הלא היתה הזיווג; השליחות ותכליתה – הזיווג. אומר שם רש"י: <b>היום יצאתי והיום באתי</b>. <b>ואבוא היום אל העין</b> – באר מים חיים, <span class="zi">ז"א</span>, <b>באר חפרוה שרים</b>. <span class="zi">ז"א</span>, <b>היום יצאתי</b> – <span class="zi">ז"א</span>, התכלית הלא היא בעולם הזה, וזהו ענין <b>והיום באתי</b>. ומתעוררת והולכת הזכות – המצוות ומעשים טובים, פירות התורה והמעשים טובים של המגיד הקדוש ז"ל. זכותו הקדושה תאיר בישראל בכל העולם כולו. <b>היום יצאתי והיום באתי</b> – בחינת <b>חסד קל כל היום</b> <span class="c">(תהלים נב, ג)</span>.</p>
 
-    <p>הלא כתוב עתה <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך כתוב <span class="c">(בראשית לז, ז)</span> <b>וישראל אהב את יוסף</b> – בחינת יוסף הצדיק. ישראל – האמת היא שישראל על פי קבלה הוא <span class="c">(תיקו"ז ג)</span> שי"ר משמאלא וק"ל מימינא. ישראל הוא שי"ר משמאלא, ק"ל מימינא – <b>חסד קל כל היום</b>, <b>היום יצאתי והיום באתי</b>.</p>
+    <p>הלא כתוב עתה <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך כתוב <span class="c">(בראשית לז, ז)</span> <b>וישראל אהב את יוסף</b> – בחינת יוסף הצדיק. ישראל – האמת היא שישראל, <span class="zi">ז"א</span>, על פי קבלה, <span class="zi">ז"א</span>, הוא <span class="c">(תיקו"ז ג)</span> שי"ר משמאלא וק"ל מימינא. ישראל הוא שי"ר משמאלא, ק"ל מימינא – <b>חסד קל כל היום</b>, <b>היום יצאתי והיום באתי</b>.</p>
 
-    <p><b>והנה קמה אלומתי וגם נצבה</b> <span class="c">(בראשית לז, ז)</span> – האמת היא שעניני נפש הבהמית, עניני הגוף, ענין הגופניות – הלא הוא בעל שינוי ותמורה; אבל מה שהוא הנשמה – אינו בעל שינוי. <b>קמה אלומתי וגם נצבה</b> – עומד בצדקו, בחינת יוסף הצדיק; עומד בצדקו, בעמידה. אף שצדיק הלא הוא מהלך מדרגא לדרגא, הולך – לעולם ישנה העמידה: <b>קמה אלומתי וגם נצבה</b>.</p>
+    <p><b>והנה קמה אלומתי וגם נצבה</b> <span class="c">(בראשית לז, ז)</span> – האמת היא שעניני נפש הבהמית, עניני הגוף, ענין, <span class="zi">ז"א</span>, הגופניות – הלא הוא, <span class="zi">ז"א</span>, בעל שינוי ותמורה; אבל, <span class="zi">ז"א</span>, מה שהוא הנשמה – <span class="zi">ז"א</span>, אינו בעל שינוי. <b>קמה אלומתי וגם נצבה</b> – עומד בצדקו, בחינת יוסף הצדיק; עומד בצדקו, בעמידה. אף שצדיק הלא הוא מהלך מדרגא לדרגא, הולך – לעולם ישנה העמידה: <b>קמה אלומתי וגם נצבה</b>.</p>
 
-    <p><b>וישב יעקב בארץ מגורי אביו</b> – ישיבה, אלא שהיא מבחינת גבורה, ויש לה גם כן קיום. תמיד הוא… האדם הלא הוא תמיד סולם, הולכים מדרגא לדרגא; העולם העליון מן העולם התחתון, האהל העליון עם האהל התחתון – <b>ויעקב איש תם יושב אהלים</b> <span class="c">(בראשית כה, כז)</span>: שני האהלים, ה' עילאה וה' תתאה.</p>
+    <p><b>וישב יעקב בארץ מגורי אביו</b> – ישיבה, <span class="zi">ז"א</span>, אלא שהיא מבחינת גבורה, ויש לה גם כן קיום. <span class="zi">ז"א</span>, תמיד הוא… האדם, <span class="zi">ז"א</span>, הלא הוא תמיד סולם, הולכים מדרגא לדרגא; העולם העליון מן העולם התחתון, האהל העליון עם האהל התחתון – <b>ויעקב איש תם יושב אהלים</b> <span class="c">(בראשית כה, כז)</span>: שני האהלים, ה' עילאה וה' תתאה.</p>
 
-    <p>בזמנים הללו, מפני שנמצאים, לדאבון לב, כל כך… נמצאים ממש בבור עמוק – צריך להחזיק, להחזיק בחבל, להתקשר בחבל: <b>יעקב חבל נחלתו</b> <span class="c">(דברים לב, ט)</span>, <b>ישראל לסגולתו</b> <span class="c">(תהלים קלה, ד)</span>. ישראל – <b>יעקב בחר לו</b>, <b>ישראל לסגולתו</b>. זהו ענין יעקב וישראל: תחילה כתוב <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך <b>וישראל אהב את יוסף</b>. תחילה <b>יעקב בחר לו</b> – זוהי הבחירה; ואחר כך <b>ישראל לסגולתו</b> – זהו בירור; <b>ישראל לסגולתו</b> הוא לאחר הבירור. תחילה היא בחינת גבורה, ואחר כך הוא הבירור. <b>וישב יעקב בארץ מגורי אביו בארץ כנען</b> – הוא הבירור; ואחר כך <b>וישראל אהב את יוסף</b> – זהו כבר <b>ישראל לסגולתו</b>, כבר לאחר הבירור.</p>
+    <p><span class="zi">ז"א</span>, בזמנים הללו, <span class="zi">ז"א</span>, מפני, <span class="zi">ז"א</span>, שנמצאים, לדאבון לב, כל כך… <span class="zi">ז"א</span>, נמצאים ממש בבור עמוק – צריך להחזיק, <span class="zi">ז"א</span>, להחזיק, <span class="zi">ז"א</span>, בחבל, להתקשר בחבל: <b>יעקב חבל נחלתו</b> <span class="c">(דברים לב, ט)</span>, <b>ישראל לסגולתו</b> <span class="c">(תהלים קלה, ד)</span>. ישראל – <b>יעקב בחר לו</b>, <b>ישראל לסגולתו</b>. זהו ענין, <span class="zi">ז"א</span>, יעקב וישראל: תחילה כתוב <b>וישב יעקב בארץ מגורי אביו</b>, ואחר כך <b>וישראל אהב את יוסף</b>. תחילה <b>יעקב בחר לו</b> – זוהי הבחירה, <span class="zi">ז"א</span>; ואחר כך <b>ישראל לסגולתו</b> – זהו בירור; <b>ישראל לסגולתו</b> הוא לאחר הבירור. תחילה, <span class="zi">ז"א</span>, היא בחינת גבורה, ואחר כך, <span class="zi">ז"א</span>, הוא הבירור. <b>וישב יעקב בארץ מגורי אביו בארץ כנען</b> – הוא הבירור; ואחר כך <b>וישראל אהב את יוסף</b> – זהו כבר <b>ישראל לסגולתו</b>, כבר לאחר הבירור.</p>
 
-    <p>השי"ת יעזור באמת, זכותו של המגיד – <b>אמרו צדיק כי טוב</b> <span class="c">(ישעיה ג, י)</span>. ויוסף – <b>יוסף בן שבע עשרה שנה</b>; <b>אמרו צדיק כי טוב</b>. <b>המגיד מראשית אחרית דבר</b> <span class="c">(ישעיה מו, י)</span> – המשכה; מגיד הוא לשון המשכה <span class="c">(זוח"ב קלו:)</span>.<sup><a class="fn" href="#he-n7" id="he-r7">7</a></sup> <b>טוב אחרית דבר מראשיתו</b> <span class="c">(קהלת ז, ח)</span> – אחרית דבר.</p>
+    <p>השי"ת יעזור באמת, <span class="zi">ז"א</span>, זכותו של המגיד – <b>אמרו צדיק כי טוב</b> <span class="c">(ישעיה ג, י)</span>. ויוסף – <b>יוסף בן שבע עשרה שנה</b>; <b>אמרו צדיק כי טוב</b>. <b>המגיד מראשית אחרית דבר</b> <span class="c">(ישעיה מו, י)</span> – המשכה; מגיד הוא לשון המשכה <span class="c">(זוח"ב קלו:)</span>.<sup><a class="fn" href="#he-n7" id="he-r7">7</a></sup> <b>טוב אחרית דבר מראשיתו</b> <span class="c">(קהלת ז, ח)</span> – אחרית דבר.</p>
 
-    <p>השי"ת יעזור באמת שיהיה כבר רק <b>אך טוב לישראל</b> <span class="c">(תהלים עג, א)</span>. המצוות והמעשים טובים – הם פירותיו של הצדיק; וזה, אומר אני, הוא המגין, וזוהי הזכות הקדושה, שהיא עומדת לעולם; האור הלא שם הוא, תמיד. זוהי בחינת יוסף הצדיק, כדאיתא <span class="c">(בראשית רבה פפ"ד פ"י)</span>:<sup><a class="fn" href="#he-n8" id="he-r8">8</a></sup> <b>אתם כונסין פירות ואני כונס פירות</b> – פירותיהם של הרעים נעשים רקובים, <b>ושלי עומדים</b> לעולם. <b>ושלי</b> – עומדים; הפירות יעמדו תמיד, עומדים הם, קיימים, יש להם קיום לעולם <span class="c">(עיין במ"ר)</span>. הפירות שכנס המגיד הגדול עם החבריא, עם דרך החסידות של הבעש"ט הקדוש – הם עומדים; והרעים – פירותיהם ירקבו ויכלו; לרעים לא יוכל להיות שום קיום.</p>
+    <p>השי"ת יעזור באמת שיהיה כבר רק <b>אך טוב לישראל</b> <span class="c">(תהלים עג, א)</span>. המצוות והמעשים טובים, <span class="zi">ז"א</span> – הם פירותיו של הצדיק; וזה, <span class="zi">ז"א</span>, הוא, <span class="zi">ז"א</span>, המגין, <span class="zi">ז"א</span>, וזוהי הזכות הקדושה, שהיא עומדת לעולם; האור, <span class="zi">ז"א</span>, הלא שם הוא, תמיד. זוהי בחינת יוסף הצדיק, כדאיתא <span class="c">(בראשית רבה פפ"ד פ"י)</span>:<sup><a class="fn" href="#he-n8" id="he-r8">8</a></sup> <b>אתם כונסין</b>, <span class="zi">ז"א</span>, <b>פירות ואני כונס פירות</b> – פירותיהם, <span class="zi">ז"א</span>, של הרעים נעשים רקובים, <b>ושלי עומדים</b> לעולם. <b>ושלי</b> – עומדים; הפירות, <span class="zi">ז"א</span>, יעמדו תמיד, <span class="zi">ז"א</span>, עומדים הם, <span class="zi">ז"א</span>, קיימים, יש להם קיום לעולם <span class="c">(עיין במ"ר)</span>. הפירות, <span class="zi">ז"א</span>, שכנס המגיד הגדול, <span class="zi">ז"א</span>, עם החבריא, עם דרך החסידות של הבעש"ט הקדוש – <span class="zi">ז"א</span>, הם עומדים; והרעים, <span class="zi">ז"א</span> – פירותיהם, <span class="zi">ז"א</span>, ירקבו, <span class="zi">ז"א</span>, ויכלו, <span class="zi">ז"א</span>; לרעים, <span class="zi">ז"א</span>, לא יוכל להיות שום קיום.</p>
 
-    <p class="closing">השי"ת יעזור באמת<br>שישמחו לבבות ישראל,<br><b>אור צדיקים ישמח</b> <span class="c">(משלי יג, ט)</span>.</p>
+    <p class="closing">השי"ת יעזור באמת, <span class="zi">ז"א</span>,<br>שישמחו לבבות ישראל,<br><span class="zi">ז"א</span>, <b>אור צדיקים ישמח</b> <span class="c">(משלי יג, ט)</span>.</p>
   </div>
 
   <p class="cup">(כוס של ברכה)</p>
@@ -559,35 +659,35 @@ a.fn:hover{background:var(--wash)}
 <!-- ================= ENGLISH ================= -->
 <article class="sheet" id="view-en" role="tabpanel" aria-labelledby="tab-en" dir="ltr" lang="en" hidden>
   <header class="head">
-    <p class="eyebrow">Holy words of the Boyaner Rebbe</p>
+    <p class="eyebrow" lang="he" dir="rtl">אמרי קודש · ממרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
     <h2 class="date">19 Kislev 5714</h2>
-    <p class="occasion">At the tish, after the singing of “Hazkiru Lefanav”</p>
+    <p class="occasion">At the tish after the singing of “Hazkiru Lefanav”</p>
     <p class="meta">Parshas Vayeshev · Hilula of the Maggid of Mezritch</p>
   </header>
   <div class="orn" aria-hidden="true"><i></i></div>
 
-  <p class="tnote">Translated from the Yiddish transcript. The Rebbe’s recurring aside <span lang="yi" dir="rtl">ז"א</span> (<i>zog ich</i>, “I say”) is left out for readability; words in [brackets] are added for clarity.</p>
+  <p class="tnote">Translated from the Yiddish transcript. The Rebbe’s recurring aside <span lang="yi" dir="rtl">ז"א</span> is kept as <i>zog ich</i> (“I say”), as in the original; words in [brackets] are added for clarity.</p>
 
   <div class="prose">
-    <p><span class="lead">He opened and said:</span> May the Almighty help; may his holy merit protect us; may there be a sweetening of the judgments upon all of Israel, turning the attribute of judgment to mercy. The merit of the fathers is, after all, awakened. All those things that are “the conversation of the fathers” are the key to the redemption of the children.<sup><a class="fn" href="#en-n1" id="en-r1">1</a></sup> The first was our father Avraham, who called the Almighty “Master,” <i>A-donai</i>: the aspect of <i>din</i>, judgment, together with the <i>alef</i>; the joining of the aspect of <i>din</i> to the <i>alef</i>, <i>A-donai</i>.</p>
+    <p>May the Almighty help; may his holy merit protect us; may there be a sweetening of the judgments upon all of Israel, turning the attribute of judgment to mercy. The merit of the fathers is, <i class="zi">zog ich</i>, after all, awakened. All those things that are “the conversation of the fathers” are the key to the redemption of the children.<sup><a class="fn" href="#en-n1" id="en-r1">1</a></sup> The first was our father Avraham, who called the Almighty “Master,” <i>A-donai</i>: the aspect of <i>din</i>, judgment, together with the <i>alef</i>; the joining of the aspect of <i>din</i> to the <i>alef</i>, <i>A-donai</i>.</p>
 
-    <p>In the sedra, I say: “These are the generations of Yaakov: Yosef, seventeen years old” <span class="c">(Bereishis 37:2)</span>; “And Yaakov dwelt in the land of his father’s sojournings” <span class="c">(ibid. 37:1)</span>. In the holy Zohar it is written <span class="c">(Vayeshev 180a)</span>: <i>magor misaviv</i>, “terror on every side” <span class="c">(Yirmiyah 25)</span>.<sup><a class="fn" href="#en-n2" id="en-r2">2</a></sup> In these present times, I say, the holy Maggid, with the path of the Baal Shem Tov: Jews must hold fast to faith. <i>Magor misaviv</i> is the aspect of <i>gevurah</i>, severity; “and Your faithfulness surrounds You” <span class="c">(Tehillim 89:9)</span>. Through faith this becomes the surrounding light: “and the L-rd surrounds His people” <span class="c">(Tehillim 125:2)</span>. <i>Magor misaviv</i>: first comes the aspect of <i>gevurah</i>,<sup><a class="fn" href="#en-n3" id="en-r3">3</a></sup> and that indeed is the matter, that is the <i>tzimtzum</i>, the contraction. Afterward comes the sweetening, from <i>chesed</i>, kindness.</p>
+    <p>In the sedra, <i class="zi">zog ich</i>: “These are the generations of Yaakov: Yosef, seventeen years old” <span class="c">(Bereishis 37:2)</span>; “And Yaakov dwelt in the land of his father’s sojournings” <span class="c">(ibid. 37:1)</span>. <i class="zi">Zog ich</i>, in the holy Zohar it is written <span class="c">(Vayeshev 180a)</span>: <i>magor misaviv</i>, “terror on every side” <span class="c">(Yirmiyah 25)</span>.<sup><a class="fn" href="#en-n2" id="en-r2">2</a></sup> In these present times, <i class="zi">zog ich</i>, the holy Maggid, with the path of the Baal Shem Tov: Jews, <i class="zi">zog ich</i>, must hold fast to faith. <i>Magor misaviv</i> is the aspect of <i>gevurah</i>, severity; “and Your faithfulness surrounds You” <span class="c">(Tehillim 89:9)</span>. Through faith this becomes the surrounding light: “and the L-rd surrounds His people” <span class="c">(Tehillim 125:2)</span>. <i>Magor misaviv</i>: first comes the aspect of <i>gevurah</i>,<sup><a class="fn" href="#en-n3" id="en-r3">3</a></sup> and that indeed is the matter, that is the <i>tzimtzum</i>, the contraction. Afterward comes the sweetening, from <i>chesed</i>, kindness.</p>
 
-    <p>“The conversation of the fathers”: the matter is that on this day, the day of the hilula, a matter of… there is, after all, the merit of the holy Maggid; the tzaddikim of the world, it comes down upon this world. The truth is that the entire path of Chassidus was “a well dug by princes” <span class="c">(Bamidbar 21:18)</span>, the well of living waters.<sup><a class="fn" href="#en-n4" id="en-r4">4</a></sup> Day, morning, is the aspect of <i>chesed</i>; Yitzchak is the aspect of <i>gevurah</i>; Yaakov is the bolt that runs from end to end, the aspect of <i>tiferes</i>; Yosef the tzaddik. And on the day of the hilula there is a well of living waters:<sup><a class="fn" href="#en-n5" id="en-r5">5</a></sup> “And I came today to the spring” <span class="c">(Bereishis 24:42)</span>. Rashi there takes up Eliezer, the servant of Avraham,<sup><a class="fn" href="#en-n6" id="en-r6">6</a></sup> the emissary of Avraham, and this is the matter: the match. The purpose, after all, was the match; the mission and its purpose is the match. Rashi says there: “Today I set out and today I arrived.” “And I came today to the spring”: the well of living waters, “a well dug by princes.” “Today I set out”: the goal, after all, lies in this world, and that is the meaning of “and today I arrived.” And the merit rises onward: the mitzvos and good deeds, the fruits of the Torah and good deeds of the holy Maggid, of blessed memory. May his holy merit shine into Jews throughout the whole world. “Today I set out and today I arrived”: the aspect of “the kindness of G-d endures all the day” <span class="c">(Tehillim 52:3)</span>.</p>
+    <p>“The conversation of the fathers,” <i class="zi">zog ich</i>: the matter, <i class="zi">zog ich</i>, is that on this day, <i class="zi">zog ich</i>, the day of the hilula, a matter of… there is, after all, <i class="zi">zog ich</i>, the merit of the holy Maggid; the tzaddikim of the world, it comes down, <i class="zi">zog ich</i>, upon this world. The truth is that the entire path of Chassidus was “a well dug by princes” <span class="c">(Bamidbar 21:18)</span>, the well of living waters.<sup><a class="fn" href="#en-n4" id="en-r4">4</a></sup> Day, <i class="zi">zog ich</i>, morning, <i class="zi">zog ich</i>, is the aspect of <i>chesed</i>; Yitzchak is the aspect of <i>gevurah</i>; Yaakov is, <i class="zi">zog ich</i>, the bolt that runs from end to end, <i class="zi">zog ich</i>, the aspect of <i>tiferes</i>, <i class="zi">zog ich</i>; Yosef the tzaddik. And on the day of the hilula there is a well of living waters:<sup><a class="fn" href="#en-n5" id="en-r5">5</a></sup> “And I came today to the spring” <span class="c">(Bereishis 24:42)</span>. Rashi there takes up Eliezer, the servant of Avraham,<sup><a class="fn" href="#en-n6" id="en-r6">6</a></sup> <i class="zi">zog ich</i>, the emissary, <i class="zi">zog ich</i>, of Avraham, and, <i class="zi">zog ich</i>, this is the matter: the match. The purpose, after all, was the match; the mission and its purpose is the match. Rashi says there: “Today I set out and today I arrived.” “And I came today to the spring”: the well of living waters, <i class="zi">zog ich</i>, “a well dug by princes.” <i class="zi">Zog ich</i>, “Today I set out”: <i class="zi">zog ich</i>, the goal, after all, lies in this world, and that is the meaning of “and today I arrived.” And the merit rises onward: the mitzvos and good deeds, the fruits of the Torah and good deeds of the holy Maggid, of blessed memory. May his holy merit shine into Jews throughout the whole world. “Today I set out and today I arrived”: the aspect of “the kindness of G-d endures all the day” <span class="c">(Tehillim 52:3)</span>.</p>
 
-    <p>Now it says, “And Yaakov dwelt in the land of his father’s sojournings,” and afterward it says <span class="c">(Bereishis 37:7)</span>, “And Yisrael loved Yosef”: the aspect of Yosef the tzaddik. Yisrael: the truth is that Yisrael, according to Kabbalah <span class="c">(Tikkunei Zohar 3)</span>, is <i>shir</i>, song, from the left and <i>E-l</i> from the right. Yisrael is <i>shir</i> from the left, <i>E-l</i> from the right: “the kindness of <i>E-l</i> endures all the day”; “today I set out and today I arrived.”</p>
+    <p>Now it says, “And Yaakov dwelt in the land of his father’s sojournings,” and afterward it says <span class="c">(Bereishis 37:7)</span>, “And Yisrael loved Yosef”: the aspect of Yosef the tzaddik. Yisrael: the truth is that Yisrael, <i class="zi">zog ich</i>, according to Kabbalah, <i class="zi">zog ich</i> <span class="c">(Tikkunei Zohar 3)</span>, is <i>shir</i>, song, from the left and <i>E-l</i> from the right. Yisrael is <i>shir</i> from the left, <i>E-l</i> from the right: “the kindness of <i>E-l</i> endures all the day”; “today I set out and today I arrived.”</p>
 
-    <p>“And behold, my sheaf arose and also stood upright” <span class="c">(Bereishis 37:7)</span>. The truth is that whatever belongs to the animal soul, the matters of the body, the matter of physicality, is subject to change and exchange. But that which is the soul is not subject to change. “My sheaf arose and also stood upright”: standing firm in his righteousness, the aspect of Yosef the tzaddik, standing in his righteousness, in a state of standing. Although a tzaddik is one who walks from level to level, a walker, there is always the standing: “my sheaf arose and also stood upright.”</p>
+    <p>“And behold, my sheaf arose and also stood upright” <span class="c">(Bereishis 37:7)</span>. The truth is that whatever belongs to the animal soul, the matters of the body, the matter, <i class="zi">zog ich</i>, of physicality, is, <i class="zi">zog ich</i>, subject to change and exchange. But, <i class="zi">zog ich</i>, that which is the soul, <i class="zi">zog ich</i>, is not subject to change. “My sheaf arose and also stood upright”: standing firm in his righteousness, the aspect of Yosef the tzaddik, standing in his righteousness, in a state of standing. Although a tzaddik is one who walks from level to level, a walker, there is always the standing: “my sheaf arose and also stood upright.”</p>
 
-    <p>“And Yaakov dwelt in the land of his father’s sojournings”: a dwelling, yet it comes from the aspect of <i>gevurah</i>, and it too endures. One is constantly a… a person is, after all, constantly a ladder; one goes from level to level, the upper world from the lower world, the upper tent with the lower tent: “And Yaakov was a wholesome man, dwelling in tents” <span class="c">(Bereishis 25:27)</span>. Both tents, the upper <i>hei</i> and the lower <i>hei</i>.</p>
+    <p>“And Yaakov dwelt in the land of his father’s sojournings”: a dwelling, <i class="zi">zog ich</i>, yet it comes from the aspect of <i>gevurah</i>, and it too endures. <i class="zi">Zog ich</i>, one is constantly a… a person, <i class="zi">zog ich</i>, is, after all, constantly a ladder; one goes from level to level, the upper world from the lower world, the upper tent with the lower tent: “And Yaakov was a wholesome man, dwelling in tents” <span class="c">(Bereishis 25:27)</span>. Both tents, the upper <i>hei</i> and the lower <i>hei</i>.</p>
 
-    <p>In these times, because we are, alas, so… we are truly in a deep pit, one must hold on, hold on to a rope; one must bind oneself to a rope: “Yaakov is the rope of His inheritance” <span class="c">(Devarim 32:9)</span>; “Yisrael for His treasure” <span class="c">(Tehillim 135:4)</span>. Yisrael: “Yaakov He chose for Himself, Yisrael for His treasure.” This is the matter of Yaakov and Yisrael. First it says, “And Yaakov dwelt in the land of his father’s sojournings,” and then, “And Yisrael loved Yosef.” First is “Yaakov He chose for Himself,” which is the choosing; afterward is “Yisrael for His treasure,” which is a <i>birur</i>, a refining. “Yisrael for His treasure” comes after the refining. First is the aspect of <i>gevurah</i>, and afterward comes the refining. “And Yaakov dwelt in the land of his father’s sojournings, in the land of Canaan” is the refining; and then “And Yisrael loved Yosef,” which is already “Yisrael for His treasure,” already after the refining.</p>
+    <p><i class="zi">Zog ich</i>, in these times, <i class="zi">zog ich</i>, because, <i class="zi">zog ich</i>, we are, alas, so… <i class="zi">zog ich</i>, we are truly in a deep pit, one must hold on, <i class="zi">zog ich</i>, hold on, <i class="zi">zog ich</i>, to a rope; one must bind oneself to a rope: “Yaakov is the rope of His inheritance” <span class="c">(Devarim 32:9)</span>; “Yisrael for His treasure” <span class="c">(Tehillim 135:4)</span>. Yisrael: “Yaakov He chose for Himself, Yisrael for His treasure.” This is the matter, <i class="zi">zog ich</i>, of Yaakov and Yisrael. First it says, “And Yaakov dwelt in the land of his father’s sojournings,” and then, “And Yisrael loved Yosef.” First is “Yaakov He chose for Himself,” which is the choosing, <i class="zi">zog ich</i>; afterward is “Yisrael for His treasure,” which is a <i>birur</i>, a refining. “Yisrael for His treasure” comes after the refining. First, <i class="zi">zog ich</i>, is the aspect of <i>gevurah</i>, and afterward, <i class="zi">zog ich</i>, comes the refining. “And Yaakov dwelt in the land of his father’s sojournings, in the land of Canaan” is the refining; and then “And Yisrael loved Yosef,” which is already “Yisrael for His treasure,” already after the refining.</p>
 
-    <p>May the Almighty indeed help, the Maggid’s merit: “Say of the tzaddik that it is good” <span class="c">(Yeshayah 3:10)</span>. And Yosef: “Yosef, seventeen years old.” “Say of the tzaddik that it is good.” “He who tells [<i>maggid</i>] the end from the beginning” <span class="c">(Yeshayah 46:10)</span>: a drawing down; <i>maggid</i> means drawing down <span class="c">(Zohar II, 136b)</span>.<sup><a class="fn" href="#en-n7" id="en-r7">7</a></sup> “Better is the end of a matter than its beginning” <span class="c">(Koheles 7:8)</span>: the end of the matter.</p>
+    <p>May the Almighty indeed help, <i class="zi">zog ich</i>, the Maggid’s merit: “Say of the tzaddik that it is good” <span class="c">(Yeshayah 3:10)</span>. And Yosef: “Yosef, seventeen years old.” “Say of the tzaddik that it is good.” “He who tells [<i>maggid</i>] the end from the beginning” <span class="c">(Yeshayah 46:10)</span>: a drawing down; <i>maggid</i> means drawing down <span class="c">(Zohar II, 136b)</span>.<sup><a class="fn" href="#en-n7" id="en-r7">7</a></sup> “Better is the end of a matter than its beginning” <span class="c">(Koheles 7:8)</span>: the end of the matter.</p>
 
-    <p>May the Almighty indeed help that there be now only “truly good for Israel” <span class="c">(Tehillim 73:1)</span>. The mitzvos and good deeds are the fruits of the tzaddik. This, I say, is what protects, and this is the holy merit, which stands forever; the light is there, constantly. This is the aspect of Yosef the tzaddik, as it says <span class="c">(Bereishis Rabbah 84:10)</span>:<sup><a class="fn" href="#en-n8" id="en-r8">8</a></sup> “You gather fruits and I gather fruits.” The fruits of the wicked rot, “and mine stand,” forever. “Mine” stand; the fruits will stand always, they stand, they endure forever <span class="c">(see the Midrash Rabbah)</span>. The fruits that the great Maggid gathered, with the fellowship, with the path of Chassidus of the holy Baal Shem Tov, these stand. And the bad ones, their fruits rot and come to an end; the bad cannot have any endurance.</p>
+    <p>May the Almighty indeed help that there be now only “truly good for Israel” <span class="c">(Tehillim 73:1)</span>. The mitzvos and good deeds, <i class="zi">zog ich</i>, are the fruits of the tzaddik. This, <i class="zi">zog ich</i>, is, <i class="zi">zog ich</i>, what protects, <i class="zi">zog ich</i>, and this is the holy merit, which stands forever; the light, <i class="zi">zog ich</i>, is there, constantly. This is the aspect of Yosef the tzaddik, as it says <span class="c">(Bereishis Rabbah 84:10)</span>:<sup><a class="fn" href="#en-n8" id="en-r8">8</a></sup> “You gather,” <i class="zi">zog ich</i>, “fruits and I gather fruits.” The fruits, <i class="zi">zog ich</i>, of the wicked rot, “and mine stand,” forever. “Mine” stand; the fruits, <i class="zi">zog ich</i>, will stand always, <i class="zi">zog ich</i>, they stand, <i class="zi">zog ich</i>, they endure forever <span class="c">(see the Midrash Rabbah)</span>. The fruits, <i class="zi">zog ich</i>, that the great Maggid gathered, <i class="zi">zog ich</i>, with the fellowship, with the path of Chassidus of the holy Baal Shem Tov, <i class="zi">zog ich</i>, these stand. And the bad ones, <i class="zi">zog ich</i>, their fruits, <i class="zi">zog ich</i>, rot, <i class="zi">zog ich</i>, and come, <i class="zi">zog ich</i>, to an end; the bad, <i class="zi">zog ich</i>, cannot have any endurance.</p>
 
-    <p class="closing">May the Almighty indeed help<br>that Jewish hearts be gladdened:<br>“The light of the righteous rejoices” <span class="c">(Mishlei 13:9)</span>.</p>
+    <p class="closing">May the Almighty indeed help, <i class="zi">zog ich</i>,<br>that Jewish hearts be gladdened:<br><i class="zi">zog ich</i>, “The light of the righteous rejoices” <span class="c">(Mishlei 13:9)</span>.</p>
   </div>
 
   <p class="cup">(Kos shel berachah, the cup of blessing)</p>
@@ -889,6 +989,49 @@ a.fn:hover{background:var(--wash)}
   });
   if (window.ResizeObserver) new ResizeObserver(function(){ drawWave(); moveThumb(); }).observe(document.body);
   else window.addEventListener('resize', function(){ drawWave(); moveThumb(); });
+
+  /* ---------- welcome box ---------- */
+  (function(){
+    var w = document.getElementById('welcome'), card = document.getElementById('w-card');
+    var behind = [document.querySelector('.mast'), document.querySelector('.switch-wrap'), document.querySelector('.page'), document.querySelector('.dock-wrap')];
+    var seen = false;
+    try { seen = sessionStorage.getItem('rizhin-entered') === '1'; } catch(e){}
+    if (seen) return;
+    function setLang(l){
+      card.lang = l; card.dir = l === 'en' ? 'ltr' : 'rtl';
+      card.querySelectorAll('[data-he]').forEach(function(el){
+        var v = el.getAttribute('data-' + l);
+        el.innerHTML = v;
+      });
+      document.getElementById('w-lang').lang = l === 'en' ? 'he' : 'en';
+    }
+    var startLang = 'he';
+    try { if (localStorage.getItem('rizhin-view') === 'en' || (location.hash || '') === '#english') startLang = 'en'; } catch(e){}
+    if (startLang === 'en') setLang('en');
+    var logo = document.getElementById('logo'), wl = document.getElementById('w-logo');
+    function copyLogo(){ if (logo && logo.getAttribute('src') && !logo.hidden){ wl.src = logo.src; wl.hidden = false; document.getElementById('w-icon-fallback').style.display = 'none'; } }
+    copyLogo(); setTimeout(copyLogo, 600); setTimeout(copyLogo, 1500);
+    behind.forEach(function(el){ if (el) el.setAttribute('inert', ''); });
+    document.documentElement.classList.add('locked');
+    w.hidden = false;
+    var btn = document.getElementById('w-enter');
+    setTimeout(function(){ try { card.focus({preventScroll:true}); } catch(e){} }, 50);
+    document.getElementById('w-lang').addEventListener('click', function(){ setLang(card.lang === 'en' ? 'he' : 'en'); });
+    w.addEventListener('keydown', function(e){
+      if (e.key !== 'Tab') return;
+      var f = Array.prototype.slice.call(w.querySelectorAll('button')), i = f.indexOf(document.activeElement);
+      e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+    });
+    btn.addEventListener('click', function(){
+      try { sessionStorage.setItem('rizhin-entered', '1'); } catch(e){}
+      if (card.lang === 'en' && cur !== 'en') show('en');
+      behind.forEach(function(el){ if (el) el.removeAttribute('inert'); });
+      document.documentElement.classList.remove('locked');
+      w.classList.add('out');
+      setTimeout(function(){ w.hidden = true; }, reduce ? 0 : 480);
+      var t = document.getElementById('tab-' + cur); if (t) try { t.focus({preventScroll:true}); } catch(e){}
+    });
+  })();
 
   /* ---------- start ---------- */
   var start = BY_NAME[(location.hash || '').slice(1)];
