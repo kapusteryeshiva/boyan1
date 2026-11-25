@@ -362,9 +362,9 @@ a.fn:hover{background:var(--wash)}
   animation:dock-in .7s var(--spring) both;
 }
 @keyframes dock-in{from{transform:translateY(140%)}}
-:root{--pill-bg:rgba(255,255,255,.9); --pill-rim:rgba(42,35,30,.1); --pill-hi:rgba(255,255,255,.9); --pill-btn:#f4f1ec}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --pill-bg:rgba(66,59,53,.88); --pill-rim:rgba(255,255,255,.12); --pill-hi:rgba(255,255,255,.1); --pill-btn:rgba(255,255,255,.1) } }
-:root[data-theme="dark"]{ --pill-bg:rgba(66,59,53,.88); --pill-rim:rgba(255,255,255,.12); --pill-hi:rgba(255,255,255,.1); --pill-btn:rgba(255,255,255,.1) }
+:root{--pill-bg:rgba(255,255,255,.97); --pill-rim:rgba(42,35,30,.1); --pill-hi:rgba(255,255,255,.9); --pill-btn:#f4f1ec; --pill-accent:#a07a2e; --pill-accent-ink:#ffffff; --pill-track:rgba(42,35,30,.14)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --pill-bg:rgba(104,95,86,.94); --pill-rim:rgba(255,255,255,.16); --pill-hi:rgba(255,255,255,.14); --pill-btn:rgba(255,255,255,.12); --pill-accent:#e0bd72; --pill-accent-ink:#2a1f0c; --pill-track:rgba(255,255,255,.22) } }
+:root[data-theme="dark"]{ --pill-bg:rgba(104,95,86,.94); --pill-rim:rgba(255,255,255,.16); --pill-hi:rgba(255,255,255,.14); --pill-btn:rgba(255,255,255,.12); --pill-accent:#e0bd72; --pill-accent-ink:#2a1f0c; --pill-track:rgba(255,255,255,.22) }
 .dock-row{position:relative; display:flex; align-items:center; gap:16px; min-width:0}
 .dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px}
 .dock-head{display:flex; align-items:center; justify-content:center; gap:3px; min-width:0}
@@ -382,14 +382,14 @@ a.fn:hover{background:var(--wash)}
 
 .play{
   flex:none; width:46px; height:46px; display:grid; place-items:center;
-  background:var(--pill-btn); color:var(--ink);
-  border:1px solid var(--pill-rim); border-radius:50%;
+  background:var(--pill-accent); color:var(--pill-accent-ink);
+  border:0; border-radius:50%; box-shadow:0 4px 12px -5px var(--pill-accent);
   transition:border-radius .5s var(--spring), transform .35s var(--spring), background .2s var(--ease);
 }
 .play:hover{transform:scale(1.06)}
 .play:active{transform:scale(.9)}
 .play[aria-pressed="true"]{border-radius:38%}
-.play:hover{background:var(--wash-2, var(--wash))}
+.play:hover{filter:brightness(1.07)}
 .play svg{width:42%; height:42%; fill:currentColor}
 .play .i-play{margin-inline-start:6%}
 .play .i-pause, .play[aria-pressed="true"] .i-play{display:none}
@@ -400,10 +400,10 @@ a.fn:hover{background:var(--wash)}
 .t.t-dur{text-align:right}
 .wave{position:relative; flex:1; min-width:0; height:20px; border-radius:8px}
 .wave svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
-.wave .w-active{fill:none; stroke:var(--gold); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
-.wave .w-track{fill:none; stroke:var(--track); stroke-width:2.5; stroke-linecap:round}
-.wave .w-thumb{fill:var(--primary)}
-.wave .w-stop{fill:var(--track)}
+.wave .w-active{fill:none; stroke:var(--pill-accent); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
+.wave .w-track{fill:none; stroke:var(--pill-track); stroke-width:2.5; stroke-linecap:round}
+.wave .w-thumb{fill:var(--pill-accent)}
+.wave .w-stop{fill:var(--pill-track)}
 .wave input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
 .wave:has(input:focus-visible){outline:2px solid var(--focus); outline-offset:2px}
 
