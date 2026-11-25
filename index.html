@@ -351,44 +351,40 @@ a.fn:hover{background:var(--wash)}
   padding-right:max(16px, env(safe-area-inset-right, 0px));
   display:flex; justify-content:center; pointer-events:none;
 }
-.dock{pointer-events:auto; width:min(100%, 42rem); border-radius:30px; padding:10px 12px}
-.dock-row{display:flex; align-items:center; gap:12px; min-width:0}
-.dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
-.dock-meta{display:flex; align-items:baseline; justify-content:space-between; gap:10px; min-width:0}
-.dock-title{font-weight:500; font-size:.9rem; min-width:0}
-.dock-title small{font-weight:400; color:var(--ink-2); font-size:.88em; margin-inline-start:.6em}
-.dock-time{font-size:.78rem; color:var(--ink-2); font-variant-numeric:tabular-nums; white-space:nowrap; direction:ltr}
+.dock{pointer-events:auto; width:min(100%, 36rem); border-radius:999px; padding:8px 22px 8px 8px}
+.dock[dir="rtl"]{padding:8px 8px 8px 22px}
+.dock.glass{background:var(--paper); -webkit-backdrop-filter:blur(24px) saturate(140%); backdrop-filter:blur(24px) saturate(140%)}
+.dock-row{display:flex; align-items:center; gap:14px; min-width:0}
+.dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:1px}
+.dock-meta{display:flex; align-items:baseline; gap:8px; min-width:0; white-space:nowrap; overflow:hidden}
+.dock-title{font-family:var(--f-he); font-weight:500; font-size:.98rem; min-width:0; overflow:hidden; text-overflow:ellipsis}
+.dock[lang="en"] .dock-title{font-family:var(--f-en); font-weight:600; font-size:.94rem}
+.dock-title small{font-family:var(--f-ui); font-weight:400; color:var(--gold); font-size:.76rem; margin-inline-start:.7em; letter-spacing:.02em}
 .dock-sub{font-size:.82rem; color:var(--ink-2)}
 
 .play{
-  flex:none; width:52px; height:52px; border:0; display:grid; place-items:center;
+  flex:none; width:48px; height:48px; border:0; display:grid; place-items:center;
   background:var(--primary); color:var(--on-primary);
   border-radius:50%;
+  box-shadow:0 6px 14px -6px var(--shadow);
   transition:border-radius .5s var(--spring), transform .35s var(--spring);
 }
 .play:hover{transform:scale(1.06)}
 .play:active{transform:scale(.9)}
-.play[aria-pressed="true"]{border-radius:17px}
-.play svg{width:22px; height:22px; fill:currentColor}
+.play[aria-pressed="true"]{border-radius:16px}
+.play svg{width:20px; height:20px; fill:currentColor}
 .play .i-pause, .play[aria-pressed="true"] .i-play{display:none}
 .play[aria-pressed="true"] .i-pause{display:block}
 
-.seek{display:flex; align-items:center; gap:6px; min-width:0}
-.skip,.speed{
-  flex:none; border:1px solid var(--line); background:transparent; color:var(--ink-2);
-  font-weight:500; font-variant-numeric:tabular-nums; direction:ltr; unicode-bidi:isolate;
-  transition:background .2s var(--ease), color .2s var(--ease), transform .35s var(--spring);
-}
-.skip:active,.speed:active{transform:scale(.88)}
-.skip:hover,.speed:hover{background:var(--wash); color:var(--ink)}
-.skip{width:38px; height:30px; border-radius:999px; font-size:.72rem}
-.speed{min-width:48px; height:38px; border-radius:999px; padding:0 10px; font-size:.82rem}
-.wave{position:relative; flex:1; min-width:0; height:30px; border-radius:10px}
+.seek{display:flex; align-items:center; gap:10px; min-width:0}
+.t{flex:none; min-width:2.6em; font-size:.72rem; color:var(--ink-2); font-variant-numeric:tabular-nums; direction:ltr}
+.t.t-dur{text-align:right}
+.wave{position:relative; flex:1; min-width:0; height:24px; border-radius:8px}
 .wave svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
-.wave .w-active{fill:none; stroke:var(--gold-soft); stroke-width:3; stroke-linecap:round; stroke-linejoin:round}
-.wave .w-track{fill:none; stroke:var(--track); stroke-width:3; stroke-linecap:round}
+.wave .w-active{fill:none; stroke:var(--gold); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
+.wave .w-track{fill:none; stroke:var(--track); stroke-width:2.5; stroke-linecap:round}
 .wave .w-thumb{fill:var(--primary)}
-.wave .w-stop{fill:var(--ink-2)}
+.wave .w-stop{fill:var(--track)}
 .wave input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
 .wave:has(input:focus-visible){outline:2px solid var(--focus); outline-offset:2px}
 
@@ -412,117 +408,82 @@ a.fn:hover{background:var(--wash)}
   .switch button{padding:8px 13px; font-size:.86rem}
   .mast-in{padding-block:10px 0}
   .prose p{text-align:start}
-  .dock{border-radius:26px}
-  .dock-row{gap:10px}
-  .play,.tile{width:46px; height:46px}
-  .speed{min-width:44px; padding:0 6px}
+  .dock-row{gap:12px}
+  .play,.tile{width:44px; height:44px}
   .pick{padding:10px 15px; font-size:.84rem}
-  /* phone: controls on the first line, the full-width seek bar on the second */
-  #dockReady{flex-wrap:wrap; row-gap:6px}
-  #dockReady .dock-main{display:contents}
-  #dockReady .dock-meta{order:2; flex:1; flex-direction:column; align-items:flex-start; justify-content:center; gap:0}
-  #dockReady .speed{order:3}
-  #dockReady .seek{order:4; flex-basis:100%}
   .dock-title small{display:none}
 }
-/* ---------- welcome: a liquid-glass introduction over the blurred page ---------- */
-:root{
-  --w-glass:rgba(252,250,246,.5); --w-rim:rgba(255,255,255,.75); --w-spec:rgba(255,255,255,.85); --w-inner:rgba(255,255,255,.22);
-  --w-ink:#231c16; --w-ink-2:rgba(45,37,30,.74); --w-gold:#86692b; --w-dim:rgba(28,22,17,.28);
-  --w-btn:rgba(134,105,43,.78); --w-btn-ink:#fffaf0; --w-line:rgba(134,105,43,.45);
-  --w-logo-f:drop-shadow(0 2px 6px rgba(0,0,0,.18));
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --w-glass:rgba(40,35,31,.46); --w-rim:rgba(255,255,255,.22); --w-spec:rgba(255,255,255,.35); --w-inner:rgba(255,255,255,.06);
-    --w-ink:#f4efe7; --w-ink-2:rgba(240,233,222,.78); --w-gold:#d8bb7c; --w-dim:rgba(0,0,0,.42);
-    --w-btn:rgba(205,176,116,.82); --w-btn-ink:#1f1808; --w-line:rgba(216,187,124,.45);
-    --w-logo-f:brightness(2.6) saturate(.8) drop-shadow(0 2px 8px rgba(0,0,0,.5));
-  }
-}
-:root[data-theme="dark"]{
-  --w-glass:rgba(40,35,31,.46); --w-rim:rgba(255,255,255,.22); --w-spec:rgba(255,255,255,.35); --w-inner:rgba(255,255,255,.06);
-  --w-ink:#f4efe7; --w-ink-2:rgba(240,233,222,.78); --w-gold:#d8bb7c; --w-dim:rgba(0,0,0,.42);
-  --w-btn:rgba(205,176,116,.82); --w-btn-ink:#1f1808; --w-line:rgba(216,187,124,.45);
-    --w-logo-f:brightness(2.6) saturate(.8) drop-shadow(0 2px 8px rgba(0,0,0,.5));
-}
+/* ---------- welcome: an archival card over the blurred page — photo of the kloiz, logo seal, short introduction ---------- */
 .welcome{
   position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; overflow-y:auto;
   padding:calc(env(safe-area-inset-top, 0px) + 20px) max(16px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 20px) max(16px, env(safe-area-inset-left, 0px));
-  background:var(--w-dim);
-  -webkit-backdrop-filter:blur(16px) saturate(115%); backdrop-filter:blur(16px) saturate(115%);
-  transition:opacity .45s var(--ease), backdrop-filter .45s var(--ease), -webkit-backdrop-filter .45s var(--ease);
+  background:rgba(24,19,15,.55);
+  -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  transition:opacity .5s var(--ease), backdrop-filter .5s var(--ease), -webkit-backdrop-filter .5s var(--ease);
 }
 .welcome.out{opacity:0; -webkit-backdrop-filter:blur(0); backdrop-filter:blur(0); pointer-events:none}
 html.locked, html.locked body{overflow:hidden}
 .w-card{
-  position:relative; isolation:isolate; width:min(100%, 31rem); margin:auto;
-  color:var(--w-ink); text-align:center;
-  background:var(--w-glass);
-  -webkit-backdrop-filter:blur(28px) saturate(185%) brightness(1.04); backdrop-filter:blur(28px) saturate(185%) brightness(1.04);
-  border:1px solid var(--w-rim); border-radius:36px;
-  box-shadow:
-    inset 0 1px 0 var(--w-spec),                 /* bright top lip */
-    inset 0 -1px 1px rgba(255,255,255,.12),
-    inset 0 0 0 1px rgba(255,255,255,.06),
-    inset 0 18px 40px -24px var(--w-inner),      /* light gathered under the surface */
-    0 30px 70px -24px rgba(0,0,0,.45), 0 2px 10px rgba(0,0,0,.1);
-  padding:clamp(32px, 6vw, 44px) clamp(24px, 6vw, 44px) clamp(24px, 4.5vw, 30px);
-  display:flex; flex-direction:column; align-items:center; gap:14px;
-  animation:w-drop .9s cubic-bezier(.22,1.3,.36,1) both;
-  transition:transform .45s var(--ease);
-}
-/* specular sheen across the glass, like light on a droplet */
-.w-card::before{
-  content:""; position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none;
-  background:
-    radial-gradient(120% 60% at 18% 0%, rgba(255,255,255,.42) 0%, rgba(255,255,255,0) 46%),
-    radial-gradient(90% 50% at 100% 100%, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 60%),
-    linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,0) 30%);
-  mix-blend-mode:soft-light;
-}
-.w-card::after{
-  content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none; padding:1px;
-  background:linear-gradient(140deg, rgba(255,255,255,.9), rgba(255,255,255,.08) 38%, rgba(255,255,255,.04) 62%, rgba(255,255,255,.5));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  opacity:.8;
+  position:relative; width:min(100%, 30rem); margin:auto; overflow:hidden;
+  background:var(--paper); color:var(--ink); text-align:center;
+  border-radius:16px; border:1px solid var(--line);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.65), 0 2px 6px rgba(0,0,0,.15);
+  animation:w-rise .8s var(--ease) both;
+  transition:transform .5s var(--ease);
 }
 .w-card:focus{outline:none}
-.welcome.out .w-card{transform:translateY(16px) scale(.97)}
-@keyframes w-drop{
-  0%{opacity:0; transform:translateY(-28px) scale(.9, .94)}
-  55%{opacity:1; transform:translateY(4px) scale(1.02, .985)}
-  100%{transform:none}
+.welcome.out .w-card{transform:translateY(12px)}
+@keyframes w-rise{from{opacity:0; transform:translateY(22px)}}
+.w-photo{
+  position:relative; height:clamp(130px, 30vw, 170px); overflow:hidden;
+  background:linear-gradient(160deg, #4a3a2c, #241c16);
 }
-.w-logo{display:block; width:auto; height:clamp(64px, 13vw, 84px); filter:var(--w-logo-f)}
-.w-logo[hidden]{display:none}
-.w-cap{margin:0; font-family:var(--f-he); font-size:.95rem; color:var(--w-gold)}
-.w-card[lang="en"] .w-cap{font-family:var(--f-ui); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase}
-.w-title{margin:0; font-family:var(--f-title); font-weight:500; font-size:clamp(1.55rem, 5vw, 2.05rem); line-height:1.2; text-wrap:balance}
-.w-card[lang="en"] .w-title{font-family:"Instrument Serif", var(--f-en); font-weight:400; font-size:clamp(1.8rem, 5.6vw, 2.35rem)}
-.w-orn{display:flex; align-items:center; gap:10px; width:min(160px, 50%)}
-.w-orn::before,.w-orn::after{content:""; flex:1; height:1px; background:var(--w-line)}
-.w-orn i{width:5px; height:5px; background:var(--w-gold); transform:rotate(45deg)}
-.w-text{margin:2px 0 6px; max-width:27rem; font-family:var(--f-he); font-size:clamp(1.04rem, 2.7vw, 1.14rem); line-height:1.8; color:var(--w-ink-2); text-wrap:pretty}
-.w-text .hl{color:var(--w-ink); font-weight:500}
-.w-card[lang="en"] .w-text{font-family:var(--f-en); font-size:clamp(1rem, 2.5vw, 1.07rem); line-height:1.68}
+.w-photo::before{
+  content:""; position:absolute; inset:-6%;
+  background:url("header.jpg") center 42% / cover no-repeat;
+  animation:w-drift 18s ease-out both;
+}
+.w-photo::after{   /* fade the photo into the paper */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(20,15,11,.15) 0%, rgba(20,15,11,.05) 45%, var(--paper) 100%);
+}
+@keyframes w-drift{from{transform:scale(1.08)} to{transform:scale(1)}}
+.w-seal{
+  position:relative; z-index:1; width:84px; height:84px; margin:-58px auto 0;
+  border-radius:50%; background:var(--paper); display:grid; place-items:center;
+  box-shadow:0 0 0 1px var(--gold-soft), 0 0 0 5px var(--paper), 0 0 0 6px var(--line), 0 10px 24px -10px rgba(0,0,0,.45);
+}
+.w-seal img{width:62%; height:auto; filter:var(--w-logo-f)}
+.w-seal img[hidden]{display:none}
+.w-seal .w-dot{width:10px; height:10px; background:var(--gold-soft); transform:rotate(45deg)}
+.w-body{padding:18px clamp(24px, 6vw, 44px) clamp(24px, 5vw, 32px); display:flex; flex-direction:column; align-items:center; gap:12px}
+.w-cap{margin:0; font-family:var(--f-he); font-size:.92rem; color:var(--gold)}
+.w-card[lang="en"] .w-cap{font-family:var(--f-ui); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase}
+.w-title{margin:0; font-family:var(--f-title); font-weight:500; font-size:clamp(1.6rem, 5vw, 2.1rem); line-height:1.2; text-wrap:balance}
+.w-card[lang="en"] .w-title{font-family:"Instrument Serif", var(--f-en); font-weight:400; font-size:clamp(1.85rem, 5.8vw, 2.4rem); line-height:1.1}
+.w-orn{display:flex; align-items:center; gap:10px; width:min(150px, 50%)}
+.w-orn::before,.w-orn::after{content:""; flex:1; height:1px; background:var(--gold-soft); opacity:.7}
+.w-orn i{width:5px; height:5px; background:var(--gold-soft); transform:rotate(45deg)}
+.w-text{margin:2px 0 8px; max-width:26rem; font-family:var(--f-he); font-size:clamp(1.04rem, 2.7vw, 1.12rem); line-height:1.85; color:var(--ink-2); text-wrap:pretty}
+.w-text em{font-style:normal; color:var(--ink)}
+.w-card[lang="en"] .w-text{font-family:var(--f-en); font-size:clamp(1rem, 2.5vw, 1.06rem); line-height:1.7}
+.w-card[lang="en"] .w-text em{font-style:italic}
 .w-enter{
-  position:relative; min-width:11rem; height:50px; padding:0 34px; border-radius:999px;
-  border:1px solid rgba(255,255,255,.45);
-  background:var(--w-btn); color:var(--w-btn-ink);
-  -webkit-backdrop-filter:blur(10px) saturate(160%); backdrop-filter:blur(10px) saturate(160%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.55), inset 0 -2px 6px rgba(0,0,0,.12), 0 10px 22px -10px rgba(60,40,10,.6);
-  font-family:var(--f-he); font-size:1.1rem; letter-spacing:.03em;
-  transition:transform .45s cubic-bezier(.3,1.6,.5,1), box-shadow .3s var(--ease), filter .2s var(--ease);
+  min-width:10.5rem; height:48px; padding:0 30px; border:0; border-radius:999px;
+  background:var(--primary); color:var(--on-primary);
+  font-family:var(--f-he); font-size:1.08rem; letter-spacing:.04em;
+  box-shadow:0 8px 20px -10px rgba(40,26,8,.7);
+  transition:transform .45s var(--spring), box-shadow .3s var(--ease);
 }
-.w-card[lang="en"] .w-enter{font-family:var(--f-ui); font-size:1rem; font-weight:500}
-.w-enter:hover{transform:scale(1.05); filter:brightness(1.05)}
-.w-enter:active{transform:scale(.93, .9)}
-.w-enter:focus-visible{outline:2px solid var(--w-gold); outline-offset:4px}
-.w-lang{border:0; background:none; color:var(--w-gold); font-family:var(--f-ui); font-size:.88rem; padding:6px 12px; border-radius:999px}
-.w-lang:hover{background:rgba(255,255,255,.18)}
-@media (max-width:520px){ .w-card{border-radius:30px} }
+.w-card[lang="en"] .w-enter{font-family:var(--f-ui); font-size:.98rem; font-weight:500; letter-spacing:.02em}
+.w-enter:hover{transform:translateY(-2px); box-shadow:0 14px 26px -12px rgba(40,26,8,.75)}
+.w-enter:active{transform:scale(.95)}
+.w-enter:focus-visible{outline:2px solid var(--gold); outline-offset:4px}
+.w-lang{border:0; background:none; color:var(--ink-2); font-family:var(--f-ui); font-size:.84rem; padding:6px 12px; border-radius:999px; text-decoration:underline; text-decoration-color:var(--gold-soft); text-underline-offset:4px}
+.w-lang:hover{color:var(--ink)}
+:root{--w-logo-f:none}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --w-logo-f:brightness(2.6) saturate(.8) } }
+:root[data-theme="dark"]{ --w-logo-f:brightness(2.6) saturate(.8) }
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important; transition:none!important}
@@ -533,13 +494,16 @@ html.locked, html.locked body{overflow:hidden}
 
 <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-title" hidden>
   <div class="w-card" id="w-card" dir="rtl" lang="he" tabindex="-1">
-    <img class="w-logo" id="w-logo" alt="" hidden>
-    <p class="w-cap" data-he="י&quot;ט כסלו תשי&quot;ד" data-en="Yud-Tes Kislev 5714">י"ט כסלו תשי"ד</p>
-    <h2 class="w-title" id="w-title" data-he="הקלטה יחידה מן השולחן הטהור" data-en="The only recording of the Rebbe’s tish">הקלטה יחידה מן השולחן הטהור</h2>
-    <div class="w-orn" aria-hidden="true"><i></i></div>
-    <p class="w-text" data-he="לפניכם דברי תורה שאמר מרן אדמו&quot;ר הקוה&quot;ט מבאיאן זי&quot;ע בעת עריכת השולחן, ביום י&quot;ט כסלו תשי&quot;ד, יום ההילולא של המגיד ממעזריטש זי&quot;ע. &lt;span class=&quot;hl&quot;&gt;זוהי ההקלטה היחידה מטיש של הרבי מבאיאן:&lt;/span&gt; הרה&quot;ח רבי שואל אלכסנדר (ר' סענדר) ביסטריצקי ע&quot;ה הטמין מכשיר הקלטה, ובזכותו נשתמרו הדברים כפי שנאמרו, בקולו של הרבי. הדברים הועתקו אות באות מתוך ההקלטה, ולצידם תרגום ללשון הקודש ולאנגלית; את ההקלטה עצמה אפשר לשמוע בתחתית הדף." data-en="This is Torah the Boyaner Rebbe, zy”a, said at his tish on Yud-Tes Kislev 5714, the hilula of the heilige Maggid of Mezritch. &lt;span class=&quot;hl&quot;&gt;It is the only recording of a tish of the Boyaner Rebbe:&lt;/span&gt; the chossid Reb Shaul Alexander (Reb Sender) Bistritzky hid a recorder, and in his zechus the words were kept just as they were said, in the Rebbe’s own voice. The Torah was transcribed letter for letter from the recording, with translations in Loshon Kodesh and English; you can listen to the recording itself at the bottom of the page.">לפניכם דברי תורה שאמר מרן אדמו"ר הקוה"ט מבאיאן זי"ע בעת עריכת השולחן, ביום י"ט כסלו תשי"ד, יום ההילולא של המגיד ממעזריטש זי"ע. <span class="hl">זוהי ההקלטה היחידה מטיש של הרבי מבאיאן:</span> הרה"ח רבי שואל אלכסנדר (ר' סענדר) ביסטריצקי ע"ה הטמין מכשיר הקלטה, ובזכותו נשתמרו הדברים כפי שנאמרו, בקולו של הרבי. הדברים הועתקו אות באות מתוך ההקלטה, ולצידם תרגום ללשון הקודש ולאנגלית; את ההקלטה עצמה אפשר לשמוע בתחתית הדף.</p>
-    <button type="button" class="w-enter" id="w-enter" data-he="כניסה" data-en="Enter">כניסה</button>
-    <button type="button" class="w-lang" id="w-lang" lang="en" data-he="English" data-en="עברית">English</button>
+    <div class="w-photo" aria-hidden="true"></div>
+    <div class="w-seal" aria-hidden="true"><img id="w-logo" alt="" hidden><span class="w-dot"></span></div>
+    <div class="w-body">
+      <p class="w-cap" data-he="י&quot;ט כסלו תשי&quot;ד · יום ההילולא של המגיד ממעזריטש" data-en="Yud-Tes Kislev 5714 · Hilula of the Maggid">י"ט כסלו תשי"ד · יום ההילולא של המגיד ממעזריטש</p>
+      <h2 class="w-title" id="w-title" data-he="קול מן השולחן הטהור" data-en="A Voice from the Rebbe’s Tish">קול מן השולחן הטהור</h2>
+      <div class="w-orn" aria-hidden="true"><i></i></div>
+      <p class="w-text" data-he="בי&quot;ט כסלו תשי&quot;ד, יום ההילולא של המגיד ממעזריטש, אמר מרן אדמו&quot;ר הקוה&quot;ט מבאיאן זי&quot;ע דברי תורה בעת עריכת השולחן. הרה&quot;ח רבי שואל אלכסנדר (ר&#x27; סענדר) ביסטריצקי ע&quot;ה הטמין מכשיר הקלטה, ובזכותו נשתמר הקול: &lt;em&gt;ההקלטה היחידה מטיש של הרבי.&lt;/em&gt; לפניכם הדברים כלשונם, בתרגום ללשון הקודש ולאנגלית." data-en="On Yud-Tes Kislev 5714, the hilula of the Maggid of Mezritch, the Boyaner Rebbe, zy”a, said Torah at his tish. Reb Shaul Alexander (Reb Sender) Bistritzky, a”h, had hidden a recorder, and so the Rebbe’s voice was kept: &lt;em&gt;the only recording of his tish.&lt;/em&gt; Here are his words as he said them, with translations in Loshon Kodesh and English.">בי"ט כסלו תשי"ד, יום ההילולא של המגיד ממעזריטש, אמר מרן אדמו"ר הקוה"ט מבאיאן זי"ע דברי תורה בעת עריכת השולחן. הרה"ח רבי שואל אלכסנדר (ר' סענדר) ביסטריצקי ע"ה הטמין מכשיר הקלטה, ובזכותו נשתמר הקול: <em>ההקלטה היחידה מטיש של הרבי.</em> לפניכם הדברים כלשונם, בתרגום ללשון הקודש ולאנגלית.</p>
+      <button type="button" class="w-enter" id="w-enter" data-he="כניסה" data-en="Enter">כניסה</button>
+      <button type="button" class="w-lang" id="w-lang" lang="en" data-he="English" data-en="עברית">English</button>
+    </div>
   </div>
 </div>
 
@@ -761,18 +725,16 @@ html.locked, html.locked body{overflow:hidden}
       <div class="dock-main">
         <div class="dock-meta">
           <div class="dock-title"><span data-he="ההקלטה המקורית" data-en="Original recording">ההקלטה המקורית</span><small data-he='י"ט כסלו תשי"ד' data-en="Yud-Tes Kislev 5714">י"ט כסלו תשי"ד</small></div>
-          <div class="dock-time" id="time">0:00 / 0:00</div>
         </div>
         <div class="seek" dir="ltr">
-          <button type="button" class="skip" id="back" aria-label="10 שניות אחורה" data-he-label="10 שניות אחורה" data-en-label="Back 10 seconds">−10</button>
+          <span class="t" id="tCur">0:00</span>
           <div class="wave" id="wave">
-            <svg aria-hidden="true"><path class="w-track" id="wTrack"/><path class="w-active" id="wActive"/><circle class="w-stop" id="wStop" r="2"/><rect class="w-thumb" id="wThumb" width="3" height="20" rx="1.5"/></svg>
+            <svg aria-hidden="true"><path class="w-track" id="wTrack"/><path class="w-active" id="wActive"/><circle class="w-stop" id="wStop" r="2"/><rect class="w-thumb" id="wThumb" width="3" height="16" rx="1.5"/></svg>
             <input type="range" id="seekRange" min="0" max="1000" step="1" value="0" aria-label="מיקום בהקלטה" data-he-label="מיקום בהקלטה" data-en-label="Position in the recording">
           </div>
-          <button type="button" class="skip" id="fwd" aria-label="10 שניות קדימה" data-he-label="10 שניות קדימה" data-en-label="Forward 10 seconds">+10</button>
+          <span class="t t-dur" id="tDur">0:00</span>
         </div>
       </div>
-      <button type="button" class="speed" id="speed" aria-label="מהירות ניגון" data-he-label="מהירות ניגון" data-en-label="Playback speed">1×</button>
     </div>
 
     <p class="dock-msg" id="dockMsg" role="status" hidden></p>
@@ -886,17 +848,15 @@ html.locked, html.locked body{overflow:hidden}
   var elReady = document.getElementById('dockReady');
   var fileIn = document.getElementById('recFile');
   var playBtn = document.getElementById('playBtn');
-  var timeEl = document.getElementById('time');
+  var tCur = document.getElementById('tCur'), tDur = document.getElementById('tDur');
   var range = document.getElementById('seekRange');
   var waveBox = document.getElementById('wave');
   var wActive = document.getElementById('wActive');
   var wTrack = document.getElementById('wTrack');
   var wThumb = document.getElementById('wThumb');
   var wStop = document.getElementById('wStop');
-  var speedBtn = document.getElementById('speed');
   var msg = document.getElementById('dockMsg');
   var objUrl = null, amp = 0, phase = 0, last = 0, raf = 0;
-  var SPEEDS = [1, 1.25, 1.5, 0.75], si = 0;
 
   function uiLang(){ return cur === 'en' ? 'en' : 'he'; }
   function say(he, en){
@@ -935,10 +895,10 @@ html.locked, html.locked body{overflow:hidden}
     var ts = x + gap, te = w - pad;
     wTrack.setAttribute('d', ts < te ? 'M' + ts.toFixed(1) + ' ' + mid + ' L' + te + ' ' + mid : '');
     wThumb.setAttribute('x', (x - 1.5).toFixed(1));
-    wThumb.setAttribute('y', (mid - 10).toFixed(1));
+    wThumb.setAttribute('y', (mid - 8).toFixed(1));
     wStop.setAttribute('cx', te); wStop.setAttribute('cy', mid);
     wStop.style.display = ts < te - 6 ? '' : 'none';
-    timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(d);
+    tCur.textContent = fmt(audio.currentTime); tDur.textContent = fmt(d);
     if (document.activeElement !== range) range.value = Math.round(p * 1000);
     range.setAttribute('aria-valuetext', fmt(audio.currentTime) + ' / ' + fmt(d));
   }
@@ -964,7 +924,6 @@ html.locked, html.locked body{overflow:hidden}
   }
   function load(src){
     audio.src = src; audio.load();
-    audio.playbackRate = SPEEDS[si];
     say(); setState('ready'); syncPlayLabel();
   }
 
@@ -981,13 +940,7 @@ html.locked, html.locked body{overflow:hidden}
     if (audio.paused){ var pr = audio.play(); if (pr && pr.catch) pr.catch(function(){}); }
     else audio.pause();
   });
-  document.getElementById('back').addEventListener('click', function(){ audio.currentTime = Math.max(0, audio.currentTime - 10); drawWave(); });
-  document.getElementById('fwd').addEventListener('click', function(){ var d = dur(); audio.currentTime = d ? Math.min(d, audio.currentTime + 10) : audio.currentTime + 10; drawWave(); });
   range.addEventListener('input', function(){ var d = dur(); if (d){ audio.currentTime = range.value / 1000 * d; drawWave(); } });
-  speedBtn.addEventListener('click', function(){
-    si = (si + 1) % SPEEDS.length; audio.playbackRate = SPEEDS[si];
-    speedBtn.textContent = SPEEDS[si] + '×';
-  });
   ['play','pause','ended'].forEach(function(ev){ audio.addEventListener(ev, function(){ syncPlayLabel(); kick(); }); });
   ['timeupdate','loadedmetadata','durationchange','seeked'].forEach(function(ev){ audio.addEventListener(ev, drawWave); });
   audio.addEventListener('error', function(){
@@ -1021,7 +974,7 @@ html.locked, html.locked body{overflow:hidden}
     try { if (localStorage.getItem('rizhin-view') === 'en' || (location.hash || '') === '#english') startLang = 'en'; } catch(e){}
     if (startLang === 'en') setLang('en');
     var logo = document.getElementById('logo'), wl = document.getElementById('w-logo');
-    function copyLogo(){ if (logo && logo.getAttribute('src') && !logo.hidden){ wl.src = logo.src; wl.hidden = false; } }
+    function copyLogo(){ if (logo && logo.getAttribute('src') && !logo.hidden){ wl.src = logo.src; wl.hidden = false; var d = document.querySelector('.w-seal .w-dot'); if (d) d.hidden = true; } }
     copyLogo(); setTimeout(copyLogo, 600); setTimeout(copyLogo, 1500);
     behind.forEach(function(el){ if (el) el.setAttribute('inert', ''); });
     document.documentElement.classList.add('locked');
