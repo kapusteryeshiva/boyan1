@@ -175,7 +175,7 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 /* ---------- page + sheet ---------- */
 .page{
   max-width:48rem; margin:0 auto;
-  padding-block:30px 170px;
+  padding-block:30px 150px;
   padding-left:max(16px, env(safe-area-inset-left, 0px));
   padding-right:max(16px, env(safe-area-inset-right, 0px));
 }
@@ -342,44 +342,58 @@ a.fn:hover{background:var(--wash)}
 .pl-label{margin:0; font-family:var(--f-he); font-size:.74rem; color:#8a6d34; letter-spacing:.1em}
 .pl-founded{margin:0; font-family:var(--f-he); font-size:clamp(.9rem, 2.3vw, 1rem); line-height:1.55; color:var(--plaque-ink-2); text-shadow:0 1px 0 rgba(255,255,255,.6)}
 
-/* ---------- audio dock ---------- */
+/* ---------- the recording: an elegant pill floating at the bottom of the screen ---------- */
+.dock-spot{height:0; margin:0}
 .dock-wrap{
-  position:fixed; z-index:40; left:0; right:0; bottom:0;
-  padding-top:0;
-  padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 14px);
+  position:fixed; z-index:40; left:0; right:0; bottom:0; pointer-events:none;
+  display:flex; justify-content:center;
+  padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 16px);
   padding-left:max(16px, env(safe-area-inset-left, 0px));
   padding-right:max(16px, env(safe-area-inset-right, 0px));
-  display:flex; justify-content:center; pointer-events:none;
 }
-.dock{pointer-events:auto; width:min(100%, 36rem); border-radius:999px; padding:8px 22px 8px 8px}
-.dock[dir="rtl"]{padding:8px 8px 8px 22px}
-.dock.glass{background:var(--paper); -webkit-backdrop-filter:blur(24px) saturate(140%); backdrop-filter:blur(24px) saturate(140%)}
-.dock-row{display:flex; align-items:center; gap:14px; min-width:0}
-.dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:1px}
-.dock-meta{display:flex; align-items:baseline; gap:8px; min-width:0; white-space:nowrap; overflow:hidden}
-.dock-title{font-family:var(--f-he); font-weight:500; font-size:.98rem; min-width:0; overflow:hidden; text-overflow:ellipsis}
-.dock[lang="en"] .dock-title{font-family:var(--f-en); font-weight:600; font-size:.94rem}
-.dock-title small{font-family:var(--f-ui); font-weight:400; color:var(--gold); font-size:.76rem; margin-inline-start:.7em; letter-spacing:.02em}
-.dock-sub{font-size:.82rem; color:var(--ink-2)}
+.dock{
+  position:relative; pointer-events:auto; width:min(100%, 36rem);
+  background:var(--paper); color:var(--ink);
+  border:1px solid var(--line); border-radius:999px;
+  padding:10px 10px 10px 30px;
+  box-shadow:0 22px 44px -18px var(--shadow), 0 3px 8px var(--glass-lo);
+  animation:dock-in .7s var(--spring) both;
+}
+.dock::before{content:""; position:absolute; inset:4px; border-radius:inherit; border:1px solid var(--gold-soft); opacity:.4; pointer-events:none}
+@keyframes dock-in{from{transform:translateY(140%)}}
+.dock-row{position:relative; display:flex; align-items:center; gap:16px; min-width:0}
+.dock-main{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px}
+.dock-head{display:flex; align-items:center; justify-content:center; gap:clamp(6px, 1.6vw, 12px); min-width:0}
+.dock-titles{min-width:0; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1px}
+.dock-t1,.dock-t2{margin:0; font-family:var(--f-he); font-size:1.02rem; line-height:1.3; white-space:nowrap}
+.dock-t1{font-weight:700; color:var(--ink); letter-spacing:.02em}
+.dock-t2{font-weight:500; color:var(--ink)}
+.dock-date{margin:3px 0 0; font-family:var(--f-ui); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); white-space:nowrap}
+.twirl{flex:none; width:clamp(44px, 10vw, 76px); height:auto; color:var(--gold); overflow:visible}
+.twirl .tw-body{fill:currentColor}
+.twirl .tw-hair{fill:none; stroke:currentColor; stroke-width:.7; stroke-linecap:round; opacity:.75}
+.twirl circle{fill:currentColor}
+.twirl.flip{transform:scaleX(-1)}
+.dock-sub{margin:0; font-family:var(--f-he); font-size:.84rem; color:var(--ink-2)}
 
 .play{
-  flex:none; width:48px; height:48px; border:0; display:grid; place-items:center;
-  background:var(--primary); color:var(--on-primary);
-  border-radius:50%;
-  box-shadow:0 6px 14px -6px var(--shadow);
+  flex:none; width:54px; height:54px; border:0; display:grid; place-items:center;
+  background:var(--primary); color:var(--on-primary); border-radius:50%;
+  box-shadow:0 0 0 4px var(--wash), 0 8px 16px -8px var(--shadow);
   transition:border-radius .5s var(--spring), transform .35s var(--spring);
 }
 .play:hover{transform:scale(1.06)}
 .play:active{transform:scale(.9)}
-.play[aria-pressed="true"]{border-radius:16px}
-.play svg{width:20px; height:20px; fill:currentColor}
+.play[aria-pressed="true"]{border-radius:30%}
+.play svg{width:42%; height:42%; fill:currentColor}
+.play .i-play{margin-inline-start:6%}
 .play .i-pause, .play[aria-pressed="true"] .i-play{display:none}
 .play[aria-pressed="true"] .i-pause{display:block}
 
-.seek{display:flex; align-items:center; gap:10px; min-width:0}
-.t{flex:none; min-width:2.6em; font-size:.72rem; color:var(--ink-2); font-variant-numeric:tabular-nums; direction:ltr}
+.seek{display:flex; align-items:center; gap:9px; min-width:0; margin-top:3px}
+.t{flex:none; min-width:2.4em; font-size:.7rem; color:var(--ink-2); font-variant-numeric:tabular-nums; direction:ltr}
 .t.t-dur{text-align:right}
-.wave{position:relative; flex:1; min-width:0; height:24px; border-radius:8px}
+.wave{position:relative; flex:1; min-width:0; height:20px; border-radius:8px}
 .wave svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
 .wave .w-active{fill:none; stroke:var(--gold); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
 .wave .w-track{fill:none; stroke:var(--track); stroke-width:2.5; stroke-linecap:round}
@@ -400,7 +414,7 @@ a.fn:hover{background:var(--wash)}
 }
 .pick:hover{transform:scale(1.04)}
 .pick:active{transform:scale(.94)}
-.dock-msg{margin:8px 4px 0; font-size:.8rem; color:var(--gold)}
+.dock-msg{position:relative; margin:10px 4px 0; font-size:.82rem; color:var(--gold)}
 
 @media (max-width:520px){
   .sheet::before{inset:9px} .sheet::after{inset:12px}
@@ -408,8 +422,11 @@ a.fn:hover{background:var(--wash)}
   .switch button{padding:8px 13px; font-size:.86rem}
   .mast-in{padding-block:10px 0}
   .prose p{text-align:start}
+  .tile{width:46px; height:46px}
+  .dock{padding:8px 8px 8px 16px}
+  .play{width:48px; height:48px}
   .dock-row{gap:12px}
-  .play,.tile{width:44px; height:44px}
+  .dock-t1,.dock-t2{font-size:.9rem}
   .pick{padding:10px 15px; font-size:.84rem}
   .dock-title small{display:none}
 }
@@ -529,6 +546,62 @@ html.locked, html.locked body{overflow:hidden}
 </nav>
 
 <main class="page">
+<div class="dock-spot" id="dockSpot">
+<div class="dock-wrap">
+  <section class="dock" id="dock" dir="rtl" lang="he" data-state="empty" aria-label="קולו בקודש של מרן אדמו&quot;ר הקוה&quot;ט מבאיאן זי&quot;ע">
+    <audio id="rec" preload="metadata"></audio>
+    <input type="file" id="recFile" accept="audio/*" hidden>
+
+    <div class="dock-row" id="dockEmpty">
+      <div class="tile" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>
+      </div>
+      <div class="dock-main">
+        <div class="dock-head" dir="ltr">
+          <svg class="twirl" viewBox="0 0 80 30" aria-hidden="true"><path class="tw-body" d="M78.99 24.88 L77.86 24.94 L76.72 25.00 L75.57 25.06 L74.41 25.12 L73.24 25.18 L72.06 25.24 L70.88 25.30 L69.69 25.36 L68.49 25.41 L67.30 25.46 L66.10 25.51 L64.89 25.55 L63.68 25.59 L62.48 25.62 L61.27 25.65 L60.06 25.67 L58.85 25.68 L57.65 25.69 L56.45 25.68 L55.25 25.67 L54.06 25.65 L52.87 25.62 L51.68 25.58 L50.51 25.53 L49.34 25.47 L48.18 25.40 L47.02 25.31 L45.88 25.21 L44.75 25.10 L43.63 24.97 L42.52 24.83 L41.42 24.67 L40.34 24.50 L39.27 24.32 L38.22 24.11 L37.18 23.89 L36.16 23.65 L35.16 23.40 L34.17 23.12 L33.21 22.83 L32.26 22.51 L31.34 22.18 L30.45 21.83 L29.58 21.47 L28.73 21.09 L27.91 20.69 L27.12 20.28 L26.36 19.86 L25.62 19.43 L24.92 18.98 L24.24 18.53 L23.60 18.07 L22.99 17.60 L22.41 17.13 L21.86 16.65 L21.35 16.17 L20.87 15.68 L20.42 15.20 L20.02 14.71 L19.65 14.23 L19.31 13.75 L19.02 13.27 L18.76 12.80 L18.54 12.33 L18.36 11.88 L18.22 11.43 L18.12 10.99 L18.05 10.57 L18.03 10.16 L18.04 9.75 L18.08 9.36 L18.17 8.98 L18.29 8.61 L18.45 8.25 L18.66 7.89 L18.91 7.54 L19.20 7.20 L19.55 6.87 L19.94 6.54 L20.39 6.23 L20.84 5.96 L21.28 5.73 L21.73 5.53 L22.18 5.36 L22.62 5.22 L23.05 5.11 L23.49 5.03 L23.91 4.97 L24.33 4.94 L24.74 4.93 L25.14 4.95 L25.53 4.99 L25.91 5.05 L26.28 5.13 L26.63 5.24 L26.97 5.36 L27.30 5.49 L27.60 5.65 L27.89 5.82 L28.15 6.00 L28.40 6.19 L28.62 6.40 L28.83 6.62 L29.00 6.85 L29.16 7.08 L29.29 7.33 L29.39 7.58 L29.47 7.83 L29.52 8.09 L29.54 8.36 L29.54 8.64 L29.50 8.92 L29.43 9.21 L29.32 9.51 L29.17 9.81 L28.99 10.11 L28.76 10.42 L28.49 10.73 L28.17 11.04 L27.81 11.34 L27.56 11.52 L27.31 11.69 L27.06 11.83 L26.82 11.95 L26.57 12.06 L26.32 12.15 L26.08 12.22 L25.84 12.27 L25.60 12.31 L25.36 12.33 L25.13 12.34 L24.91 12.33 L24.69 12.31 L24.48 12.28 L24.27 12.24 L24.07 12.18 L23.88 12.11 L23.70 12.03 L23.53 11.94 L23.37 11.84 L23.23 11.72 L23.10 11.60 L22.98 11.48 L22.87 11.35 L22.78 11.21 L22.71 11.07 L22.65 10.93 L22.60 10.78 L22.57 10.63 L22.56 10.48 L22.56 10.33 L22.58 10.18 L22.62 10.03 L22.68 9.88 L22.75 9.73 L22.85 9.58 L22.97 9.43 L23.11 9.29 L23.28 9.14 L23.47 9.00 L23.33 8.80 L23.12 8.95 L22.94 9.10 L22.79 9.27 L22.65 9.43 L22.54 9.61 L22.45 9.78 L22.38 9.96 L22.33 10.14 L22.31 10.31 L22.31 10.49 L22.32 10.67 L22.36 10.84 L22.41 11.01 L22.48 11.18 L22.57 11.34 L22.67 11.49 L22.79 11.64 L22.92 11.78 L23.07 11.91 L23.23 12.04 L23.40 12.15 L23.58 12.27 L23.77 12.37 L23.97 12.46 L24.18 12.54 L24.40 12.61 L24.63 12.67 L24.87 12.71 L25.12 12.74 L25.37 12.75 L25.64 12.75 L25.90 12.73 L26.18 12.69 L26.46 12.63 L26.74 12.56 L27.03 12.46 L27.31 12.35 L27.61 12.21 L27.90 12.05 L28.19 11.86 L28.61 11.54 L28.98 11.22 L29.30 10.89 L29.59 10.54 L29.83 10.20 L30.03 9.84 L30.19 9.48 L30.31 9.11 L30.39 8.75 L30.43 8.38 L30.42 8.01 L30.38 7.65 L30.30 7.29 L30.19 6.95 L30.04 6.61 L29.86 6.28 L29.65 5.97 L29.41 5.67 L29.14 5.39 L28.85 5.13 L28.53 4.88 L28.19 4.65 L27.83 4.44 L27.44 4.25 L27.04 4.08 L26.62 3.94 L26.19 3.82 L25.73 3.72 L25.27 3.65 L24.79 3.61 L24.30 3.60 L23.80 3.62 L23.29 3.67 L22.78 3.75 L22.25 3.86 L21.73 4.01 L21.20 4.19 L20.67 4.41 L20.14 4.67 L19.61 4.97 L19.06 5.34 L18.56 5.73 L18.11 6.14 L17.72 6.58 L17.37 7.05 L17.08 7.53 L16.85 8.03 L16.66 8.55 L16.54 9.08 L16.46 9.63 L16.44 10.18 L16.47 10.73 L16.55 11.29 L16.68 11.85 L16.85 12.41 L17.07 12.97 L17.33 13.52 L17.63 14.08 L17.97 14.63 L18.35 15.17 L18.77 15.72 L19.22 16.25 L19.71 16.78 L20.24 17.31 L20.80 17.83 L21.39 18.34 L22.02 18.84 L22.67 19.33 L23.36 19.81 L24.08 20.29 L24.83 20.74 L25.61 21.19 L26.42 21.62 L27.25 22.04 L28.11 22.44 L29.00 22.82 L29.91 23.19 L30.85 23.54 L31.81 23.87 L32.79 24.17 L33.80 24.46 L34.82 24.72 L35.85 24.97 L36.90 25.19 L37.97 25.40 L39.05 25.58 L40.14 25.75 L41.25 25.90 L42.37 26.04 L43.50 26.15 L44.64 26.26 L45.79 26.34 L46.95 26.42 L48.11 26.48 L49.29 26.52 L50.47 26.56 L51.66 26.58 L52.85 26.59 L54.05 26.59 L55.25 26.58 L56.46 26.56 L57.66 26.53 L58.87 26.49 L60.08 26.44 L61.29 26.39 L62.50 26.33 L63.71 26.27 L64.92 26.19 L66.13 26.12 L67.33 26.04 L68.53 25.95 L69.72 25.87 L70.91 25.78 L72.09 25.68 L73.26 25.59 L74.43 25.49 L75.59 25.40 L76.74 25.31 L77.88 25.21 L79.01 25.12 Z"/><path class="tw-hair" d="M60 24.6 C 52 22.8, 46.5 19.5, 44.5 15.5"/><circle cx="25.6" cy="9.4" r="1.15"/></svg>
+          <div class="dock-titles" dir="rtl">
+            <p class="dock-t1">קולו בקודש</p>
+            <p class="dock-t2">מרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
+            <p class="dock-date" lang="en" dir="ltr">Yud-Tes Kislev 5714</p>
+          </div>
+          <svg class="twirl flip" viewBox="0 0 80 30" aria-hidden="true"><path class="tw-body" d="M78.99 24.88 L77.86 24.94 L76.72 25.00 L75.57 25.06 L74.41 25.12 L73.24 25.18 L72.06 25.24 L70.88 25.30 L69.69 25.36 L68.49 25.41 L67.30 25.46 L66.10 25.51 L64.89 25.55 L63.68 25.59 L62.48 25.62 L61.27 25.65 L60.06 25.67 L58.85 25.68 L57.65 25.69 L56.45 25.68 L55.25 25.67 L54.06 25.65 L52.87 25.62 L51.68 25.58 L50.51 25.53 L49.34 25.47 L48.18 25.40 L47.02 25.31 L45.88 25.21 L44.75 25.10 L43.63 24.97 L42.52 24.83 L41.42 24.67 L40.34 24.50 L39.27 24.32 L38.22 24.11 L37.18 23.89 L36.16 23.65 L35.16 23.40 L34.17 23.12 L33.21 22.83 L32.26 22.51 L31.34 22.18 L30.45 21.83 L29.58 21.47 L28.73 21.09 L27.91 20.69 L27.12 20.28 L26.36 19.86 L25.62 19.43 L24.92 18.98 L24.24 18.53 L23.60 18.07 L22.99 17.60 L22.41 17.13 L21.86 16.65 L21.35 16.17 L20.87 15.68 L20.42 15.20 L20.02 14.71 L19.65 14.23 L19.31 13.75 L19.02 13.27 L18.76 12.80 L18.54 12.33 L18.36 11.88 L18.22 11.43 L18.12 10.99 L18.05 10.57 L18.03 10.16 L18.04 9.75 L18.08 9.36 L18.17 8.98 L18.29 8.61 L18.45 8.25 L18.66 7.89 L18.91 7.54 L19.20 7.20 L19.55 6.87 L19.94 6.54 L20.39 6.23 L20.84 5.96 L21.28 5.73 L21.73 5.53 L22.18 5.36 L22.62 5.22 L23.05 5.11 L23.49 5.03 L23.91 4.97 L24.33 4.94 L24.74 4.93 L25.14 4.95 L25.53 4.99 L25.91 5.05 L26.28 5.13 L26.63 5.24 L26.97 5.36 L27.30 5.49 L27.60 5.65 L27.89 5.82 L28.15 6.00 L28.40 6.19 L28.62 6.40 L28.83 6.62 L29.00 6.85 L29.16 7.08 L29.29 7.33 L29.39 7.58 L29.47 7.83 L29.52 8.09 L29.54 8.36 L29.54 8.64 L29.50 8.92 L29.43 9.21 L29.32 9.51 L29.17 9.81 L28.99 10.11 L28.76 10.42 L28.49 10.73 L28.17 11.04 L27.81 11.34 L27.56 11.52 L27.31 11.69 L27.06 11.83 L26.82 11.95 L26.57 12.06 L26.32 12.15 L26.08 12.22 L25.84 12.27 L25.60 12.31 L25.36 12.33 L25.13 12.34 L24.91 12.33 L24.69 12.31 L24.48 12.28 L24.27 12.24 L24.07 12.18 L23.88 12.11 L23.70 12.03 L23.53 11.94 L23.37 11.84 L23.23 11.72 L23.10 11.60 L22.98 11.48 L22.87 11.35 L22.78 11.21 L22.71 11.07 L22.65 10.93 L22.60 10.78 L22.57 10.63 L22.56 10.48 L22.56 10.33 L22.58 10.18 L22.62 10.03 L22.68 9.88 L22.75 9.73 L22.85 9.58 L22.97 9.43 L23.11 9.29 L23.28 9.14 L23.47 9.00 L23.33 8.80 L23.12 8.95 L22.94 9.10 L22.79 9.27 L22.65 9.43 L22.54 9.61 L22.45 9.78 L22.38 9.96 L22.33 10.14 L22.31 10.31 L22.31 10.49 L22.32 10.67 L22.36 10.84 L22.41 11.01 L22.48 11.18 L22.57 11.34 L22.67 11.49 L22.79 11.64 L22.92 11.78 L23.07 11.91 L23.23 12.04 L23.40 12.15 L23.58 12.27 L23.77 12.37 L23.97 12.46 L24.18 12.54 L24.40 12.61 L24.63 12.67 L24.87 12.71 L25.12 12.74 L25.37 12.75 L25.64 12.75 L25.90 12.73 L26.18 12.69 L26.46 12.63 L26.74 12.56 L27.03 12.46 L27.31 12.35 L27.61 12.21 L27.90 12.05 L28.19 11.86 L28.61 11.54 L28.98 11.22 L29.30 10.89 L29.59 10.54 L29.83 10.20 L30.03 9.84 L30.19 9.48 L30.31 9.11 L30.39 8.75 L30.43 8.38 L30.42 8.01 L30.38 7.65 L30.30 7.29 L30.19 6.95 L30.04 6.61 L29.86 6.28 L29.65 5.97 L29.41 5.67 L29.14 5.39 L28.85 5.13 L28.53 4.88 L28.19 4.65 L27.83 4.44 L27.44 4.25 L27.04 4.08 L26.62 3.94 L26.19 3.82 L25.73 3.72 L25.27 3.65 L24.79 3.61 L24.30 3.60 L23.80 3.62 L23.29 3.67 L22.78 3.75 L22.25 3.86 L21.73 4.01 L21.20 4.19 L20.67 4.41 L20.14 4.67 L19.61 4.97 L19.06 5.34 L18.56 5.73 L18.11 6.14 L17.72 6.58 L17.37 7.05 L17.08 7.53 L16.85 8.03 L16.66 8.55 L16.54 9.08 L16.46 9.63 L16.44 10.18 L16.47 10.73 L16.55 11.29 L16.68 11.85 L16.85 12.41 L17.07 12.97 L17.33 13.52 L17.63 14.08 L17.97 14.63 L18.35 15.17 L18.77 15.72 L19.22 16.25 L19.71 16.78 L20.24 17.31 L20.80 17.83 L21.39 18.34 L22.02 18.84 L22.67 19.33 L23.36 19.81 L24.08 20.29 L24.83 20.74 L25.61 21.19 L26.42 21.62 L27.25 22.04 L28.11 22.44 L29.00 22.82 L29.91 23.19 L30.85 23.54 L31.81 23.87 L32.79 24.17 L33.80 24.46 L34.82 24.72 L35.85 24.97 L36.90 25.19 L37.97 25.40 L39.05 25.58 L40.14 25.75 L41.25 25.90 L42.37 26.04 L43.50 26.15 L44.64 26.26 L45.79 26.34 L46.95 26.42 L48.11 26.48 L49.29 26.52 L50.47 26.56 L51.66 26.58 L52.85 26.59 L54.05 26.59 L55.25 26.58 L56.46 26.56 L57.66 26.53 L58.87 26.49 L60.08 26.44 L61.29 26.39 L62.50 26.33 L63.71 26.27 L64.92 26.19 L66.13 26.12 L67.33 26.04 L68.53 25.95 L69.72 25.87 L70.91 25.78 L72.09 25.68 L73.26 25.59 L74.43 25.49 L75.59 25.40 L76.74 25.31 L77.88 25.21 L79.01 25.12 Z"/><path class="tw-hair" d="M60 24.6 C 52 22.8, 46.5 19.5, 44.5 15.5"/><circle cx="25.6" cy="9.4" r="1.15"/></svg>
+        </div>
+        <p class="dock-sub">טרם צורף קובץ שמע</p>
+      </div>
+      <button type="button" class="pick" id="pickBtn">בחירת קובץ</button>
+    </div>
+
+    <div class="dock-row" id="dockReady" hidden>
+      <button type="button" class="play" id="playBtn" aria-pressed="false" aria-label="נגן">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.1v13.8a1 1 0 0 0 1.5.9l11.3-6.9a1 1 0 0 0 0-1.8L9.5 4.2A1 1 0 0 0 8 5.1z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4.5" width="4.5" height="15" rx="1.6"/><rect x="14" y="4.5" width="4.5" height="15" rx="1.6"/></svg>
+      </button>
+      <div class="dock-main">
+        <div class="dock-head" dir="ltr">
+          <svg class="twirl" viewBox="0 0 80 30" aria-hidden="true"><path class="tw-body" d="M78.99 24.88 L77.86 24.94 L76.72 25.00 L75.57 25.06 L74.41 25.12 L73.24 25.18 L72.06 25.24 L70.88 25.30 L69.69 25.36 L68.49 25.41 L67.30 25.46 L66.10 25.51 L64.89 25.55 L63.68 25.59 L62.48 25.62 L61.27 25.65 L60.06 25.67 L58.85 25.68 L57.65 25.69 L56.45 25.68 L55.25 25.67 L54.06 25.65 L52.87 25.62 L51.68 25.58 L50.51 25.53 L49.34 25.47 L48.18 25.40 L47.02 25.31 L45.88 25.21 L44.75 25.10 L43.63 24.97 L42.52 24.83 L41.42 24.67 L40.34 24.50 L39.27 24.32 L38.22 24.11 L37.18 23.89 L36.16 23.65 L35.16 23.40 L34.17 23.12 L33.21 22.83 L32.26 22.51 L31.34 22.18 L30.45 21.83 L29.58 21.47 L28.73 21.09 L27.91 20.69 L27.12 20.28 L26.36 19.86 L25.62 19.43 L24.92 18.98 L24.24 18.53 L23.60 18.07 L22.99 17.60 L22.41 17.13 L21.86 16.65 L21.35 16.17 L20.87 15.68 L20.42 15.20 L20.02 14.71 L19.65 14.23 L19.31 13.75 L19.02 13.27 L18.76 12.80 L18.54 12.33 L18.36 11.88 L18.22 11.43 L18.12 10.99 L18.05 10.57 L18.03 10.16 L18.04 9.75 L18.08 9.36 L18.17 8.98 L18.29 8.61 L18.45 8.25 L18.66 7.89 L18.91 7.54 L19.20 7.20 L19.55 6.87 L19.94 6.54 L20.39 6.23 L20.84 5.96 L21.28 5.73 L21.73 5.53 L22.18 5.36 L22.62 5.22 L23.05 5.11 L23.49 5.03 L23.91 4.97 L24.33 4.94 L24.74 4.93 L25.14 4.95 L25.53 4.99 L25.91 5.05 L26.28 5.13 L26.63 5.24 L26.97 5.36 L27.30 5.49 L27.60 5.65 L27.89 5.82 L28.15 6.00 L28.40 6.19 L28.62 6.40 L28.83 6.62 L29.00 6.85 L29.16 7.08 L29.29 7.33 L29.39 7.58 L29.47 7.83 L29.52 8.09 L29.54 8.36 L29.54 8.64 L29.50 8.92 L29.43 9.21 L29.32 9.51 L29.17 9.81 L28.99 10.11 L28.76 10.42 L28.49 10.73 L28.17 11.04 L27.81 11.34 L27.56 11.52 L27.31 11.69 L27.06 11.83 L26.82 11.95 L26.57 12.06 L26.32 12.15 L26.08 12.22 L25.84 12.27 L25.60 12.31 L25.36 12.33 L25.13 12.34 L24.91 12.33 L24.69 12.31 L24.48 12.28 L24.27 12.24 L24.07 12.18 L23.88 12.11 L23.70 12.03 L23.53 11.94 L23.37 11.84 L23.23 11.72 L23.10 11.60 L22.98 11.48 L22.87 11.35 L22.78 11.21 L22.71 11.07 L22.65 10.93 L22.60 10.78 L22.57 10.63 L22.56 10.48 L22.56 10.33 L22.58 10.18 L22.62 10.03 L22.68 9.88 L22.75 9.73 L22.85 9.58 L22.97 9.43 L23.11 9.29 L23.28 9.14 L23.47 9.00 L23.33 8.80 L23.12 8.95 L22.94 9.10 L22.79 9.27 L22.65 9.43 L22.54 9.61 L22.45 9.78 L22.38 9.96 L22.33 10.14 L22.31 10.31 L22.31 10.49 L22.32 10.67 L22.36 10.84 L22.41 11.01 L22.48 11.18 L22.57 11.34 L22.67 11.49 L22.79 11.64 L22.92 11.78 L23.07 11.91 L23.23 12.04 L23.40 12.15 L23.58 12.27 L23.77 12.37 L23.97 12.46 L24.18 12.54 L24.40 12.61 L24.63 12.67 L24.87 12.71 L25.12 12.74 L25.37 12.75 L25.64 12.75 L25.90 12.73 L26.18 12.69 L26.46 12.63 L26.74 12.56 L27.03 12.46 L27.31 12.35 L27.61 12.21 L27.90 12.05 L28.19 11.86 L28.61 11.54 L28.98 11.22 L29.30 10.89 L29.59 10.54 L29.83 10.20 L30.03 9.84 L30.19 9.48 L30.31 9.11 L30.39 8.75 L30.43 8.38 L30.42 8.01 L30.38 7.65 L30.30 7.29 L30.19 6.95 L30.04 6.61 L29.86 6.28 L29.65 5.97 L29.41 5.67 L29.14 5.39 L28.85 5.13 L28.53 4.88 L28.19 4.65 L27.83 4.44 L27.44 4.25 L27.04 4.08 L26.62 3.94 L26.19 3.82 L25.73 3.72 L25.27 3.65 L24.79 3.61 L24.30 3.60 L23.80 3.62 L23.29 3.67 L22.78 3.75 L22.25 3.86 L21.73 4.01 L21.20 4.19 L20.67 4.41 L20.14 4.67 L19.61 4.97 L19.06 5.34 L18.56 5.73 L18.11 6.14 L17.72 6.58 L17.37 7.05 L17.08 7.53 L16.85 8.03 L16.66 8.55 L16.54 9.08 L16.46 9.63 L16.44 10.18 L16.47 10.73 L16.55 11.29 L16.68 11.85 L16.85 12.41 L17.07 12.97 L17.33 13.52 L17.63 14.08 L17.97 14.63 L18.35 15.17 L18.77 15.72 L19.22 16.25 L19.71 16.78 L20.24 17.31 L20.80 17.83 L21.39 18.34 L22.02 18.84 L22.67 19.33 L23.36 19.81 L24.08 20.29 L24.83 20.74 L25.61 21.19 L26.42 21.62 L27.25 22.04 L28.11 22.44 L29.00 22.82 L29.91 23.19 L30.85 23.54 L31.81 23.87 L32.79 24.17 L33.80 24.46 L34.82 24.72 L35.85 24.97 L36.90 25.19 L37.97 25.40 L39.05 25.58 L40.14 25.75 L41.25 25.90 L42.37 26.04 L43.50 26.15 L44.64 26.26 L45.79 26.34 L46.95 26.42 L48.11 26.48 L49.29 26.52 L50.47 26.56 L51.66 26.58 L52.85 26.59 L54.05 26.59 L55.25 26.58 L56.46 26.56 L57.66 26.53 L58.87 26.49 L60.08 26.44 L61.29 26.39 L62.50 26.33 L63.71 26.27 L64.92 26.19 L66.13 26.12 L67.33 26.04 L68.53 25.95 L69.72 25.87 L70.91 25.78 L72.09 25.68 L73.26 25.59 L74.43 25.49 L75.59 25.40 L76.74 25.31 L77.88 25.21 L79.01 25.12 Z"/><path class="tw-hair" d="M60 24.6 C 52 22.8, 46.5 19.5, 44.5 15.5"/><circle cx="25.6" cy="9.4" r="1.15"/></svg>
+          <div class="dock-titles" dir="rtl">
+            <p class="dock-t1">קולו בקודש</p>
+            <p class="dock-t2">מרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
+            <p class="dock-date" lang="en" dir="ltr">Yud-Tes Kislev 5714</p>
+          </div>
+          <svg class="twirl flip" viewBox="0 0 80 30" aria-hidden="true"><path class="tw-body" d="M78.99 24.88 L77.86 24.94 L76.72 25.00 L75.57 25.06 L74.41 25.12 L73.24 25.18 L72.06 25.24 L70.88 25.30 L69.69 25.36 L68.49 25.41 L67.30 25.46 L66.10 25.51 L64.89 25.55 L63.68 25.59 L62.48 25.62 L61.27 25.65 L60.06 25.67 L58.85 25.68 L57.65 25.69 L56.45 25.68 L55.25 25.67 L54.06 25.65 L52.87 25.62 L51.68 25.58 L50.51 25.53 L49.34 25.47 L48.18 25.40 L47.02 25.31 L45.88 25.21 L44.75 25.10 L43.63 24.97 L42.52 24.83 L41.42 24.67 L40.34 24.50 L39.27 24.32 L38.22 24.11 L37.18 23.89 L36.16 23.65 L35.16 23.40 L34.17 23.12 L33.21 22.83 L32.26 22.51 L31.34 22.18 L30.45 21.83 L29.58 21.47 L28.73 21.09 L27.91 20.69 L27.12 20.28 L26.36 19.86 L25.62 19.43 L24.92 18.98 L24.24 18.53 L23.60 18.07 L22.99 17.60 L22.41 17.13 L21.86 16.65 L21.35 16.17 L20.87 15.68 L20.42 15.20 L20.02 14.71 L19.65 14.23 L19.31 13.75 L19.02 13.27 L18.76 12.80 L18.54 12.33 L18.36 11.88 L18.22 11.43 L18.12 10.99 L18.05 10.57 L18.03 10.16 L18.04 9.75 L18.08 9.36 L18.17 8.98 L18.29 8.61 L18.45 8.25 L18.66 7.89 L18.91 7.54 L19.20 7.20 L19.55 6.87 L19.94 6.54 L20.39 6.23 L20.84 5.96 L21.28 5.73 L21.73 5.53 L22.18 5.36 L22.62 5.22 L23.05 5.11 L23.49 5.03 L23.91 4.97 L24.33 4.94 L24.74 4.93 L25.14 4.95 L25.53 4.99 L25.91 5.05 L26.28 5.13 L26.63 5.24 L26.97 5.36 L27.30 5.49 L27.60 5.65 L27.89 5.82 L28.15 6.00 L28.40 6.19 L28.62 6.40 L28.83 6.62 L29.00 6.85 L29.16 7.08 L29.29 7.33 L29.39 7.58 L29.47 7.83 L29.52 8.09 L29.54 8.36 L29.54 8.64 L29.50 8.92 L29.43 9.21 L29.32 9.51 L29.17 9.81 L28.99 10.11 L28.76 10.42 L28.49 10.73 L28.17 11.04 L27.81 11.34 L27.56 11.52 L27.31 11.69 L27.06 11.83 L26.82 11.95 L26.57 12.06 L26.32 12.15 L26.08 12.22 L25.84 12.27 L25.60 12.31 L25.36 12.33 L25.13 12.34 L24.91 12.33 L24.69 12.31 L24.48 12.28 L24.27 12.24 L24.07 12.18 L23.88 12.11 L23.70 12.03 L23.53 11.94 L23.37 11.84 L23.23 11.72 L23.10 11.60 L22.98 11.48 L22.87 11.35 L22.78 11.21 L22.71 11.07 L22.65 10.93 L22.60 10.78 L22.57 10.63 L22.56 10.48 L22.56 10.33 L22.58 10.18 L22.62 10.03 L22.68 9.88 L22.75 9.73 L22.85 9.58 L22.97 9.43 L23.11 9.29 L23.28 9.14 L23.47 9.00 L23.33 8.80 L23.12 8.95 L22.94 9.10 L22.79 9.27 L22.65 9.43 L22.54 9.61 L22.45 9.78 L22.38 9.96 L22.33 10.14 L22.31 10.31 L22.31 10.49 L22.32 10.67 L22.36 10.84 L22.41 11.01 L22.48 11.18 L22.57 11.34 L22.67 11.49 L22.79 11.64 L22.92 11.78 L23.07 11.91 L23.23 12.04 L23.40 12.15 L23.58 12.27 L23.77 12.37 L23.97 12.46 L24.18 12.54 L24.40 12.61 L24.63 12.67 L24.87 12.71 L25.12 12.74 L25.37 12.75 L25.64 12.75 L25.90 12.73 L26.18 12.69 L26.46 12.63 L26.74 12.56 L27.03 12.46 L27.31 12.35 L27.61 12.21 L27.90 12.05 L28.19 11.86 L28.61 11.54 L28.98 11.22 L29.30 10.89 L29.59 10.54 L29.83 10.20 L30.03 9.84 L30.19 9.48 L30.31 9.11 L30.39 8.75 L30.43 8.38 L30.42 8.01 L30.38 7.65 L30.30 7.29 L30.19 6.95 L30.04 6.61 L29.86 6.28 L29.65 5.97 L29.41 5.67 L29.14 5.39 L28.85 5.13 L28.53 4.88 L28.19 4.65 L27.83 4.44 L27.44 4.25 L27.04 4.08 L26.62 3.94 L26.19 3.82 L25.73 3.72 L25.27 3.65 L24.79 3.61 L24.30 3.60 L23.80 3.62 L23.29 3.67 L22.78 3.75 L22.25 3.86 L21.73 4.01 L21.20 4.19 L20.67 4.41 L20.14 4.67 L19.61 4.97 L19.06 5.34 L18.56 5.73 L18.11 6.14 L17.72 6.58 L17.37 7.05 L17.08 7.53 L16.85 8.03 L16.66 8.55 L16.54 9.08 L16.46 9.63 L16.44 10.18 L16.47 10.73 L16.55 11.29 L16.68 11.85 L16.85 12.41 L17.07 12.97 L17.33 13.52 L17.63 14.08 L17.97 14.63 L18.35 15.17 L18.77 15.72 L19.22 16.25 L19.71 16.78 L20.24 17.31 L20.80 17.83 L21.39 18.34 L22.02 18.84 L22.67 19.33 L23.36 19.81 L24.08 20.29 L24.83 20.74 L25.61 21.19 L26.42 21.62 L27.25 22.04 L28.11 22.44 L29.00 22.82 L29.91 23.19 L30.85 23.54 L31.81 23.87 L32.79 24.17 L33.80 24.46 L34.82 24.72 L35.85 24.97 L36.90 25.19 L37.97 25.40 L39.05 25.58 L40.14 25.75 L41.25 25.90 L42.37 26.04 L43.50 26.15 L44.64 26.26 L45.79 26.34 L46.95 26.42 L48.11 26.48 L49.29 26.52 L50.47 26.56 L51.66 26.58 L52.85 26.59 L54.05 26.59 L55.25 26.58 L56.46 26.56 L57.66 26.53 L58.87 26.49 L60.08 26.44 L61.29 26.39 L62.50 26.33 L63.71 26.27 L64.92 26.19 L66.13 26.12 L67.33 26.04 L68.53 25.95 L69.72 25.87 L70.91 25.78 L72.09 25.68 L73.26 25.59 L74.43 25.49 L75.59 25.40 L76.74 25.31 L77.88 25.21 L79.01 25.12 Z"/><path class="tw-hair" d="M60 24.6 C 52 22.8, 46.5 19.5, 44.5 15.5"/><circle cx="25.6" cy="9.4" r="1.15"/></svg>
+        </div>
+        <div class="seek" dir="ltr">
+          <span class="t" id="tCur">0:00</span>
+          <div class="wave" id="wave">
+            <svg aria-hidden="true"><path class="w-track" id="wTrack"/><path class="w-active" id="wActive"/><circle class="w-stop" id="wStop" r="2"/><rect class="w-thumb" id="wThumb" width="3" height="16" rx="1.5"/></svg>
+            <input type="range" id="seekRange" min="0" max="1000" step="1" value="0" aria-label="מיקום בהקלטה">
+          </div>
+          <span class="t t-dur" id="tDur">0:00</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="dock-msg" id="dockMsg" role="status" hidden></p>
+  </section>
+</div>
+</div>
+
 
 <!-- ================= ORIGINAL (YIDDISH) ================= -->
 <article class="sheet" id="view-yi" role="tabpanel" aria-labelledby="tab-yi" dir="rtl" lang="yi">
@@ -700,47 +773,6 @@ html.locked, html.locked body{overflow:hidden}
 </aside>
 </main>
 
-<!-- ================= AUDIO DOCK ================= -->
-<div class="dock-wrap">
-  <section class="dock glass" id="dock" dir="rtl" lang="he" data-state="empty" aria-label="ההקלטה המקורית">
-    <audio id="rec" preload="metadata"></audio>
-    <input type="file" id="recFile" accept="audio/*" hidden>
-
-    <div class="dock-row" id="dockEmpty">
-      <div class="tile" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg>
-      </div>
-      <div class="dock-main">
-        <div class="dock-title" data-he="ההקלטה המקורית" data-en="Original recording">ההקלטה המקורית</div>
-        <div class="dock-sub" data-he="טרם צורף קובץ שמע" data-en="No audio file attached yet">טרם צורף קובץ שמע</div>
-      </div>
-      <button type="button" class="pick" id="pickBtn" data-he="בחירת קובץ" data-en="Choose file">בחירת קובץ</button>
-    </div>
-
-    <div class="dock-row" id="dockReady" hidden>
-      <button type="button" class="play" id="playBtn" aria-pressed="false" aria-label="נגן" data-he-label="נגן" data-en-label="Play">
-        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.1v13.8a1 1 0 0 0 1.5.9l11.3-6.9a1 1 0 0 0 0-1.8L9.5 4.2A1 1 0 0 0 8 5.1z"/></svg>
-        <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4.5" width="4.5" height="15" rx="1.6"/><rect x="14" y="4.5" width="4.5" height="15" rx="1.6"/></svg>
-      </button>
-      <div class="dock-main">
-        <div class="dock-meta">
-          <div class="dock-title"><span data-he="ההקלטה המקורית" data-en="Original recording">ההקלטה המקורית</span><small data-he='י"ט כסלו תשי"ד' data-en="Yud-Tes Kislev 5714">י"ט כסלו תשי"ד</small></div>
-        </div>
-        <div class="seek" dir="ltr">
-          <span class="t" id="tCur">0:00</span>
-          <div class="wave" id="wave">
-            <svg aria-hidden="true"><path class="w-track" id="wTrack"/><path class="w-active" id="wActive"/><circle class="w-stop" id="wStop" r="2"/><rect class="w-thumb" id="wThumb" width="3" height="16" rx="1.5"/></svg>
-            <input type="range" id="seekRange" min="0" max="1000" step="1" value="0" aria-label="מיקום בהקלטה" data-he-label="מיקום בהקלטה" data-en-label="Position in the recording">
-          </div>
-          <span class="t t-dur" id="tDur">0:00</span>
-        </div>
-      </div>
-    </div>
-
-    <p class="dock-msg" id="dockMsg" role="status" hidden></p>
-  </section>
-</div>
-
 <script>
 (function(){
   /* The recording: recording.mp3 (or .mp4 / .m4a / .wav) uploaded next to index.html. */
@@ -768,15 +800,8 @@ html.locked, html.locked body{overflow:hidden}
     thumb.style.transform = 'translateX(' + b.offsetLeft + 'px)';
   }
 
-  function setUiLang(l){
-    var dock = document.getElementById('dock');
-    dock.dir = l === 'en' ? 'ltr' : 'rtl';
-    dock.lang = l;
-    dock.querySelectorAll('[data-he]').forEach(function(el){ el.textContent = el.getAttribute('data-' + l); });
-    dock.querySelectorAll('[data-he-label]').forEach(function(el){ el.setAttribute('aria-label', el.getAttribute('data-' + l + '-label')); });
-    dock.setAttribute('aria-label', l === 'en' ? 'Original recording' : 'ההקלטה המקורית');
-    syncPlayLabel();
-  }
+  function setUiLang(){ syncPlayLabel(); }   /* the player stays in Hebrew on every language page */
+
 
   /* keep the reader on the same paragraph when the language changes */
   function anchor(){
@@ -858,7 +883,7 @@ html.locked, html.locked body{overflow:hidden}
   var msg = document.getElementById('dockMsg');
   var objUrl = null, amp = 0, phase = 0, last = 0, raf = 0;
 
-  function uiLang(){ return cur === 'en' ? 'en' : 'he'; }
+  function uiLang(){ return 'he'; }
   function say(he, en){
     if (!he){ msg.hidden = true; msg.textContent = ''; return; }
     msg.textContent = uiLang() === 'en' ? en : he; msg.hidden = false;
@@ -958,7 +983,7 @@ html.locked, html.locked body{overflow:hidden}
   /* ---------- welcome box ---------- */
   (function(){
     var w = document.getElementById('welcome'), card = document.getElementById('w-card');
-    var behind = [document.querySelector('.mast'), document.querySelector('.switch-wrap'), document.querySelector('.page'), document.querySelector('.dock-wrap')];
+    var behind = [document.querySelector('.mast'), document.querySelector('.switch-wrap'), document.querySelector('.page'), document.getElementById('dockSpot')];
     var seen = false;
     try { seen = sessionStorage.getItem('rizhin-entered') === '1'; } catch(e){}
     if (seen) return;
