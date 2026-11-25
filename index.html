@@ -1003,8 +1003,18 @@ html.locked, html.locked body{overflow:hidden}
     try { if (localStorage.getItem('rizhin-view') === 'en' || (location.hash || '') === '#english') startLang = 'en'; } catch(e){}
     if (startLang === 'en') setLang('en');
     var logo = document.getElementById('logo'), wl = document.getElementById('w-logo');
-    function copyLogo(){ if (logo && logo.getAttribute('src') && !logo.hidden){ wl.src = logo.src; wl.hidden = false; var d = document.querySelector('.w-seal .w-dot'); if (d) d.hidden = true; } }
-    copyLogo(); setTimeout(copyLogo, 600); setTimeout(copyLogo, 1500);
+    /* load the logo for the seal directly, however long it takes, instead of copying it from the plaque */
+    (function(){
+      var exts = ["png", "svg", "webp", "jpg", "jpeg", "PNG", "SVG", "JPG"], i = 0;
+      function show(src){ wl.src = src; wl.hidden = false; var d = document.querySelector('.w-seal .w-dot'); if (d) d.hidden = true; }
+      (function next(){
+        if (i >= exts.length) return;                 /* no logo uploaded: the seal keeps its small gold diamond */
+        var src = 'logo.' + exts[i++], probe = new Image();
+        probe.onload = function(){ show(src); };
+        probe.onerror = next;
+        probe.src = src;
+      })();
+    })();
     behind.forEach(function(el){ if (el) el.setAttribute('inert', ''); });
     document.documentElement.classList.add('locked');
     w.hidden = false;
