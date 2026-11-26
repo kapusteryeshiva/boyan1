@@ -3,19 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* Runs before the page is drawn: pick the language page and whether the welcome box shows, so nothing switches after it appears. */
+(function(){
+  var d = document.documentElement, names = {yiddish:'yi', hebrew:'he', english:'en'};
+  var v = names[(location.hash || '').slice(1)];
+  if (!v){ try { v = localStorage.getItem('rizhin-view'); } catch(e){} }
+  if (v !== 'yi' && v !== 'he' && v !== 'en') v = 'yi';
+  d.setAttribute('data-view', v);
+  var seen = false;
+  try { seen = sessionStorage.getItem('rizhin-entered') === '1'; } catch(e){}
+  if (!seen){ d.classList.add('w-on'); d.classList.add('locked'); }
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>מרכז להוצאות ספרי חסידות לבית רוזין</title>
 <meta name="description" content='אמרי קודש ממרן אדמו"ר הקוה"ט מבאיאן זי"ע, י"ט כסלו תשי"ד, במקור באידיש ובתרגום ללשון הקודש ולאנגלית, עם ההקלטה המקורית.'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
-/* Your own fonts. Upload them to a folder named "fonts" next to index.html:
-     fonts/text.woff2  (or .woff / .ttf / .otf)   – the Hebrew and Yiddish text
-     fonts/title.woff2 (or .woff / .ttf / .otf)   – the site name, the date and the plaque name
-   Any file that isn't there is skipped and the built-in font is used. */
-@font-face{font-family:"Site Text"; font-weight:400; font-display:swap;
-  src:url("fonts/text.woff2") format("woff2"), url("fonts/text.woff") format("woff"), url("fonts/text.ttf") format("truetype"), url("fonts/text.otf") format("opentype")}
-@font-face{font-family:"Site Title"; font-weight:400; font-display:swap;
-  src:url("fonts/title.woff2") format("woff2"), url("fonts/title.woff") format("woff"), url("fonts/title.ttf") format("truetype"), url("fonts/title.otf") format("opentype")}
-
 /* Layout: a quiet brown masthead, a glass language switch resting on its lower edge,
    one paper sheet for the text, and a glass audio dock at the bottom. Grey, brown, gold. */
 :root{
@@ -28,8 +34,8 @@
   --mast-bg:#2d2520; --mast-fg:#efeae1; --mast-gold:#b89c5e;
   --focus:#6b4f12;
 
-  --f-he:"Site Text","Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
-  --f-title:"Site Title","Site Text","Frank Ruhl Libre","David Libre","Times New Roman",serif;
+  --f-he:"Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
+  --f-title:"Frank Ruhl Libre","David Libre","Times New Roman",serif;
   --f-ui:"Heebo","Arimo","Arial",sans-serif;
   --f-en-d:"Instrument Serif","Frank Ruhl Libre",Georgia,serif;
   --f-en:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -186,9 +192,9 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
   padding:clamp(44px, 7vw, 68px) clamp(30px, 6.5vw, 60px) clamp(36px, 5vw, 52px);
   box-shadow:0 1px 2px var(--glass-lo), 0 30px 50px -36px var(--shadow);
   display:flex; flex-direction:column; gap:clamp(24px, 4vw, 36px);
-  animation:rise .35s var(--ease);
 }
 @keyframes rise{from{opacity:.4}}
+.sheet.swap{animation:rise .35s var(--ease)}
 /* book-page border: double gold rule with diamonds at the corners */
 .sheet::before,.sheet::after{content:""; position:absolute; pointer-events:none; border:1px solid var(--gold-soft)}
 .sheet::before{inset:12px; opacity:.4}
@@ -508,6 +514,40 @@ html.locked, html.locked body{overflow:hidden}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --w-logo-f:brightness(2.6) saturate(.8) } }
 :root[data-theme="dark"]{ --w-logo-f:brightness(2.6) saturate(.8) }
 
+/* ---------- contact: Apple-style capsule buttons under the plaque ---------- */
+:root{--cap-fill:rgba(120,120,128,.12); --cap-fill-hover:rgba(120,120,128,.18); --cap-tint:#8a6a28; --cap-solid:#8a6a28; --cap-solid-ink:#ffffff}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --cap-fill:rgba(120,120,128,.24); --cap-fill-hover:rgba(120,120,128,.32); --cap-tint:#e0bd72; --cap-solid:#e0bd72; --cap-solid-ink:#1f1708 } }
+:root[data-theme="dark"]{ --cap-fill:rgba(120,120,128,.24); --cap-fill-hover:rgba(120,120,128,.32); --cap-tint:#e0bd72; --cap-solid:#e0bd72; --cap-solid-ink:#1f1708 }
+.contact{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:28px auto 0; max-width:32rem}
+.cap{
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  height:44px; padding:0 20px; border-radius:999px;
+  font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Heebo", Arial, sans-serif;
+  font-size:16px; font-weight:600; letter-spacing:-.015em; text-decoration:none; white-space:nowrap;
+  background:var(--cap-fill); color:var(--cap-tint);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .3s cubic-bezier(.3,1.5,.5,1), background .2s ease, filter .2s ease;
+}
+.cap svg{width:18px; height:18px; flex:none; fill:currentColor}
+.cap svg[fill="none"]{fill:none}
+.cap:hover{background:var(--cap-fill-hover)}
+.cap:active{transform:scale(.95)}
+.cap:focus-visible{outline:3px solid var(--cap-tint); outline-offset:2px}
+.cap.solid{background:var(--cap-solid); color:var(--cap-solid-ink)}
+.cap.solid:hover{filter:brightness(1.07)}
+@media (max-width:400px){ .cap{padding:0 16px; font-size:14px} }
+
+/* ---------- first frame: correct language page, tab and welcome box before the script runs ---------- */
+html[data-view="yi"] #view-he, html[data-view="yi"] #view-en,
+html[data-view="he"] #view-yi, html[data-view="he"] #view-en,
+html[data-view="en"] #view-yi, html[data-view="en"] #view-he{display:none!important}
+html[data-view="yi"] #view-yi, html[data-view="he"] #view-he, html[data-view="en"] #view-en{display:flex!important}
+.switch:not(.ready) button{color:var(--ink)}
+html[data-view="yi"] .switch:not(.ready) #tab-yi,
+html[data-view="he"] .switch:not(.ready) #tab-he,
+html[data-view="en"] .switch:not(.ready) #tab-en{background:var(--primary); color:var(--on-primary)}
+html.w-on #welcome{display:flex!important}
+
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none!important; transition:none!important}
 }
@@ -529,6 +569,16 @@ html.locked, html.locked body{overflow:hidden}
     </div>
   </div>
 </div>
+
+<script>
+/* switch the welcome box to English at once when the English page is the one opening */
+(function(){
+  if (document.documentElement.getAttribute('data-view') !== 'en') return;
+  var card = document.getElementById('w-card'); card.lang = 'en'; card.dir = 'ltr';
+  card.querySelectorAll('[data-he]').forEach(function(el){ el.innerHTML = el.getAttribute('data-en'); });
+  document.getElementById('w-lang').lang = 'he';
+})();
+</script>
 
 <header class="mast" dir="rtl" lang="he">
   <div class="mast-in">
@@ -775,6 +825,11 @@ html.locked, html.locked body{overflow:hidden}
     </div>
   </div>
 </aside>
+<nav class="contact" dir="ltr" lang="en" aria-label="Contact">
+  <a class="cap" href="mailto:kopishnitz@gmail.com" title="kopishnitz@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.6 5h14.8c1.1 0 1.9.7 2.1 1.7L12.9 12.3a1.7 1.7 0 0 1-1.8 0L2.5 6.7C2.7 5.7 3.5 5 4.6 5z"/><path d="M2.4 8.6l7.9 5.2a3.1 3.1 0 0 0 3.4 0l7.9-5.2v8.3c0 1.2-1 2.1-2.2 2.1H4.6c-1.2 0-2.2-.9-2.2-2.1z"/></svg><span>Email</span></a>
+  <a class="cap" href="tel:+13473095678" title="+1 347-309-5678"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 2.6c.7-.2 1.4.1 1.8.7l2 3.3c.4.6.3 1.4-.2 1.9l-1.6 1.5a.8.8 0 0 0-.1 1c1.1 1.8 2.6 3.3 4.4 4.4.3.2.7.2 1-.1l1.5-1.6c.5-.5 1.3-.6 1.9-.2l3.3 2c.6.4.9 1.1.7 1.8-.6 2.2-2.6 3.8-5 3.5C10.2 20.1 3.9 13.8 3.1 7.6c-.3-2.4 1.3-4.4 3.5-5z"/></svg><span>Call</span></a>
+  <a class="cap solid" href="full.html"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9.1"/><path d="M3.2 12h17.6M12 2.9c2.6 2.6 3.9 5.6 3.9 9.1s-1.3 6.5-3.9 9.1C9.4 18.5 8.1 15.5 8.1 12S9.4 5.5 12 2.9z"/></svg><span>Full Site</span></a>
+</nav>
 </main>
 
 <script>
@@ -822,7 +877,10 @@ html.locked, html.locked body{overflow:hidden}
     opts = opts || {};
     if (!NAMES[v]) return;
     var a = v !== cur ? anchor() : null;
+    var changed = v !== cur;
     cur = v;
+    document.documentElement.setAttribute('data-view', v);
+    if (changed && !opts.silent){ var pv = panel(v); pv.classList.remove('swap'); void pv.offsetWidth; pv.classList.add('swap'); }
     ['yi','he','en'].forEach(function(k){
       panel(k).hidden = k !== v;
       var t = tab(k);
@@ -999,9 +1057,8 @@ html.locked, html.locked body{overflow:hidden}
       });
       document.getElementById('w-lang').lang = l === 'en' ? 'he' : 'en';
     }
-    var startLang = 'he';
-    try { if (localStorage.getItem('rizhin-view') === 'en' || (location.hash || '') === '#english') startLang = 'en'; } catch(e){}
-    if (startLang === 'en') setLang('en');
+    var startLang = document.documentElement.getAttribute('data-view') === 'en' ? 'en' : 'he';
+    if (startLang === 'en' && card.lang !== 'en') setLang('en');
     var logo = document.getElementById('logo'), wl = document.getElementById('w-logo');
     /* load the logo for the seal directly, however long it takes, instead of copying it from the plaque */
     (function(){
@@ -1032,7 +1089,7 @@ html.locked, html.locked body{overflow:hidden}
       behind.forEach(function(el){ if (el) el.removeAttribute('inert'); });
       document.documentElement.classList.remove('locked');
       w.classList.add('out');
-      setTimeout(function(){ w.hidden = true; }, reduce ? 0 : 480);
+      setTimeout(function(){ w.hidden = true; document.documentElement.classList.remove('w-on'); }, reduce ? 0 : 480);
       var t = document.getElementById('tab-' + cur); if (t) try { t.focus({preventScroll:true}); } catch(e){}
     });
   })();
