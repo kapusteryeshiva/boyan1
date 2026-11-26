@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7a1a37">
+<title>מרכז להוצאות ספרי חסידות לבית רוזין</title>
+<meta name="description" content='מרכז להוצאות ספרי חסידות לבית רוזין: אודות המרכז ומייסדו, חנות, מאמרים, ואמרי קודש ממרן אדמו"ר הקוה"ט מבאיאן זי"ע.'>
+<link rel="icon" id="favicon">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<script>
+/* ================= THE STORE =================
+   Paste the link to your Zeffy store between the quotes, for example
+   "https://www.zeffy.com/en-US/ticketing/your-store-name"
+   (In Zeffy: Campaigns → your store → Share → copy the link.)
+   While it is empty, the Store page shows a "to fill in" box. */
+var ZEFFY_STORE = "";
+
+/* the merkaz's logo, built into this page (from logo.png in the repo, resized), so it shows without a separate file */
+var LOGO = "data:image/png;base64,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";
+document.getElementById('favicon').href = LOGO;
+
+/* set the language before the page paints, so it never flashes the wrong one */
+(function(){
+  try {
+    var l = localStorage.getItem('rizhin-lang');
+    if (!l && localStorage.getItem('rizhin-view') === 'en') l = 'en';
+    if (l === 'en'){ var h = document.documentElement; h.setAttribute('data-lang', 'en'); h.lang = 'en'; h.dir = 'ltr'; }
+  } catch(e){}
+})();
+</script>
+
+<style>
+/* Elegant and warm: a deep wine header with WhatsApp-style status circles that hold the photos,
+   white cards with soft layered shadows and Apple-style icon tiles, framed photos on the home page,
+   a Liquid Glass pill tab bar, and Material 3 Expressive shapes and spring motion.
+   Colours: deep wine, warm gold and cream, with terracotta and sage. */
+:root{
+  --bg:#f8f2ea; --card:#ffffff; --card-2:#fbf6f0;
+  --ink:#24171a; --ink-2:#6e5f61; --ink-3:#9a8b8c; --line:rgba(60,25,30,.08);
+  --wine:#8c1f40; --on-wine:#ffffff; --wine-c:#f8e4e8; --on-wine-c:#7a1a37;
+  --gold:#b88a3c; --gold-2:#dcb56a; --on-gold:#2c1f08; --gold-c:#fbf0da; --on-gold-c:#7a5718;
+  --rose-c:#fbe7df; --on-rose-c:#8a3b26;
+  --sage-c:#e8f1e6; --on-sage-c:#365c40;
+  --frame:#ffffff; --mat:#fbf6ee;
+  --sh-card:0 1px 1px rgba(60,20,30,.04), 0 4px 10px -4px rgba(60,20,30,.08), 0 22px 44px -26px rgba(90,25,40,.3);
+  --sh-lift:0 2px 4px rgba(60,20,30,.06), 0 12px 24px -10px rgba(60,20,30,.16), 0 34px 60px -30px rgba(90,25,40,.4);
+  --lg-tint:rgba(255,255,255,.55); --lg-lens:rgba(255,255,255,.92); --lg-hi:rgba(255,255,255,.95); --lg-lo:rgba(255,255,255,.4); --lg-edge:rgba(255,255,255,.55);
+  --focus:#8c1f40;
+
+  --f-he:"Frank Ruhl Libre","David Libre","David","Times New Roman",serif;
+  --f-ui:"Heebo",-apple-system,"SF Pro Text","Arimo","Arial",sans-serif;
+  --f-en:"Source Serif 4",Georgia,serif;
+  --f-body:var(--f-he);
+
+  --spring:cubic-bezier(.34,1.56,.44,1);
+  --spring-soft:cubic-bezier(.3,1.3,.5,1);
+  --ease:cubic-bezier(.2,0,0,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#140c0e; --card:#1f1517; --card-2:#281c1f;
+    --ink:#f6eeea; --ink-2:#b9a8a9; --ink-3:#8a7a7c; --line:rgba(255,255,255,.08);
+    --wine:#ee8fa9; --on-wine:#2a0812; --wine-c:rgba(238,143,169,.14); --on-wine-c:#f6c6d3;
+    --gold:#e2bf78; --gold-c:rgba(226,191,120,.14); --on-gold-c:#f1d9a6;
+    --rose-c:rgba(236,150,120,.13); --on-rose-c:#f4c2ae;
+    --sage-c:rgba(150,200,160,.12); --on-sage-c:#bfdcc5;
+    --frame:#2b2023; --mat:#211719;
+    --sh-card:0 1px 1px rgba(0,0,0,.3), 0 4px 10px -4px rgba(0,0,0,.4), 0 22px 44px -26px rgba(0,0,0,.8);
+    --sh-lift:0 2px 4px rgba(0,0,0,.35), 0 12px 24px -10px rgba(0,0,0,.5), 0 34px 60px -30px rgba(0,0,0,.9);
+    --lg-tint:rgba(30,31,40,.55); --lg-lens:rgba(255,255,255,.16); --lg-hi:rgba(255,255,255,.3); --lg-lo:rgba(255,255,255,.07); --lg-edge:rgba(255,255,255,.15);
+    --focus:#f6c6d3;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#140c0e; --card:#1f1517; --card-2:#281c1f;
+  --ink:#f6eeea; --ink-2:#b9a8a9; --ink-3:#8a7a7c; --line:rgba(255,255,255,.08);
+  --wine:#ee8fa9; --on-wine:#2a0812; --wine-c:rgba(238,143,169,.14); --on-wine-c:#f6c6d3;
+  --gold:#e2bf78; --gold-c:rgba(226,191,120,.14); --on-gold-c:#f1d9a6;
+  --rose-c:rgba(236,150,120,.13); --on-rose-c:#f4c2ae;
+  --sage-c:rgba(150,200,160,.12); --on-sage-c:#bfdcc5;
+  --frame:#2b2023; --mat:#211719;
+  --sh-card:0 1px 1px rgba(0,0,0,.3), 0 4px 10px -4px rgba(0,0,0,.4), 0 22px 44px -26px rgba(0,0,0,.8);
+  --sh-lift:0 2px 4px rgba(0,0,0,.35), 0 12px 24px -10px rgba(0,0,0,.5), 0 34px 60px -30px rgba(0,0,0,.9);
+  --lg-tint:rgba(30,31,40,.55); --lg-lens:rgba(255,255,255,.16); --lg-hi:rgba(255,255,255,.3); --lg-lo:rgba(255,255,255,.07); --lg-edge:rgba(255,255,255,.15);
+  --focus:#f6c6d3;
+  color-scheme:dark;
+}
+:root[data-lang="en"]{--f-body:var(--f-en)}
+:root[data-lang="he"] [data-l="en"], :root[data-lang="en"] [data-l="he"]{display:none!important}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{background:var(--bg); color:var(--ink); font-family:var(--f-ui); font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2.5px solid var(--focus);outline-offset:3px}
+html.locked, html.locked body{overflow:hidden}
+:root[dir="rtl"] .flip-rtl{transform:scaleX(-1)}
+/* Apple-style glyphs: filled, rounded (drawn after SF Symbols) */
+.g{width:22px; height:22px; fill:currentColor; flex:none}
+.s{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none}
+
+/* Apple-style icon tile: a squircle with a soft gradient, a top highlight and a shadow */
+.ic{position:relative; flex:none; width:46px; height:46px; border-radius:13px; display:grid; place-items:center; color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.12), 0 6px 14px -6px rgba(70,20,30,.45);
+  transition:border-radius .45s var(--spring), transform .45s var(--spring)}
+.ic::after{content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(180deg, rgba(255,255,255,.22), transparent 55%); pointer-events:none}
+.ic .g{position:relative; z-index:1; width:24px; height:24px}
+.ic.wine{background:linear-gradient(180deg, #b23a5d, #7a1734)}
+.ic.gold{background:linear-gradient(180deg, #e8c77f, #b88a3c)}
+.ic.rose{background:linear-gradient(180deg, #e08a68, #b0553a)}
+.ic.sage{background:linear-gradient(180deg, #86a891, #577a63)}
+.ic.plum{background:linear-gradient(180deg, #a2618f, #6e3762)}
+.card:hover .ic{border-radius:23px}
+
+/* liquid glass: a specular rim that catches light at the top corner */
+.lg{position:relative; isolation:isolate}
+.lg::before{content:""; position:absolute; inset:0; z-index:3; border-radius:inherit; padding:1px; pointer-events:none;
+  background:linear-gradient(135deg, var(--lg-hi), transparent 32%, transparent 68%, var(--lg-edge));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+          mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)}
+
+/* ---------- top: deep wine to warm terracotta, the kloiz photo faintly in it, a warm light at one corner ---------- */
+.top{position:relative; overflow:hidden; color:#fff; isolation:isolate; background:linear-gradient(160deg, #4e0d22 0%, #7d1b3a 48%, #a8443c 100%)}
+.top-bg{position:absolute; inset:0; z-index:-1}
+.top-bg img{width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block; mix-blend-mode:soft-light; opacity:.55}
+.top-bg::after{content:""; position:absolute; inset:0; background:radial-gradient(90% 70% at 85% 0%, rgba(240,200,120,.3), transparent 60%), linear-gradient(180deg, transparent 50%, rgba(40,6,16,.35))}
+.top-in{max-width:52rem; margin:0 auto; padding:calc(env(safe-area-inset-top, 0px) + 12px) max(16px, env(safe-area-inset-right, 0px)) 54px max(16px, env(safe-area-inset-left, 0px)); display:flex; flex-direction:column; gap:16px}
+.topbar{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.me{display:flex; align-items:center; gap:10px}
+.av{position:relative; flex:none; width:42px; height:42px; border-radius:50%; padding:2px; background:linear-gradient(150deg, #ecd9ab, #b08d4a)}
+.av span{display:grid; place-items:center; width:100%; height:100%; border-radius:50%; background:#fff; border:2px solid #6e1531}
+.av img{width:72%; height:auto}
+.me .bsd{font-family:var(--f-he); font-size:.95rem; color:rgba(255,255,255,.8)}
+.lang-pill{display:inline-flex; align-items:center; gap:7px; height:34px; padding:0 14px; border-radius:999px; border:0; color:#fff;
+  font-family:var(--f-ui); font-size:.82rem; font-weight:600;
+  background:rgba(255,255,255,.12); -webkit-backdrop-filter:blur(14px) saturate(1.8); backdrop-filter:blur(14px) saturate(1.8);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.4), inset 0 -1px 1px rgba(255,255,255,.08), 0 6px 16px -8px rgba(0,0,0,.5);
+  transition:transform .45s var(--spring), border-radius .4s var(--spring), background .2s var(--ease)}
+.lang-pill:hover{background:rgba(255,255,255,.2)}
+.lang-pill:active{transform:scale(.92); border-radius:12px}
+.lang-pill .s{width:16px; height:16px; stroke-width:1.7}
+.titles{display:flex; flex-direction:column; align-items:center; text-align:center; gap:2px; margin-top:4px}
+.kicker{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(1.05rem, 3.6vw, 1.35rem); letter-spacing:.04em; color:rgba(255,255,255,.86)}
+.big{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(3rem, 13vw, 5.6rem); line-height:1.02; letter-spacing:.01em; text-shadow:0 10px 30px rgba(0,0,0,.35)}
+.rule{display:flex; align-items:center; gap:10px; width:min(200px, 55%); margin:8px 0 4px}
+.rule::before,.rule::after{content:""; flex:1; height:1px; background:linear-gradient(90deg, transparent, #d4b678)}
+.rule::after{background:linear-gradient(270deg, transparent, #d4b678)}
+.rule i{width:5px; height:5px; background:#d4b678; transform:rotate(45deg)}
+.tag{margin:0; max-width:30rem; font-family:var(--f-body); font-size:clamp(1rem, 3vw, 1.1rem); color:rgba(255,255,255,.78); text-wrap:balance}
+:root[data-lang="en"] .tag{font-style:italic}
+
+/* status circles, WhatsApp-style: a segmented ring, one segment per photo; it turns grey once seen */
+.status{display:flex; gap:clamp(12px, 4vw, 24px); justify-content:safe center; margin-inline:-16px; padding-inline:16px !important; margin-top:10px; overflow-x:auto; scrollbar-width:none; padding:4px 2px}
+.status::-webkit-scrollbar{display:none}
+.st{flex:none; display:flex; flex-direction:column; align-items:center; gap:7px; width:78px; border:0; background:none; padding:0; color:#fff; text-decoration:none;
+  font-family:var(--f-ui); font-size:.78rem; font-weight:600; text-align:center; line-height:1.25}
+.st .c{position:relative; width:72px; height:72px; transition:transform .5s var(--spring)}
+.st svg.ring{position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg); overflow:visible}
+.st svg.ring circle{fill:none; stroke:#f0cf86; stroke-width:2.6; stroke-linecap:round}
+.st.seen svg.ring circle{stroke:rgba(255,255,255,.35)}
+.st .ph{position:absolute; inset:6px; border-radius:50%; overflow:hidden; background:#5a1428; box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
+.st .ph img{width:100%; height:100%; object-fit:cover; display:block}
+.st .ph.logo{display:grid; place-items:center; background:#fff} .st .ph.logo img{width:72%; height:auto; object-fit:contain}
+.st .ph.glyph{display:grid; place-items:center; background:linear-gradient(180deg, #d9bb7c, #a8843f); color:#2a2010}
+.st .ph.glyph .g{width:28px; height:28px}
+.st:hover .c{transform:scale(1.06)}
+.st:active .c{transform:scale(.92)}
+.st small{display:block; font-weight:400; font-size:.7rem; opacity:.7}
+
+/* ---------- the tab bar: Liquid Glass pills ---------- */
+.switch-wrap{position:sticky; top:calc(env(safe-area-inset-top, 0px) + 10px); z-index:30; margin-top:-30px; display:flex; justify-content:center; padding:0 12px; pointer-events:none}
+.switch{display:inline-flex; gap:2px; padding:6px; border-radius:999px; pointer-events:auto; max-width:100%; overflow-x:auto; scrollbar-width:none;
+  background:var(--lg-tint); -webkit-backdrop-filter:blur(14px) saturate(2) brightness(1.06); backdrop-filter:blur(14px) saturate(2) brightness(1.06);
+  box-shadow:inset 0 1px 1px var(--lg-hi), inset 0 -1px 2px var(--lg-lo), 0 16px 36px -14px rgba(70,15,30,.45), 0 2px 8px -2px rgba(0,0,0,.12)}
+.switch::-webkit-scrollbar{display:none}
+.switch::after{content:""; position:absolute; inset:0; z-index:0; border-radius:inherit; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%)}
+.switch .thumb{position:absolute; z-index:1; top:6px; bottom:6px; left:0; width:0; border-radius:999px; background:var(--lg-lens);
+  box-shadow:inset 0 1px 1px var(--lg-hi), inset 0 -3px 6px rgba(255,255,255,.12), inset 0 0 0 .5px var(--lg-edge), 0 6px 14px -6px rgba(70,15,30,.35)}
+.switch.ready .thumb{transition:transform .6s var(--spring), width .6s var(--spring), scale .3s var(--spring)}
+.switch button{position:relative; z-index:2; flex:none; display:inline-flex; align-items:center; gap:7px; border:0; background:none; padding:9px 18px; border-radius:999px; white-space:nowrap;
+  font-family:var(--f-ui); font-weight:600; font-size:.92rem; line-height:1.25; color:var(--ink-2); transition:color .25s var(--ease), transform .35s var(--spring)}
+.switch button .g{width:17px; height:17px}
+.switch button:active{transform:scale(.9)}
+.switch button[aria-selected="true"]{color:var(--wine); font-weight:700}
+@media (max-width:520px){ .switch button{padding:9px 12px; font-size:.86rem; gap:5px} .switch button .g{width:15px; height:15px} }
+@media (max-width:400px){ .switch button .g{display:none} }
+@media (max-width:520px){ .st{width:70px} .st .c{width:64px; height:64px} }
+
+/* ---------- content ---------- */
+.main{max-width:44rem; margin:0 auto; padding:32px max(14px, env(safe-area-inset-right, 0px)) 40px max(14px, env(safe-area-inset-left, 0px))}
+.view{display:flex; flex-direction:column; gap:16px}
+.view:not([hidden]) > *{animation:enter .65s var(--spring-soft) both}
+.view:not([hidden]) > *:nth-child(2){animation-delay:.05s} .view:not([hidden]) > *:nth-child(3){animation-delay:.1s} .view:not([hidden]) > *:nth-child(4){animation-delay:.15s} .view:not([hidden]) > *:nth-child(5){animation-delay:.2s}
+@keyframes enter{from{opacity:0; transform:translateY(22px) scale(.985)}}
+.card{background:var(--card); border-radius:26px; padding:clamp(22px, 5vw, 34px) clamp(20px, 5vw, 34px); box-shadow:var(--sh-card); display:flex; flex-direction:column; gap:18px; transition:box-shadow .4s var(--ease)}
+.card:hover{box-shadow:var(--sh-lift)}
+
+.ch{display:flex; align-items:center; gap:14px}
+.ch-t{display:flex; flex-direction:column; gap:1px; min-width:0}
+.ch h2,.ch h3{margin:0; font-family:var(--f-he); font-weight:700; font-size:clamp(1.5rem, 5vw, 1.85rem); line-height:1.15}
+:root[data-lang="en"] .ch h2,:root[data-lang="en"] .ch h3{font-family:var(--f-ui); font-weight:700; letter-spacing:-.01em}
+.ch p{margin:0; font-family:var(--f-ui); font-size:.88rem; color:var(--ink-2)}
+
+.prose{display:flex; flex-direction:column; gap:1em; font-family:var(--f-body); font-size:clamp(1.12rem, 2.8vw, 1.22rem); line-height:1.8}
+.prose p{margin:0}
+:root[data-lang="en"] .prose{font-size:clamp(1.03rem, 2.5vw, 1.1rem); line-height:1.7}
+.prose b{font-weight:700}
+
+/* gaps to fill in (search the file for "gap") */
+.gap{display:inline-flex; align-items:center; gap:6px; padding:3px 12px; border-radius:999px; border:1.5px dashed var(--gold); color:var(--on-gold-c); background:var(--gold-c); font-family:var(--f-ui); font-size:.82rem; font-weight:600; line-height:1.5}
+.gap-box{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:24px 20px; border-radius:20px; border:1.5px dashed var(--gold); color:var(--on-gold-c); background:var(--gold-c); text-align:center; font-family:var(--f-ui); font-size:.92rem; font-weight:600; line-height:1.55; text-wrap:balance}
+.gap-box small{font-weight:400; color:var(--ink-2)}
+.gap-box code{font-family:ui-monospace, Menlo, Consolas, monospace; direction:ltr; unicode-bidi:isolate}
+
+/* buttons: pills that square off when pressed */
+.actions{display:flex; flex-wrap:wrap; justify-content:center; gap:10px}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:52px; padding:0 24px; border:0; border-radius:999px; text-decoration:none;
+  font-family:var(--f-ui); font-weight:700; font-size:.98rem; transition:border-radius .4s var(--spring), transform .45s var(--spring), box-shadow .3s var(--ease)}
+.btn .g{width:19px; height:19px}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{border-radius:16px; transform:scale(.96)}
+.btn.wine{background:linear-gradient(180deg, #a52e51, #7a1734); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.22), 0 14px 28px -14px rgba(120,20,50,.75)}
+.btn.gold{background:linear-gradient(180deg, #e8c77f, #c0913f); color:#2a2010; box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 14px 28px -14px rgba(140,105,40,.7)}
+.btn.tonal{background:var(--wine-c); color:var(--on-wine-c)}
+
+/* ---------- home: framed photos ---------- */
+.wall{display:flex; justify-content:center; align-items:flex-start; gap:clamp(12px, 3.4vw, 26px); padding:14px 4px 8px}
+.pf{position:relative; flex:1 1 0; max-width:190px; margin:0; border:0; padding:clamp(6px, 1.4vw, 10px); background:var(--frame); border-radius:3px;
+  box-shadow:0 0 0 1px rgba(0,0,0,.05), 0 2px 4px rgba(60,20,30,.08), 0 16px 30px -12px rgba(70,25,35,.34), 0 40px 60px -40px rgba(70,25,35,.5);
+  transition:transform .55s var(--spring), box-shadow .4s var(--ease)}
+.pf:nth-child(2){transform:translateY(-12px)}
+.pf:nth-child(2):hover{transform:translateY(-16px)} .pf:not(:nth-child(2)):hover{transform:translateY(-4px)} .pf:hover{ box-shadow:0 0 0 1px rgba(0,0,0,.05), 0 4px 8px rgba(60,20,30,.1), 0 26px 40px -14px rgba(70,25,35,.4), 0 50px 70px -40px rgba(70,25,35,.55)}
+.pf .m{display:block; padding:clamp(5px, 1.2vw, 9px); background:var(--mat); box-shadow:inset 0 0 0 1px rgba(176,141,74,.55), inset 0 1px 3px rgba(0,0,0,.08)}
+.pf img{display:block; width:100%; aspect-ratio:4/5; object-fit:cover; box-shadow:0 0 0 1px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.15)}
+.wall-cap{margin:0; text-align:center; font-family:var(--f-ui); font-size:.85rem; color:var(--ink-3)}
+
+/* mission */
+.mission{display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0, 1fr); gap:12px}
+.mcard{border-radius:24px; padding:22px 18px 22px; display:flex; flex-direction:column; gap:8px; box-shadow:0 1px 1px rgba(60,20,30,.03), 0 10px 22px -16px rgba(70,25,35,.3); transition:transform .5s var(--spring), border-radius .5s var(--spring)}
+.mcard:hover{transform:translateY(-4px); border-radius:36px}
+.mcard.c1{background:var(--gold-c); color:var(--on-gold-c)} .mcard.c2{background:var(--rose-c); color:var(--on-rose-c)} .mcard.c3{background:var(--sage-c); color:var(--on-sage-c)}
+.mnum{position:relative; isolation:isolate; width:50px; height:50px; display:grid; place-items:center; font-family:var(--f-he); font-weight:700; font-size:1.35rem; color:#fff; margin-bottom:4px}
+:root[data-lang="en"] .mnum{font-family:var(--f-ui)}
+.mnum::before{content:""; position:absolute; inset:0; z-index:-1; transition:transform .9s var(--spring); filter:drop-shadow(0 4px 6px rgba(20,20,40,.25))}
+.c1 .mnum::before{background:linear-gradient(180deg, #e8c77f, #b88a3c); clip-path:url(#cookie9)}
+.c2 .mnum::before{background:linear-gradient(180deg, #e08a68, #b0553a); clip-path:url(#clover4)}
+.c3 .mnum::before{background:linear-gradient(180deg, #86a891, #577a63); clip-path:url(#sunny12)}
+.mcard:hover .mnum::before{transform:rotate(50deg) scale(1.06)}
+.mcard h4{margin:0; font-family:var(--f-he); font-weight:700; font-size:1.25rem}
+:root[data-lang="en"] .mcard h4{font-family:var(--f-ui); font-size:1.12rem}
+.mcard p{margin:0; font-family:var(--f-body); font-size:1rem; line-height:1.55; opacity:.88}
+@media (max-width:640px){
+  .mission{grid-auto-columns:80%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; margin:0 -14px; padding:4px 14px 16px; scroll-padding-inline:14px}
+  .mission::-webkit-scrollbar{display:none}
+  .mcard{scroll-snap-align:start}
+}
+
+/* founder profile */
+.profile{display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px}
+.pav{width:100px; height:100px; border-radius:50%; padding:3px; background:linear-gradient(150deg, #ecd9ab, #b08d4a); flex:none; box-shadow:0 14px 28px -14px rgba(120,90,30,.6)}
+.pav span{display:grid; place-items:center; width:100%; height:100%; border-radius:50%; background:#fff; border:3px solid var(--card)}
+.pav img{width:70%; height:auto}
+.chip-g{display:inline-flex; align-items:center; height:28px; padding:0 12px; border-radius:999px; background:var(--gold-c); color:var(--on-gold-c); font-family:var(--f-ui); font-weight:700; font-size:.8rem}
+.p-name{margin:0; font-family:var(--f-he); font-weight:700; font-size:clamp(1.3rem, 4.4vw, 1.6rem); line-height:1.25}
+.p-sub{margin:-4px 0 0; font-family:var(--f-he); font-size:1.02rem; color:var(--ink-2)}
+.divider{height:1px; background:var(--line); border:0; margin:2px 0; width:100%}
+
+/* ---------- store ---------- */
+.store-frame{position:relative; min-height:520px; border-radius:20px; overflow:hidden; background:#fff; box-shadow:inset 0 0 0 1px var(--line)}
+.store-frame iframe{display:block; width:100%; border:0}
+.store-frame > iframe{height:900px}
+.store-loading{position:absolute; inset:0; margin:0; display:grid; place-items:center; color:#8f9199; font-family:var(--f-ui); font-size:.9rem}
+.store-frame:has(iframe) .store-loading{display:none}
+.store-note{margin:0; text-align:center; font-family:var(--f-ui); font-size:.85rem; color:var(--ink-2)}
+.store-note a{color:var(--wine); font-weight:700; text-decoration:none; white-space:nowrap}
+
+/* ---------- articles: an inset list, like Apple's Settings ---------- */
+.alist{display:flex; flex-direction:column; border-radius:20px; background:var(--card-2); overflow:hidden}
+.arow{display:flex; align-items:center; gap:14px; width:100%; padding:16px; border:0; background:none; text-align:start; transition:background .2s var(--ease)}
+.arow + .arow, .arow + .gap-row{border-top:1px solid var(--line)}
+.arow:hover{background:var(--line)}
+.arow:active{background:var(--line)}
+.arow .ic{width:50px; height:50px}
+.arow .txt{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px}
+.arow .k{font-family:var(--f-ui); font-size:.74rem; font-weight:700; color:var(--gold)}
+.arow .t{font-family:var(--f-he); font-weight:700; font-size:1.2rem}
+:root[data-lang="en"] .arow .t{font-family:var(--f-ui); font-size:1.08rem}
+.arow .d{font-family:var(--f-ui); font-size:.88rem; color:var(--ink-2); line-height:1.45}
+.arow .go{flex:none; color:var(--ink-3); width:18px; height:18px}
+.gap-row{padding:14px 16px}
+.gap-row .gap-box{padding:16px}
+
+/* ---------- Torahs: a photo card ---------- */
+.tcard{position:relative; isolation:isolate; overflow:hidden; border-radius:28px; min-height:470px; color:#fff; display:flex; flex-direction:column; justify-content:flex-end; gap:12px;
+  padding:clamp(22px, 5vw, 32px); box-shadow:var(--sh-lift)}
+.tcard > img{position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; filter:saturate(.85); transition:transform 1.4s var(--ease)}
+.tcard:hover > img{transform:scale(1.05)}
+.tcard::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(40,8,18,.05) 0%, rgba(40,8,18,.25) 35%, rgba(36,8,18,.93) 100%)}
+.tc-top{position:absolute; top:18px; inset-inline:18px; display:flex; justify-content:space-between; align-items:center}
+.live{display:inline-flex; align-items:center; gap:7px; height:30px; padding:0 12px; border-radius:999px; color:#fff; font-family:var(--f-ui); font-weight:700; font-size:.78rem;
+  background:rgba(255,255,255,.16); -webkit-backdrop-filter:blur(12px) saturate(1.6); backdrop-filter:blur(12px) saturate(1.6); box-shadow:inset 0 1px 1px rgba(255,255,255,.4)}
+.live i{width:7px; height:7px; border-radius:50%; background:#e2786b; animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.tc-over{margin:0; font-family:var(--f-he); font-size:.98rem; color:#ead6a8}
+.tc-date{margin:0; font-family:var(--f-he); font-weight:500; font-size:clamp(2.6rem, 11vw, 3.8rem); line-height:1}
+:root[data-lang="en"] .tc-date{font-family:var(--f-ui); font-weight:700; letter-spacing:-.02em}
+.tc-occ{margin:0; font-family:var(--f-body); font-size:1.06rem; color:rgba(255,255,255,.9)}
+.tc-meta{margin:0; font-family:var(--f-ui); font-size:.82rem; color:rgba(255,255,255,.66)}
+.tc-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-top:6px}
+.pills{display:flex; flex-wrap:wrap; gap:6px}
+.pills a{display:inline-flex; align-items:center; height:38px; padding:0 15px; border-radius:999px; color:#fff; text-decoration:none; font-family:var(--f-ui); font-weight:600; font-size:.86rem;
+  background:rgba(255,255,255,.14); -webkit-backdrop-filter:blur(14px) saturate(1.8); backdrop-filter:blur(14px) saturate(1.8);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.42), inset 0 0 0 .5px rgba(255,255,255,.18);
+  transition:background .2s var(--ease), border-radius .4s var(--spring), transform .4s var(--spring)}
+.pills a:hover{background:rgba(255,255,255,.24)}
+.pills a:active{border-radius:12px; transform:scale(.95)}
+.play{position:relative; flex:none; width:64px; height:64px; display:grid; place-items:center; color:#2a2010; text-decoration:none}
+.play::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, #e2c88e, #b9964f); clip-path:url(#sunny12); transition:transform .8s var(--spring)}
+.play::after{content:""; position:absolute; inset:-6px; z-index:-1; border-radius:50%; box-shadow:0 14px 28px -10px rgba(0,0,0,.6)}
+.play:hover::before{transform:rotate(45deg) scale(1.08)}
+.play .g{position:relative; width:26px; height:26px}
+.soon{margin:6px 0 0; text-align:center; font-family:var(--f-ui); font-weight:500; color:var(--ink-2)}
+
+/* ---------- footer ---------- */
+.foot{max-width:44rem; margin:0 auto; padding:6px max(14px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 36px) max(14px, env(safe-area-inset-left, 0px))}
+.foot .card{align-items:center; text-align:center; gap:14px}
+.foot .pav{width:70px; height:70px}
+.foot-name{margin:0; font-family:var(--f-he); font-weight:700; font-size:clamp(1.2rem, 4vw, 1.45rem); text-wrap:balance}
+.contact{display:flex; flex-wrap:wrap; justify-content:center; gap:8px}
+.contact .btn{min-height:48px; padding:0 20px; font-size:.94rem}
+.foot-small{margin:0; font-family:var(--f-ui); font-size:.8rem; color:var(--ink-3); line-height:1.8}
+.foot-small a{color:inherit; text-decoration:none; direction:ltr; unicode-bidi:isolate; white-space:nowrap}
+.foot-small .dot{margin:0 .5em}
+
+/* ---------- story viewer ---------- */
+.sv{position:fixed; inset:0; z-index:120; background:#07080b; color:#fff; display:flex; flex-direction:column; animation:svIn .45s var(--spring-soft); touch-action:none; user-select:none; -webkit-user-select:none}
+@keyframes svIn{from{opacity:0; transform:scale(.94)}}
+.sv-img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; transition:opacity .25s var(--ease)}
+.sv-bg{position:absolute; inset:-10%; width:120%; height:120%; object-fit:cover; filter:blur(40px) brightness(.45)}
+.sv-top{position:relative; z-index:2; padding:calc(env(safe-area-inset-top, 0px) + 10px) 12px 14px; background:linear-gradient(rgba(0,0,0,.55), transparent)}
+.sv-bars{display:flex; gap:4px; direction:ltr}
+:root[dir="rtl"] .sv-bars{flex-direction:row-reverse}
+.sv-bars span{flex:1; height:3px; border-radius:3px; background:rgba(255,255,255,.3); overflow:hidden; display:flex}
+:root[dir="rtl"] .sv-bars span{justify-content:flex-end}
+.sv-bars span i{display:block; height:100%; width:0; background:#fff; border-radius:inherit}
+.sv-head{display:flex; align-items:center; gap:10px; margin-top:12px}
+.sv-av{width:40px; height:40px; border-radius:50%; overflow:hidden; flex:none; background:#fff; box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.sv-av img{width:100%; height:100%; object-fit:cover; display:block}
+.sv-name{flex:1; min-width:0; display:flex; flex-direction:column; line-height:1.25}
+.sv-name b{font-family:var(--f-ui); font-weight:700; font-size:.95rem}
+.sv-name small{font-family:var(--f-ui); font-size:.75rem; opacity:.7; direction:ltr; unicode-bidi:isolate; align-self:flex-start}
+.sv-x{width:42px; height:42px; border-radius:50%; border:0; display:grid; place-items:center; color:#fff;
+  background:rgba(255,255,255,.14); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); box-shadow:inset 0 1px 1px rgba(255,255,255,.3)}
+.sv-cap{position:absolute; z-index:2; left:0; right:0; bottom:0; padding:34px 22px calc(env(safe-area-inset-bottom, 0px) + 30px); text-align:center; font-family:var(--f-he); font-weight:500; font-size:1.25rem; background:linear-gradient(transparent, rgba(0,0,0,.65))}
+.sv-cap:empty{display:none}
+.sv-tap{position:absolute; z-index:1; top:0; bottom:0; width:50%; border:0; background:none; padding:0}
+.sv-tap.l{left:0} .sv-tap.r{right:0}
+
+/* ---------- article sheet ---------- */
+@keyframes fade{from{opacity:0}}
+.scrim{position:fixed; inset:0; z-index:110; background:rgba(30,8,14,.45); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); animation:fade .35s var(--ease)}
+.bsheet{position:fixed; z-index:111; left:50%; bottom:0; width:min(100%, 44rem); max-height:92vh; max-height:92svh; transform:translateX(-50%);
+  border-radius:30px 30px 0 0; display:flex; flex-direction:column; overflow:hidden; background:var(--card);
+  box-shadow:0 -24px 60px -24px rgba(0,0,0,.45); animation:sheetUp .6s var(--spring-soft) both}
+@keyframes sheetUp{from{transform:translate(-50%, 100%)}}
+.grab{flex:none; position:relative; height:46px; display:flex; justify-content:center; align-items:center; touch-action:none; cursor:grab}
+.grab::before{content:""; width:40px; height:5px; border-radius:5px; background:rgba(127,127,140,.4)}
+.grab .sv-x{position:absolute; top:8px; inset-inline-end:14px; width:34px; height:34px; color:var(--ink-2); background:var(--card-2); box-shadow:none}
+.bsheet-body{overflow-y:auto; overscroll-behavior:contain; padding:4px clamp(22px, 6vw, 44px) calc(env(safe-area-inset-bottom, 0px) + 36px); display:flex; flex-direction:column; gap:20px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Apple-style glyphs (filled, rounded) and Material 3 expressive shapes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="cookie9" clipPathUnits="objectBoundingBox"><path/></clipPath>
+    <clipPath id="clover4" clipPathUnits="objectBoundingBox"><path/></clipPath>
+    <clipPath id="sunny12" clipPathUnits="objectBoundingBox"><path/></clipPath>
+  </defs>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M11.3 2.9a1.1 1.1 0 0 1 1.4 0l8.5 7.2a1 1 0 0 1-1.3 1.5l-.7-.6V19.5a2 2 0 0 1-2 2h-3.1v-5.6a1.4 1.4 0 0 0-1.4-1.4h-1.4a1.4 1.4 0 0 0-1.4 1.4v5.6H6.8a2 2 0 0 1-2-2V11l-.7.6a1 1 0 0 1-1.3-1.5z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8 7V6.2a4 4 0 0 1 8 0V7h2.1c.7 0 1.3.5 1.3 1.2l.9 11.4a2.2 2.2 0 0 1-2.2 2.4H5.9a2.2 2.2 0 0 1-2.2-2.4l.9-11.4C4.7 7.5 5.2 7 5.9 7zm1.9 0h4.2v-.8a2.1 2.1 0 0 0-4.2 0z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6.7 2h6.6c.5 0 1 .2 1.4.6l4.7 4.7c.4.4.6.9.6 1.4v11.1A2.2 2.2 0 0 1 17.8 22H6.7a2.2 2.2 0 0 1-2.2-2.2V4.2C4.5 3 5.5 2 6.7 2zM13.5 3.8V7.6c0 .6.4 1 1 1h3.8zM8.3 12a.8.8 0 0 0 0 1.6h7.4a.8.8 0 0 0 0-1.6zm0 3.6a.8.8 0 0 0 0 1.6h5.4a.8.8 0 0 0 0-1.6z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4.7C4 3.2 5.2 2 6.7 2H19a1 1 0 0 1 1 1v14.2a1 1 0 0 1-1 1H6.9a1.1 1.1 0 0 0 0 2.2H19a.9.9 0 0 1 0 1.8H6.8A2.8 2.8 0 0 1 4 19.4zm4.6 2.5a.8.8 0 0 0 0 1.6h7a.8.8 0 0 0 0-1.6z"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><rect x="2.6" y="9.5" width="2.2" height="5" rx="1.1"/><rect x="6.8" y="6" width="2.2" height="12" rx="1.1"/><rect x="11" y="2.5" width="2.2" height="19" rx="1.1"/><rect x="15.2" y="6.5" width="2.2" height="11" rx="1.1"/><rect x="19.4" y="9.5" width="2.2" height="5" rx="1.1"/></symbol>
+  <symbol id="i-env" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5 4h14a2.5 2.5 0 0 1 2.5 2.5v11A2.5 2.5 0 0 1 19 20H5a2.5 2.5 0 0 1-2.5-2.5v-11A2.5 2.5 0 0 1 5 4zm-.7 2.7 7.7 6 7.7-6-1-1.2L12 10.9 5.3 5.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.7 2.5c.6 0 1.1.4 1.3 1l1.1 3.4c.2.6 0 1.2-.5 1.6L7 9.7a13 13 0 0 0 7.3 7.3l1.2-1.6c.4-.5 1-.7 1.6-.5l3.4 1.1c.6.2 1 .7 1 1.3V20a1.8 1.8 0 0 1-1.9 1.8C10.4 21.3 2.7 13.6 2.2 4.4A1.8 1.8 0 0 1 4 2.5z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.7v14.6a1.2 1.2 0 0 0 1.8 1l12-7.3a1.2 1.2 0 0 0 0-2l-12-7.3A1.2 1.2 0 0 0 7 4.7z"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 4.6C3 3.7 3.7 3 4.6 3h14.8c.9 0 1.6.7 1.6 1.6v2.2c0 .6-.5 1.1-1.1 1.1H4.1c-.6 0-1.1-.5-1.1-1.1zM4.2 9.6h15.6V19a2 2 0 0 1-2 2H6.2a2 2 0 0 1-2-2zm5.5 2.6a.9.9 0 0 0 0 1.8h4.6a.9.9 0 0 0 0-1.8z"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M12 3c5 0 9 3.4 9 7.6s-4 7.6-9 7.6c-.9 0-1.8-.1-2.6-.3L5 20.4l.9-3.6C4.1 15.4 3 13.2 3 10.6 3 6.4 7 3 12 3z"/></symbol>
+  <symbol id="i-seal" viewBox="0 0 24 24"><path d="M12 2.2l2.1 1.6 2.6-.3 1 2.4 2.4 1-.3 2.6 1.6 2.1-1.6 2.1.3 2.6-2.4 1-1 2.4-2.6-.3L12 21.8l-2.1-1.6-2.6.3-1-2.4-2.4-1 .3-2.6L2.6 12l1.6-2.1-.3-2.6 2.4-1 1-2.4 2.6.3zm-1.2 13.4 5.4-5.4-1.3-1.3-4.1 4.1-2-2-1.3 1.3z"/></symbol>
+</svg>
+
+<header class="top" dir="rtl" lang="he">
+  <div class="top-bg"><img src="header.jpg" alt=""></div>
+  <div class="top-in">
+    <div class="topbar">
+      <div class="me">
+        <span class="av"><span><img data-logo alt="" onerror="this.hidden=true"></span></span>
+        <span class="bsd">בס"ד</span>
+      </div>
+      <button type="button" class="lang-pill lg" id="langBtn">
+        <svg class="s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+        <span data-l="he" lang="en">English</span><span data-l="en" lang="he">עברית</span>
+      </button>
+    </div>
+
+    <div class="titles">
+      <p class="kicker">מרכז להוצאות ספרי חסידות</p>
+      <h1 class="big">לבית רוזין</h1>
+      <div class="rule" aria-hidden="true"><i></i></div>
+      <p class="tag"><span data-l="he">להוציא לאור את אור תורתם של רבותינו לבית רוזין</span><span data-l="en">Bringing the Torah of the Rebbes of the House of Ruzhin to light</span></p>
+    </div>
+
+    <!-- STATUS CIRCLES = the photo gallery (WhatsApp-style).
+         Each circle is an album; its ring has one segment per photo. To add a photo to a circle, add a
+         <span data-src> line to its hidden list (captions in data-he / data-en, or leave them empty).
+         To add a circle, copy a whole <button class="st"> block and give it a new data-album name.
+         "All photos" plays every photo from the other circles. -->
+    <div class="status" id="status">
+      <button type="button" class="st" data-album="all" data-all>
+        <span class="c"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"></svg><span class="ph logo"><img data-logo alt=""></span></span>
+        <span><span data-l="he">כל התמונות</span><span data-l="en">All photos</span></span>
+      </button>
+      <button type="button" class="st" data-album="kloiz">
+        <span class="c"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"></svg><span class="ph"><img src="header.jpg" alt=""></span></span>
+        <span><span data-l="he">הקלויז</span><span data-l="en">The kloiz</span></span>
+        <span hidden class="photos"><span data-src="header.jpg" data-he="הקלויז" data-en="The kloiz"></span></span>
+      </button>
+      <!-- the next three titles are placeholders: rename them (title under the circle, and data-he / data-en) -->
+      <button type="button" class="st" data-album="p1">
+        <span class="c"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"></svg><span class="ph"><img src="1.jpg" alt=""></span></span>
+        <span><span data-l="he">בכינוס</span><span data-l="en">At the gathering</span></span>
+        <span hidden class="photos"><span data-src="1.jpg" data-he="" data-en=""></span></span>
+      </button>
+      <button type="button" class="st" data-album="p2">
+        <span class="c"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"></svg><span class="ph"><img src="2.jpg" alt=""></span></span>
+        <span><span data-l="he">בחצר</span><span data-l="en">In the courtyard</span></span>
+        <span hidden class="photos"><span data-src="2.jpg" data-he="" data-en=""></span></span>
+      </button>
+      <button type="button" class="st" data-album="p3">
+        <span class="c"><svg class="ring" viewBox="0 0 72 72" aria-hidden="true"></svg><span class="ph"><img src="3.jpg" alt=""></span></span>
+        <span><span data-l="he">בשמחה</span><span data-l="en">Rejoicing</span></span>
+        <span hidden class="photos"><span data-src="3.jpg" data-he="" data-en=""></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="switch-wrap" aria-label="ניווט באתר">
+  <div class="switch lg" id="nav" role="tablist">
+    <span class="thumb" aria-hidden="true"></span>
+    <button type="button" role="tab" id="tab-home" data-view="home" aria-controls="view-home" aria-selected="true"><svg class="g" aria-hidden="true"><use href="#i-house"/></svg><span data-l="he">בית</span><span data-l="en">Home</span></button>
+    <button type="button" role="tab" id="tab-store" data-view="store" aria-controls="view-store" aria-selected="false" tabindex="-1"><svg class="g" aria-hidden="true"><use href="#i-bag"/></svg><span data-l="he">חנות</span><span data-l="en">Store</span></button>
+    <button type="button" role="tab" id="tab-articles" data-view="articles" aria-controls="view-articles" aria-selected="false" tabindex="-1"><svg class="g" aria-hidden="true"><use href="#i-doc"/></svg><span data-l="he">מאמרים</span><span data-l="en">Articles</span></button>
+    <button type="button" role="tab" id="tab-torahs" data-view="torahs" aria-controls="view-torahs" aria-selected="false" tabindex="-1"><svg class="g" aria-hidden="true"><use href="#i-book"/></svg><span data-l="he">אמרי קודש</span><span data-l="en">Torahs</span></button>
+  </div>
+</nav>
+
+<main class="main" id="main">
+
+<!-- ================= 1 · HOME ================= -->
+<section class="view" id="view-home" role="tabpanel" aria-labelledby="tab-home">
+  <article class="card">
+    <div class="ch">
+      <span class="ic wine"><svg class="g" aria-hidden="true"><use href="#i-book"/></svg></span>
+      <div class="ch-t"><h2><span data-l="he">אודות המרכז</span><span data-l="en">About the Merkaz</span></h2><p><span data-l="he">ברוכים הבאים</span><span data-l="en">Welcome</span></p></div>
+    </div>
+    <div class="prose">
+      <p data-l="he">מרכז להוצאות ספרי חסידות לבית רוזין נוסד על ידי הרה"ח רבי שואל אלכסנדר <span style="white-space:nowrap">(ר' סענדר)</span> <span style="white-space:nowrap">ביסטריצקי ע"ה</span>, בן הרה"ח רבי מרדכי ז"ל, כדי להוציא לאור את דברי קודשם של רבותינו לבית רוזין ולהגישם לרבים: במקורם, בדיוק ובהידור.</p>
+      <p data-l="he">המרכז אוסף ומשמר אמרי קודש, שיחות והקלטות, מעתיקם אות באות כפי שנאמרו, ומוסיף לצדם תרגום ללשון הקודש ולאנגלית, עם הערות ומראי מקומות, כדי שיהיו פתוחים לפני כל מבקש.</p>
+      <p data-l="en">The Merkaz was founded by Reb Shaul Alexander (Reb Sender) Bistritzky, a”h, son of Reb Mordechai, z”l, to bring out the heilige words of the Rebbes of the House of Ruzhin and share them with everyone: in the original, exactly as they were said, and with hiddur.</p>
+      <p data-l="en">The Merkaz gathers and keeps Torahs, sichos and recordings, writes them down letter for letter as they were said, and sets beside them a translation into Loshon Kodesh and English, with notes and mareh mekomos, so they are open to anyone who wants to learn them.</p>
+    </div>
+  </article>
+
+  <!-- framed photos (decorative; to change one, change its file name) -->
+  <div class="wall" aria-hidden="true">
+    <figure class="pf"><span class="m"><img src="1.jpg" alt=""></span></figure>
+    <figure class="pf"><span class="m"><img src="2.jpg" alt=""></span></figure>
+    <figure class="pf"><span class="m"><img src="3.jpg" alt=""></span></figure>
+  </div>
+
+  <div class="mission">
+    <div class="mcard c1">
+      <span class="mnum"><span data-l="he">א</span><span data-l="en">1</span></span>
+      <h4><span data-l="he">הוצאה לאור</span><span data-l="en">Publishing</span></h4>
+      <p><span data-l="he">ספרי חסידות ואמרי קודש של רבותינו לבית רוזין, בהוצאה מוקפדת ומוגהת.</span><span data-l="en">Seforim and Torahs of the Rebbes of the House of Ruzhin, carefully edited and checked.</span></p>
+    </div>
+    <div class="mcard c2">
+      <span class="mnum"><span data-l="he">ב</span><span data-l="en">2</span></span>
+      <h4><span data-l="he">שימור</span><span data-l="en">Preserving</span></h4>
+      <p><span data-l="he">הקלטות ותמונות נאספות ונשמרות, והדברים מועתקים אות באות.</span><span data-l="en">Recordings and photos gathered and kept safe, and every word written down letter for letter.</span></p>
+    </div>
+    <div class="mcard c3">
+      <span class="mnum"><span data-l="he">ג</span><span data-l="en">3</span></span>
+      <h4><span data-l="he">הנגשה</span><span data-l="en">Sharing</span></h4>
+      <p><span data-l="he">כל דבר במקורו, ולצדו תרגום ללשון הקודש ולאנגלית.</span><span data-l="en">Everything in its original, with a translation into Loshon Kodesh and English.</span></p>
+    </div>
+  </div>
+
+  <article class="card">
+    <div class="profile" dir="rtl" lang="he">
+      <span class="pav"><span><img data-logo alt='סמל מרכז להוצאות ספרי חסידות לבית רוזין' onerror="this.hidden=true"></span></span>
+      <span class="chip-g">נוסד ע"י</span>
+      <p class="p-name">הרה"ח רבי שואל אלכסנדר ביסטריצקי ע"ה</p>
+      <p class="p-sub">בן הרה"ח רבי מרדכי ז"ל</p>
+    </div>
+    <hr class="divider">
+    <div class="prose">
+      <p data-l="he">בי"ט כסלו תשי"ד, כשאמר מרן אדמו"ר הקוה"ט מבאיאן זי"ע דברי תורה בעת עריכת השולחן, הטמין ר' סענדר מכשיר הקלטה, ובזכותו נשתמר קולו בקודש: ההקלטה היחידה מטיש של הרבי. מתוכה הועתקו הדברים אות באות, והם מוגשים כאן במקורם ובתרגום.</p>
+      <p data-l="en">On Yud-Tes Kislev 5714, when the Boyaner Rebbe, zy”a, said Torah at his tish, Reb Sender had hidden a recorder, and so the Rebbe’s holy voice was kept: the only recording of his tish. It was written down from that recording letter for letter, and you can read it and hear it here.</p>
+      <!-- gap: add Reb Sender's life story here -->
+      <p><span class="gap" data-l="he">תולדות חייו של ר' סענדר ע"ה – להשלמה</span><span class="gap" data-l="en">Reb Sender’s life story — to fill in</span></p>
+    </div>
+  </article>
+
+  <div class="actions">
+    <a class="btn wine" href="index.html">
+      <svg class="g" aria-hidden="true"><use href="#i-wave"/></svg>
+      <span data-l="he">לשמוע ולקרוא: י"ט כסלו תשי"ד</span><span data-l="en">Hear and read: Yud-Tes Kislev 5714</span>
+    </a>
+    <a class="btn gold" href="#store">
+      <svg class="g" aria-hidden="true"><use href="#i-bag"/></svg>
+      <span data-l="he">לחנות המרכז</span><span data-l="en">Visit the store</span>
+    </a>
+  </div>
+</section>
+
+<!-- ================= 2 · STORE ================= -->
+<section class="view" id="view-store" role="tabpanel" aria-labelledby="tab-store" hidden>
+  <article class="card">
+    <div class="ch">
+      <span class="ic gold"><svg class="g" aria-hidden="true"><use href="#i-bag"/></svg></span>
+      <div class="ch-t"><h2><span data-l="he">החנות</span><span data-l="en">Store</span></h2><p><span data-l="he">ספרי המרכז ופרסומיו</span><span data-l="en">Seforim and publications from the Merkaz</span></p></div>
+    </div>
+    <div class="store-frame" id="storeFrame">
+      <p class="store-loading"><span data-l="he">טוען את החנות…</span><span data-l="en">Loading the store…</span></p>
+    </div>
+    <!-- gap: shown until ZEFFY_STORE (at the top of this file) is filled in -->
+    <div class="gap-box" id="storeEmpty" hidden>
+      <span data-l="he">כאן תוצג חנות Zeffy – להשלמה</span><span data-l="en">The Zeffy store goes here — to fill in</span>
+      <small data-l="he">הדביקו את קישור החנות בשורה <code>ZEFFY_STORE</code> שבראש הקובץ <code>full.html</code>.</small>
+      <small data-l="en">Paste the store link into the <code>ZEFFY_STORE</code> line at the top of <code>full.html</code>.</small>
+    </div>
+    <p class="store-note" id="storeNote" hidden>
+      <span data-l="he">התשלום מתבצע באופן מאובטח דרך Zeffy</span><span data-l="en">Payment is handled securely by Zeffy</span>
+      · <a id="storeOpen" href="#" target="_blank" rel="noopener"><span data-l="he">פתיחה בחלון חדש ↗</span><span data-l="en">Open in a new tab ↗</span></a>
+    </p>
+  </article>
+</section>
+
+<!-- ================= 3 · ARTICLES ================= -->
+<section class="view" id="view-articles" role="tabpanel" aria-labelledby="tab-articles" hidden>
+  <article class="card">
+    <div class="ch">
+      <span class="ic rose"><svg class="g" aria-hidden="true"><use href="#i-doc"/></svg></span>
+      <div class="ch-t"><h2><span data-l="he">מאמרים</span><span data-l="en">Articles</span></h2><p><span data-l="he">לקריאה</span><span data-l="en">To read</span></p></div>
+    </div>
+    <!-- To add an article: copy an .arow button and a <template> below, and point data-article at the new template id. -->
+    <div class="alist">
+      <button type="button" class="arow" data-article="art-voice">
+        <span class="ic rose"><svg class="g" aria-hidden="true"><use href="#i-wave"/></svg></span>
+        <span class="txt">
+          <span class="k"><span data-l="he">סיפורה של הקלטה</span><span data-l="en">The story of a recording</span></span>
+          <span class="t"><span data-l="he">הקול שנשמר</span><span data-l="en">The Voice That Was Kept</span></span>
+          <span class="d"><span data-l="he">על ההקלטה היחידה מטיש של מרן אדמו"ר הקוה"ט מבאיאן זי"ע, ועל החסיד שהטמין את מכשיר ההקלטה.</span><span data-l="en">The only recording of the Boyaner Rebbe’s tish, and the chossid who hid the recorder.</span></span>
+        </span>
+        <svg class="s go flip-rtl" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+      </button>
+      <!-- gap: replace with real articles -->
+      <div class="gap-row"><div class="gap-box"><span data-l="he">מאמרים נוספים – להשלמה</span><span data-l="en">More articles — to fill in</span></div></div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= 4 · TORAHS ================= -->
+<section class="view" id="view-torahs" role="tabpanel" aria-labelledby="tab-torahs" hidden>
+  <article class="card">
+    <div class="ch">
+      <span class="ic sage"><svg class="g" aria-hidden="true"><use href="#i-book"/></svg></span>
+      <div class="ch-t"><h2><span data-l="he">אמרי קודש</span><span data-l="en">Torahs of the Rebbe</span></h2><p lang="he">ממרן אדמו"ר הקוה"ט מבאיאן זי"ע</p></div>
+    </div>
+    <p class="prose" style="margin:0; font-size:1.05rem; color:var(--ink-2)"><span data-l="he">במקור באידיש, בתרגום ללשון הקודש ולאנגלית, ועם ההקלטה המקורית.</span><span data-l="en">In the original Yiddish, translated into Loshon Kodesh and English, with the original recording.</span></p>
+  </article>
+
+  <!-- To add a Torah page: copy the whole .tcard block and change the photo, link, date and lines. -->
+  <article class="tcard">
+    <img src="3.jpg" alt="" loading="lazy">
+    <div class="tc-top"><span class="live lg"><i></i><span data-l="he">הקלטה מקורית</span><span data-l="en">Original recording</span></span></div>
+    <p class="tc-over" lang="he">אמרי קודש · ממרן אדמו"ר הקוה"ט מבאיאן זי"ע</p>
+    <h3 class="tc-date"><span data-l="he">י"ט כסלו תשי"ד</span><span data-l="en">Yud-Tes Kislev 5714</span></h3>
+    <p class="tc-occ"><span data-l="he">בעת עריכת השולחן אחר ששרו "הזכירו לפניו"</span><span data-l="en">At the tish after the singing of “Hazkiru Lefanav”</span></p>
+    <p class="tc-meta"><span data-l="he">פרשת וישב · הילולא דהרה"ק המגיד ממעזריטש זי"ע</span><span data-l="en">Parshas Vayeishev · Hilula of the heilige Maggid of Mezritch, zy”a</span></p>
+    <div class="tc-row">
+      <div class="pills">
+        <a class="lg" href="index.html#yiddish" lang="he">אידיש</a>
+        <a class="lg" href="index.html#hebrew" lang="he">לשון הקודש</a>
+        <a class="lg" href="index.html#english" lang="en">English</a>
+      </div>
+      <a class="play" href="index.html" aria-label='לקריאה ולהאזנה – י"ט כסלו תשי"ד'><svg class="g flip-rtl" aria-hidden="true"><use href="#i-play"/></svg></a>
+    </div>
+  </article>
+
+  <p class="soon"><span data-l="he">בעזרת השי"ת יתווספו כאן אמרי קודש נוספים.</span><span data-l="en">With the Aibershter’s help, more Torahs will be added here.</span></p>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="card">
+    <span class="pav"><span><img data-logo alt="" onerror="this.hidden=true"></span></span>
+    <p class="foot-name" lang="he" dir="rtl">מרכז להוצאות ספרי חסידות <span style="white-space:nowrap">לבית רוזין</span></p>
+    <div class="contact">
+      <a class="btn wine" href="mailto:kopishnitz@gmail.com"><svg class="g" aria-hidden="true"><use href="#i-env"/></svg><span data-l="he">אימייל</span><span data-l="en">Email</span></a>
+      <a class="btn tonal" href="tel:+13473095678"><svg class="g" aria-hidden="true"><use href="#i-phone"/></svg><span data-l="he">חיוג</span><span data-l="en">Call</span></a>
+      <a class="btn tonal" href="index.html"><svg class="g" aria-hidden="true"><use href="#i-book"/></svg><span data-l="he">דף התורה</span><span data-l="en">Torah page</span></a>
+    </div>
+    <p class="foot-small"><a href="mailto:kopishnitz@gmail.com">kopishnitz@gmail.com</a><span class="dot">·</span><a href="tel:+13473095678">+1 347-309-5678</a><span class="dot">·</span><a href="https://ruzhin.info">ruzhin.info</a></p>
+  </div>
+</footer>
+
+<!-- ================= ARTICLE TEXTS (opened in the bottom sheet) ================= -->
+<template id="art-voice">
+  <div class="ch">
+    <span class="ic rose"><svg class="g" aria-hidden="true"><use href="#i-wave"/></svg></span>
+    <div class="ch-t"><h2><span data-l="he">הקול שנשמר</span><span data-l="en">The Voice That Was Kept</span></h2><p><span data-l="he">סיפורה של הקלטה · י"ט כסלו תשי"ד</span><span data-l="en">The story of a recording · Yud-Tes Kislev 5714</span></p></div>
+  </div>
+  <div class="prose">
+    <p data-l="he">בי"ט כסלו תשי"ד, פרשת וישב, יום ההילולא של הרה"ק המגיד ממעזריטש זי"ע, ערך מרן אדמו"ר הקוה"ט מבאיאן זי"ע את שולחנו הטהור. אחר ששרו "הזכירו לפניו" פתח הרבי ואמר דברי תורה: על <b>וישב יעקב בארץ מגורי אביו</b>, על <b>יוסף בן שבע עשרה שנה</b>, ועל זכותו של המגיד, <b>אמרו צדיק כי טוב</b>.</p>
+    <p data-l="he">בין החסידים שישבו סביב השולחן היה הרה"ח רבי שואל אלכסנדר <span style="white-space:nowrap">(ר' סענדר)</span> ביסטריצקי ע"ה. הוא הטמין מכשיר הקלטה, ובזכותו נשתמר קולו בקודש של הרבי: ההקלטה היחידה מטיש של הרבי.</p>
+    <p data-l="he">מתוך ההקלטה הועתקו הדברים אות באות, כפי שנאמרו באידיש, ולצדם תרגום ללשון הקודש ולאנגלית, עם הערות ומראי מקומות. את הדברים, ואת ההקלטה עצמה, אפשר לקרוא ולשמוע בדף התורה.</p>
+    <p data-l="en">On Yud-Tes Kislev 5714, Parshas Vayeishev, the hilula of the heilige Maggid of Mezritch, zy”a, the Boyaner Rebbe, zy”a, sat at his tish. After they sang “Hazkiru Lefanav,” the Rebbe said Torah: on <i>Vayeishev Yaakov b’eretz megurei aviv</i>, on <i>Yosef ben shva esrei shanah</i>, and on the zechus of the Maggid, <i>imru tzaddik ki tov</i>.</p>
+    <p data-l="en">Among the chassidim around the table was Reb Shaul Alexander (Reb Sender) Bistritzky, a”h. He had hidden a recorder, and so the Rebbe’s holy voice was kept: the only recording of the Rebbe’s tish.</p>
+    <p data-l="en">From that recording the words were written down letter for letter, in the Yiddish he spoke, with a translation into Loshon Kodesh and English, and notes and mareh mekomos. You can read them, and hear the recording itself, on the Torah page.</p>
+    <!-- gap -->
+    <p><span class="gap" data-l="he">פרטים נוספים על ההקלטה ועל דרכה עד היום – להשלמה</span><span class="gap" data-l="en">More about the recording and how it came down to us — to fill in</span></p>
+  </div>
+  <div class="actions">
+    <a class="btn wine" href="index.html">
+      <svg class="g" aria-hidden="true"><use href="#i-wave"/></svg>
+      <span data-l="he">לדף התורה וההקלטה</span><span data-l="en">To the Torah and the recording</span>
+    </a>
+  </div>
+</template>
+
+<!-- article sheet -->
+<div class="scrim" id="scrim" hidden></div>
+<div class="bsheet" id="bsheet" role="dialog" aria-modal="true" aria-label="מאמר" hidden>
+  <div class="grab" id="grab"><button type="button" class="sv-x" id="sheetX" aria-label="סגירה"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="bsheet-body" id="sheetBody"></div>
+</div>
+
+<!-- story viewer -->
+<div class="sv" id="sv" role="dialog" aria-modal="true" aria-label="תמונות" hidden>
+  <img class="sv-bg" id="svBg" alt="">
+  <img class="sv-img" id="svImg" alt="">
+  <button type="button" class="sv-tap l" id="svL" aria-label="←"></button>
+  <button type="button" class="sv-tap r" id="svR" aria-label="→"></button>
+  <div class="sv-top">
+    <div class="sv-bars" id="svBars"></div>
+    <div class="sv-head">
+      <span class="sv-av"><img id="svAv" alt=""></span>
+      <span class="sv-name"><b id="svName"></b><small id="svCount"></small></span>
+      <button type="button" class="sv-x" id="svX" aria-label="סגירה"><svg class="s" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="sv-cap" id="svCap"></div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){ return document.getElementById(id); }
+  document.querySelectorAll('img[data-logo]').forEach(function(im){ im.src = LOGO; });   /* fill in the built-in logo */
+  function lang(){ return root.getAttribute('data-lang') === 'en' ? 'en' : 'he'; }
+  function rtl(){ return root.dir === 'rtl'; }
+
+  /* ---------- Material 3 expressive shapes ---------- */
+  function shape(id, n, amp){
+    var d = '', N = 240;
+    for (var i = 0; i <= N; i++){
+      var t = i / N * Math.PI * 2, r = .5 * (1 - amp + amp * Math.cos(n * t));
+      d += (i ? 'L' : 'M') + (.5 + r * Math.cos(t)).toFixed(4) + ' ' + (.5 + r * Math.sin(t)).toFixed(4);
+    }
+    document.querySelector('#' + id + ' path').setAttribute('d', d + 'Z');
+  }
+  shape('cookie9', 9, .07); shape('clover4', 4, .16); shape('sunny12', 12, .06);
+
+  function tagLangs(scope){
+    (scope || document).querySelectorAll('[data-l]').forEach(function(el){ if (!el.hasAttribute('lang')) el.lang = el.getAttribute('data-l'); });
+  }
+  tagLangs();
+
+  /* ---------- tabs: a glass lens that stretches as it slides ---------- */
+  var VIEWS = ['home', 'store', 'articles', 'torahs'];
+  var nav = $('nav'), thumb = nav.querySelector('.thumb'), cur = 'home';
+  function tab(v){ return $('tab-' + v); }
+  function moveThumb(){
+    var b = tab(cur); if (!b) return;
+    var x = b.offsetLeft;
+    if (thumb._x !== undefined && thumb._x !== x && nav.classList.contains('ready') && !reduce){
+      thumb.style.scale = '1.12 .84'; clearTimeout(thumb._t);
+      thumb._t = setTimeout(function(){ thumb.style.scale = ''; }, 240);
+    }
+    thumb._x = x;
+    thumb.style.width = b.offsetWidth + 'px';
+    thumb.style.transform = 'translateX(' + x + 'px)';
+  }
+  function show(v, opts){
+    opts = opts || {};
+    if (v === 'gallery') v = 'articles';               /* old links */
+    if (VIEWS.indexOf(v) < 0) v = 'home';
+    var changed = v !== cur; cur = v;
+    VIEWS.forEach(function(k){
+      $('view-' + k).hidden = k !== v;
+      tab(k).setAttribute('aria-selected', k === v ? 'true' : 'false');
+      tab(k).tabIndex = k === v ? 0 : -1;
+    });
+    moveThumb();
+    if (v === 'store') loadStore();
+    if (changed && !opts.silent){
+      var top = $('main').getBoundingClientRect().top + window.scrollY - 70;
+      if (window.scrollY > top) window.scrollTo({top:top, behavior: reduce ? 'auto' : 'smooth'});
+    }
+  }
+  function go(v){ if ((location.hash || '').slice(1) === v) show(v); else location.hash = v; }
+  nav.querySelectorAll('[role="tab"]').forEach(function(t){ t.addEventListener('click', function(){ go(t.getAttribute('data-view')); }); });
+  nav.addEventListener('keydown', function(e){
+    var i = VIEWS.indexOf(cur), n = null;
+    if (e.key === 'ArrowLeft') n = VIEWS[rtl() ? Math.min(3, i + 1) : Math.max(0, i - 1)];
+    else if (e.key === 'ArrowRight') n = VIEWS[rtl() ? Math.max(0, i - 1) : Math.min(3, i + 1)];
+    if (n){ e.preventDefault(); go(n); tab(n).focus(); }
+  });
+  window.addEventListener('hashchange', function(){ show((location.hash || '').slice(1)); });
+
+  /* ---------- language ---------- */
+  $('langBtn').addEventListener('click', function(){
+    var l = lang() === 'en' ? 'he' : 'en';
+    root.setAttribute('data-lang', l); root.lang = l; root.dir = l === 'en' ? 'ltr' : 'rtl';
+    try { localStorage.setItem('rizhin-lang', l); } catch(e){}
+    requestAnimationFrame(moveThumb);
+  });
+
+  /* ---------- store (Zeffy) ---------- */
+  var storeStarted = false;
+  function zeffyPath(u){
+    var url; try { url = new URL(u, 'https://www.zeffy.com'); } catch(e){ return null; }
+    if (!/(^|\.)zeffy\.com$/i.test(url.hostname)) return null;
+    var p = url.pathname.replace(/\/+$/, '').replace(/^\/[a-z]{2}-[a-z]{2}(?=\/)/i, '');
+    if (p.indexOf('/embed/') !== 0) p = '/embed' + p;
+    return p;
+  }
+  function loadStore(){
+    if (storeStarted) return; storeStarted = true;
+    var box = $('storeFrame'), link = typeof ZEFFY_STORE === 'string' ? ZEFFY_STORE.trim() : '';
+    var path = link ? zeffyPath(link) : null;
+    if (!path){ box.hidden = true; $('storeEmpty').hidden = false; return; }
+    $('storeOpen').href = link.indexOf('/embed/') < 0 ? link : 'https://www.zeffy.com' + path.replace(/^\/embed/, '');
+    $('storeNote').hidden = false;
+    var holder = document.createElement('div');
+    holder.setAttribute('data-zeffy-embed', ''); holder.setAttribute('data-form-url', path);
+    box.appendChild(holder);
+    function fallback(){
+      if (box.querySelector('iframe')) return;
+      if (holder.parentNode) holder.parentNode.removeChild(holder);
+      var f = document.createElement('iframe');
+      f.title = 'Zeffy'; f.src = 'https://www.zeffy.com' + path;
+      f.setAttribute('allowpaymentrequest', ''); f.setAttribute('allowtransparency', 'true');
+      box.appendChild(f);
+    }
+    var s = document.createElement('script');
+    s.src = 'https://www.zeffy.com/embed/v2/zeffy-embed.js'; s.async = true; s.onerror = fallback;
+    document.head.appendChild(s);
+    setTimeout(fallback, 8000);
+  }
+
+  var lastFocus = null;
+  function lock(on){ root.classList.toggle('locked', on); }
+  function trap(box, e){
+    if (e.key !== 'Tab') return;
+    var f = Array.prototype.filter.call(box.querySelectorAll('button, a[href]'), function(el){ return el.offsetParent !== null; });
+    if (!f.length) return;
+    var i = f.indexOf(document.activeElement); e.preventDefault();
+    f[(i + (e.shiftKey ? f.length - 1 : 1) + f.length) % f.length].focus();
+  }
+
+  /* ---------- article sheet ---------- */
+  var bsheet = $('bsheet'), scrim = $('scrim'), sBody = $('sheetBody');
+  function openSheet(id, from){
+    var t = $(id); if (!t) return;
+    sBody.innerHTML = t.innerHTML; tagLangs(sBody); sBody.scrollTop = 0;
+    lastFocus = from; bsheet.style.transform = ''; bsheet.style.transition = ''; scrim.hidden = false; bsheet.hidden = false; lock(true);
+    setTimeout(function(){ try { $('sheetX').focus({preventScroll:true}); } catch(e){} }, 40);
+  }
+  function closeSheet(){ bsheet.hidden = true; scrim.hidden = true; lock(false); if (lastFocus) try { lastFocus.focus({preventScroll:true}); } catch(e){} }
+  document.querySelectorAll('[data-article]').forEach(function(b){ b.addEventListener('click', function(){ openSheet(b.getAttribute('data-article'), b); }); });
+  $('sheetX').addEventListener('click', closeSheet);
+  scrim.addEventListener('click', closeSheet);
+  bsheet.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSheet(); else trap(bsheet, e); });
+  var gy = null, grab = $('grab');
+  grab.addEventListener('pointerdown', function(e){ if (e.target.closest('button')) return; gy = e.clientY; grab.setPointerCapture(e.pointerId); bsheet.style.transition = 'none'; });
+  grab.addEventListener('pointermove', function(e){ if (gy === null) return; bsheet.style.transform = 'translate(-50%, ' + Math.max(0, e.clientY - gy) + 'px)'; });
+  grab.addEventListener('pointerup', function(e){
+    if (gy === null) return; var d = e.clientY - gy; gy = null;
+    bsheet.style.transition = 'transform .45s cubic-bezier(.3,1.3,.5,1)';
+    if (d > 110) closeSheet(); else bsheet.style.transform = '';
+  });
+
+  /* ---------- status albums (WhatsApp-style) ---------- */
+  var albums = {};
+  document.querySelectorAll('.st[data-album]').forEach(function(btn){
+    var id = btn.getAttribute('data-album');
+    var list = Array.prototype.map.call(btn.querySelectorAll('.photos [data-src]'), function(p){
+      return { src: p.getAttribute('data-src'), he: p.getAttribute('data-he') || '', en: p.getAttribute('data-en') || '' };
+    });
+    var nameEl = btn.querySelector(':scope > span:not(.c):not(.photos)');
+    albums[id] = { btn: btn, list: list, nameEl: nameEl, cover: btn.querySelector('.ph img').getAttribute('src') };
+    /* one ring segment per photo, with small gaps between them */
+    var svg = btn.querySelector('svg.ring'), n = Math.max(1, list.length), C = 2 * Math.PI * 34.5, gap = n > 1 ? 7 : 0, seg = C / n - gap;
+    var html = '';
+    for (var k = 0; k < n; k++) html += '<circle cx="36" cy="36" r="34.5" stroke-dasharray="' + seg.toFixed(2) + ' ' + (C - seg).toFixed(2) + '" stroke-dashoffset="' + (-(k * C / n) - gap / 2).toFixed(2) + '"/>';
+    svg.innerHTML = html;
+    btn.setAttribute('aria-label', (nameEl ? nameEl.textContent.trim() : '') + ' (' + list.length + ')');
+  });
+
+  Object.keys(albums).forEach(function(id){
+    var a = albums[id];
+    if (!a.btn.hasAttribute('data-all')) return;
+    a.list = []; Object.keys(albums).forEach(function(k){ if (k !== id) a.list = a.list.concat(albums[k].list); });
+    a.cover = LOGO;
+    var svg = a.btn.querySelector('svg.ring'), n = Math.max(1, a.list.length), C = 2 * Math.PI * 34.5, gap = n > 1 ? 7 : 0, seg = C / n - gap, html = '';
+    for (var k = 0; k < n; k++) html += '<circle cx="36" cy="36" r="34.5" stroke-dasharray="' + seg.toFixed(2) + ' ' + (C - seg).toFixed(2) + '" stroke-dashoffset="' + (-(k * C / n) - gap / 2).toFixed(2) + '"/>';
+    svg.innerHTML = html;
+  });
+
+  /* ---------- story viewer ---------- */
+  var sv = $('sv'), svImg = $('svImg'), svBg = $('svBg'), bars = $('svBars'), alb = null, idx = 0, raf = null, start = 0, elapsed = 0, paused = false, DUR = 5200;
+  function paint(p){ Array.prototype.forEach.call(bars.children, function(s, k){ s.firstChild.style.width = (k < idx ? 100 : k > idx ? 0 : p * 100) + '%'; }); }
+  function render(){
+    var ph = alb.list[idx];
+    svImg.style.opacity = 0; svImg.onload = function(){ svImg.style.opacity = 1; };
+    svImg.src = ph.src; svBg.src = ph.src;
+    $('svCap').textContent = ph[lang()] || '';
+    $('svCount').textContent = (idx + 1) + ' / ' + alb.list.length;
+    elapsed = 0; start = performance.now(); paint(0);
+  }
+  function tick(now){
+    if (sv.hidden) return;
+    if (!paused){
+      var p = Math.min(1, (elapsed + now - start) / DUR); paint(p);
+      if (p >= 1){ if (idx < alb.list.length - 1){ idx++; render(); } else { closeStory(); return; } }
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  function openAlbum(id, at, from){
+    alb = albums[id]; if (!alb || !alb.list.length) return;
+    idx = Math.max(0, Math.min(alb.list.length - 1, at || 0)); lastFocus = from; paused = false;
+    bars.innerHTML = alb.list.map(function(){ return '<span><i></i></span>'; }).join('');
+    var nm = alb.nameEl ? (alb.nameEl.querySelector('[data-l="' + lang() + '"]') || alb.nameEl).textContent.trim() : '';
+    $('svName').textContent = nm; $('svAv').src = alb.cover;
+    sv.hidden = false; lock(true); render(); cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+    alb.btn.classList.add('seen');
+    setTimeout(function(){ try { $('svX').focus({preventScroll:true}); } catch(e){} }, 40);
+  }
+  function closeStory(){ cancelAnimationFrame(raf); sv.hidden = true; lock(false); if (lastFocus) try { lastFocus.focus({preventScroll:true}); } catch(e){} }
+  function step(d){ var n = idx + d; if (n < 0) n = 0; if (n >= alb.list.length){ closeStory(); return; } idx = n; render(); }
+  $('svL').addEventListener('click', function(){ step(rtl() ? 1 : -1); });   /* in Hebrew the next photo is to the left */
+  $('svR').addEventListener('click', function(){ step(rtl() ? -1 : 1); });
+  $('svX').addEventListener('click', closeStory);
+  sv.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeStory();
+    else if (e.key === 'ArrowLeft') step(rtl() ? 1 : -1);
+    else if (e.key === 'ArrowRight') step(rtl() ? -1 : 1);
+    else trap(sv, e);
+  });
+  var sy = null;
+  sv.addEventListener('pointerdown', function(e){ if (e.target.closest('.sv-x')) return; paused = true; elapsed += performance.now() - start; sy = e.clientY; });
+  function resume(){ if (paused){ paused = false; start = performance.now(); } }
+  sv.addEventListener('pointerup', function(e){ if (sy !== null && e.clientY - sy > 90){ sy = null; closeStory(); return; } sy = null; resume(); });
+  sv.addEventListener('pointercancel', resume);
+  Object.keys(albums).forEach(function(id){ albums[id].btn.addEventListener('click', function(){ openAlbum(id, 0, albums[id].btn); }); });
+
+  /* ---------- start ---------- */
+  show((location.hash || '').slice(1), {silent:true});
+  requestAnimationFrame(function(){ moveThumb(); nav.classList.add('ready'); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveThumb);
+  if (window.ResizeObserver) new ResizeObserver(moveThumb).observe(nav); else window.addEventListener('resize', moveThumb);
+})();
+</script>
+</body>
+</html>
